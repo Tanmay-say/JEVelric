@@ -1,4 +1,6 @@
 .env
+.env.cloudflare
+
 **/.env
 .venv/
 **/__pycache__/
@@ -11,3 +13,4 @@ graphify-out/
 
 
 Main_Plan.md
+
