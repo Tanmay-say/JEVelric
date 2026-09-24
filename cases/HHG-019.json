@@ -1,0 +1,135 @@
+{
+  "case_id": "HHG-019",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.8,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3499109",
+      "3503878",
+      "3507926",
+      "3508124"
+    ],
+    "first_suspicious_txn_id": "3499109",
+    "connected_card_ids": [
+      "C00029-K1",
+      "C00050-K1",
+      "C00057-K1",
+      "C00059-K2",
+      "C00090-K1",
+      "C00094-K3",
+      "C00147-K1",
+      "C00168-K1",
+      "C01104-K2",
+      "C01983-K1",
+      "C06224-K2",
+      "C11309-K1"
+    ],
+    "connected_device_profiles": [
+      "Windows#d8d6f92018"
+    ],
+    "exposure_usd": 360.74,
+    "evidence": [
+      {
+        "claim": "Card C07987-K2 has 4 transaction(s) within ±48h of 3503878 totaling $360.74.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C07987-K2)",
+        "entity_ids": [
+          "3499109",
+          "3503878",
+          "3507926",
+          "3508124"
+        ]
+      },
+      {
+        "claim": "Device profile shared with other cards in the review window.",
+        "source": "graph",
+        "ref": "query:device_neighbors(txn_id=3503878)",
+        "entity_ids": [
+          "C01104-K2",
+          "C01983-K1",
+          "C06224-K2",
+          "C11309-K1"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-5026",
+          "CC-2860",
+          "CC-2011",
+          "CC-2087"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-5026",
+      "CC-2860",
+      "CC-2011",
+      "CC-2087"
+    ],
+    "summary": "Verdict: fraud (probability 0.86), consistent with account takeover. Card C07987-K2 (customer C07987) shows mixed-channel activity: normal in-person use (txn 3499109, 3507926, 3508124) alongside online txn 3503878 ($99.92, 2016-12-01) from a device marked New (Windows#d8d6f92018) with risk score 0.90 — a device shared with four other cards (C01104-K2, C01983-K1, C06224-K2, C11309-K1). The customer has three prior confirmed-fraud cases on this same card (CC-5026, CC-2860, CC-2011), and total exposure is $360.74. Recommended: CREATE_CASE, then BLOCK_CARD (route L1, exposure ≤ $2,500) and MONITOR_CONNECTED_CARDS for the cards sharing the device profile.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-019"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "final": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and activity connects to a shared origin",
+    "narrative": "**SAR Narrative**\n\nBetween 2016-11-30 and 2016-12-02, card C07987-K2, issued to customer C07987, was used for four transactions totaling $360.74 in exposure. The activity began with an in-person purchase of $116.91 on 2016-11-30 at 01:05:10 in region 384, consistent with the customer's established history. On 2016-12-01 at 17:28:53, an online transaction of $99.92 (txn 3503878) was attempted from device profile Windows#d8d6f92018, which the identity record flags as New for this account, and carried a risk score of 0.90. The device profile Windows#d8d6f92018 is shared with four other cards not belonging to C07987 (C01104-K2, C01983-K1, C06224-K2, C11309-K1), indicating a device linked to multiple unrelated accounts. Following the online attempt, the card was used in person on 2016-12-02 for transactions 3507926 ($35.87, region 264) and 3508124 ($108.04, region 143), both with low risk scores, suggesting the cardholder retained physical possession of the card while the online activity occurred. This mixed-channel pattern — continued legitimate in-person use alongside an anomalous online transaction from a new, shared device — is consistent with account takeover rather than a stolen card number. The customer's prior history (128 transactions, mean amount $225.92) shows both online and in-person channels, but the flagged transaction's new-device signal and shared device profile deviate from that baseline. Customer C07987 has three previously confirmed fraud cases on this same card (CC-5026, CC-2860, CC-2011), including confirmed card-not-present fraud in CC-2860, heightening concern that credentials have been compromised again. The combination of a new device, a shared device profile across multiple cards, a high risk score of 0.90, and continued in-person use by the cardholder constitutes a strong account-takeover indicator warranting this report.",
+    "subjects": [
+      "C07987",
+      "C07987-K2"
+    ],
+    "total_amount_usd": 360.74,
+    "activity_dates": [
+      "2016-11-30",
+      "2016-12-02"
+    ]
+  },
+  "stop_reason": "",
+  "tool_calls": 7,
+  "tokens": 9062,
+  "latency_s": 34.23
+}

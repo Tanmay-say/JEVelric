@@ -1,0 +1,94 @@
+{
+  "case_id": "HHG-002",
+  "case": {
+    "status": "open",
+    "verdict": "uncertain",
+    "fraud_probability": 0.62,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3478782"
+    ],
+    "first_suspicious_txn_id": "3478782",
+    "connected_card_ids": [
+      "C00045-K1",
+      "C00059-K2",
+      "C00065-K1",
+      "C00073-K2",
+      "C00081-K1"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 292.36,
+    "evidence": [
+      {
+        "claim": "Card C11891-K1 has 1 transaction(s) within ±48h of 3478782 totaling $292.36.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C11891-K1)",
+        "entity_ids": [
+          "3478782"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-4160"
+        ]
+      },
+      {
+        "claim": "Step-up authentication fails, consistent with the account being compromised.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-4160"
+    ],
+    "summary": "Verdict: uncertain. A single online transaction (txn 3478782) on card C11891-K1 for $292.36 on 2016-11-22 is flagged as possible card-not-present fraud — the amount is well above the customer's historical mean of $43.99, and the customer has a prior confirmed fraud case (CC-4160) on the same card. However, the evidence is a single signal (fraud probability 0.58, below the 0.70 threshold), with no device, region, or shared-email anomalies, so the pattern is not confirmed. Recommended action per R1: VERIFY_WITH_CUSTOMER (or STEP_UP_AUTH) before any block, with MONITOR_CARD on C11891-K1 in the interim.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-002"
+  },
+  "evidence_requests": [
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 0,
+      "assumed_response": "Step-up authentication fails, consistent with the account being compromised."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: single weak signal, probability below 0.70"
+      }
+    ],
+    "final": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R4: no reply within 24 hours, pending authorization"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "R4: no reply within 24 hours"
+      }
+    ],
+    "what_changed": "no reply response added ['DECLINE_TRANSACTION', 'MONITOR_CARD'] and removed ['VERIFY_WITH_CUSTOMER']"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: not filed — either not confirmed/strongly suspected, or no qualifying trigger present",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Evidence round cap reached; recommendation reflects best available evidence.",
+  "tool_calls": 7,
+  "tokens": 6182,
+  "latency_s": 36.38
+}

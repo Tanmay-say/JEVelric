@@ -1,0 +1,213 @@
+{
+  "case_id": "HHG-007",
+  "case": {
+    "status": "escalated",
+    "verdict": "uncertain",
+    "fraud_probability": 0.28,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3509151",
+      "3509355",
+      "3509392",
+      "3509466",
+      "3510700",
+      "3511523",
+      "3511607",
+      "3511937",
+      "3512302",
+      "3512690",
+      "3512716",
+      "3513073",
+      "3513079",
+      "3513351",
+      "3513366",
+      "3513495",
+      "3513664",
+      "3514092",
+      "3514137",
+      "3514145",
+      "3514278",
+      "3514335",
+      "3514573",
+      "3514948",
+      "3515001",
+      "3515045",
+      "3515193",
+      "3515709",
+      "3515752",
+      "3515777",
+      "3515982",
+      "3516208",
+      "3516823",
+      "3516828",
+      "3516867",
+      "3517307",
+      "3517314",
+      "3517460",
+      "3517968",
+      "3518078",
+      "3518432",
+      "3518784",
+      "3519222",
+      "3519385",
+      "3519461",
+      "3520279",
+      "3520325",
+      "3520344",
+      "3520430",
+      "3520501"
+    ],
+    "first_suspicious_txn_id": "3509151",
+    "connected_card_ids": [
+      "C00029-K1",
+      "C00031-K1",
+      "C00044-K1",
+      "C00050-K1",
+      "C00059-K2",
+      "C00090-K1",
+      "C00094-K3",
+      "C00147-K1"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 14099.73,
+    "evidence": [
+      {
+        "claim": "Card C09933-K2 has 50 transaction(s) within ±48h of 3514948 totaling $14099.73.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C09933-K2)",
+        "entity_ids": [
+          "3509151",
+          "3509355",
+          "3509392",
+          "3509466",
+          "3510700",
+          "3511523",
+          "3511607",
+          "3511937",
+          "3512302",
+          "3512690",
+          "3512716",
+          "3513073",
+          "3513079",
+          "3513351",
+          "3513366",
+          "3513495",
+          "3513664",
+          "3514092",
+          "3514137",
+          "3514145",
+          "3514278",
+          "3514335",
+          "3514573",
+          "3514948",
+          "3515001",
+          "3515045",
+          "3515193",
+          "3515709",
+          "3515752",
+          "3515777",
+          "3515982",
+          "3516208",
+          "3516823",
+          "3516828",
+          "3516867",
+          "3517307",
+          "3517314",
+          "3517460",
+          "3517968",
+          "3518078",
+          "3518432",
+          "3518784",
+          "3519222",
+          "3519385",
+          "3519461",
+          "3520279",
+          "3520325",
+          "3520344",
+          "3520430",
+          "3520501"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-1524",
+          "CC-3821",
+          "CC-4196",
+          "CC-5092",
+          "CC-2565"
+        ]
+      },
+      {
+        "claim": "Step-up authentication fails, consistent with the account being compromised.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-1524",
+      "CC-3821",
+      "CC-4196",
+      "CC-5092",
+      "CC-2565"
+    ],
+    "summary": "Case HHG-007 on card C09933-K2 (customer C09933) was triggered by risk_score: Real-time model scored transaction 3514948 ($111.92, in billing region 264.0) at 0.87. Review and decide. Flagged transaction 3514948. Graph evidence supports pattern none with fraud probability 0.28 and exposure $14099.73. Working verdict is uncertain. Recommended actions: DECLINE_TRANSACTION, MONITOR_CARD, ESCALATE_TO_ANALYST.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-007"
+  },
+  "evidence_requests": [
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 0,
+      "assumed_response": "Step-up authentication fails, consistent with the account being compromised."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: single weak signal, probability below 0.70"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      }
+    ],
+    "final": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R4: no reply within 24 hours, pending authorization"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "R4: no reply within 24 hours"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R4: no reply and exposure exceeds $500"
+      }
+    ],
+    "what_changed": "no reply response added ['MONITOR_CARD', 'DECLINE_TRANSACTION'] and removed ['VERIFY_WITH_CUSTOMER']"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: not filed — either not confirmed/strongly suspected, or no qualifying trigger present",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Evidence round cap reached; recommendation reflects best available evidence.",
+  "tool_calls": 7,
+  "tokens": 0,
+  "latency_s": 60.32
+}

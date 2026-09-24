@@ -1,0 +1,115 @@
+{
+  "case_id": "HHG-010",
+  "case": {
+    "status": "escalated",
+    "verdict": "fraud",
+    "fraud_probability": 0.74,
+    "pattern": "account_takeover",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3506725"
+    ],
+    "first_suspicious_txn_id": "3506725",
+    "connected_card_ids": [
+      "C00037-K1",
+      "C00038-K1",
+      "C00051-K1",
+      "C00057-K1",
+      "C00059-K2",
+      "C00750-K2",
+      "C00780-K1",
+      "C00813-K1",
+      "C00854-K2",
+      "C01138-K2"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 1000.03,
+    "evidence": [
+      {
+        "claim": "Card C10434-K1 has 1 transaction(s) within ±48h of 3506725 totaling $1000.03.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C10434-K1)",
+        "entity_ids": [
+          "3506725"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-0873"
+        ]
+      },
+      {
+        "claim": "Customer states they did not make these purchases and still has the card.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-0873"
+    ],
+    "summary": "Case HHG-010 on card C10434-K1 (customer C10434) was triggered by risk_score: Real-time model scored transaction 3506725 ($1,000.03, online) at 0.90. Review and decide. Flagged transaction 3506725. Graph evidence supports pattern account_takeover with fraud probability 0.74 and exposure $1000.03. Working verdict is fraud. Recommended actions: BLOCK_CARD, CREATE_CASE, FILE_REPORT, ESCALATE_TO_ANALYST.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-010"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 0,
+      "assumed_response": "Customer states they did not make these purchases and still has the card."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denied the transaction"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: customer denied the transaction"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2: exposure exceeds $1,000 or activity connects to a shared origin"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      }
+    ],
+    "what_changed": "denied response added ['BLOCK_CARD', 'FILE_REPORT', 'CREATE_CASE']"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000",
+    "narrative": "This SAR concerns customer C10434 and card C10434-K1. Transaction 3506725 was reviewed after the following trigger: Real-time model scored transaction 3506725 ($1,000.03, online) at 0.90. Review and decide. During the review window the card showed transactions ['3506725'] with exposure $1000.03. The activity is classified as account_takeover with fraud probability 0.74. Shared-origin flags: device=False, region=False, email=False. Recommended next actions are BLOCK_CARD, CREATE_CASE, FILE_REPORT, ESCALATE_TO_ANALYST. This narrative is based solely on graph-retrieved records in the investigation dataset.",
+    "subjects": [
+      "C10434",
+      "C10434-K1"
+    ],
+    "total_amount_usd": 1000.03,
+    "activity_dates": [
+      "2016-12-02",
+      "2016-12-02"
+    ]
+  },
+  "stop_reason": "Verification response (denied) settled the question.",
+  "tool_calls": 7,
+  "tokens": 0,
+  "latency_s": 96.42
+}

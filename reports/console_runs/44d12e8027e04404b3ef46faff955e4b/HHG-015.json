@@ -1,0 +1,130 @@
+{
+  "case_id": "HHG-015",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.86,
+    "pattern": "account_takeover",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3462385",
+      "3462387",
+      "3462404",
+      "3464869",
+      "3468946"
+    ],
+    "first_suspicious_txn_id": "3462385",
+    "connected_card_ids": [
+      "C00051-K1",
+      "C00056-K1",
+      "C00057-K1",
+      "C00090-K1",
+      "C00093-K1",
+      "C00094-K3",
+      "C00235-K2",
+      "C00321-K1",
+      "C00540-K1",
+      "C05704-K2"
+    ],
+    "connected_device_profiles": [
+      "Trident/7.0#347e7400df"
+    ],
+    "exposure_usd": 2452.98,
+    "evidence": [
+      {
+        "claim": "Card C03042-K1 has 5 transaction(s) within ±48h of 3464869 totaling $2452.98.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C03042-K1)",
+        "entity_ids": [
+          "3462385",
+          "3462387",
+          "3462404",
+          "3464869",
+          "3468946"
+        ]
+      },
+      {
+        "claim": "Device profile shared with other cards in the review window.",
+        "source": "graph",
+        "ref": "query:device_neighbors(txn_id=3464869)",
+        "entity_ids": [
+          "C05704-K2"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-3886",
+          "CC-0615",
+          "CC-1313"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-3886",
+      "CC-0615",
+      "CC-1313"
+    ],
+    "summary": "Case HHG-015 on card C03042-K1 (customer C03042) was triggered by risk_score: Real-time model scored transaction 3464869 ($599.94, online) at 0.77. Review and decide. Flagged transaction 3464869. Graph evidence supports pattern account_takeover with fraud probability 0.86 and exposure $2452.98. Working verdict is fraud. Recommended actions: MONITOR_CONNECTED_CARDS, CREATE_CASE, FILE_REPORT.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-015"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "final": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000; activity connects to a shared origin",
+    "narrative": "This SAR concerns customer C03042 and card C03042-K1. Transaction 3464869 was reviewed after the following trigger: Real-time model scored transaction 3464869 ($599.94, online) at 0.77. Review and decide. During the review window the card showed transactions ['3462385', '3462387', '3462404', '3464869', '3468946'] with exposure $2452.98. The activity is classified as account_takeover with fraud probability 0.86. Shared-origin flags: device=True, region=False, email=False. Recommended next actions are MONITOR_CONNECTED_CARDS, CREATE_CASE, FILE_REPORT. This narrative is based solely on graph-retrieved records in the investigation dataset.",
+    "subjects": [
+      "C03042",
+      "C03042-K1"
+    ],
+    "total_amount_usd": 2452.98,
+    "activity_dates": [
+      "2016-11-16",
+      "2016-11-18"
+    ]
+  },
+  "stop_reason": "Fraud probability at or beyond the 0.85/0.15 threshold, supported by 2+ independent pieces of evidence.",
+  "tool_calls": 7,
+  "tokens": 0,
+  "latency_s": 106.82
+}

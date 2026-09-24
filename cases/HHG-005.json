@@ -1,0 +1,144 @@
+{
+  "case_id": "HHG-005",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.75,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3523199"
+    ],
+    "first_suspicious_txn_id": "3523199",
+    "connected_card_ids": [
+      "C00011-K1",
+      "C00016-K1",
+      "C00020-K1",
+      "C00050-K1",
+      "C00059-K2",
+      "C00079-K1",
+      "C00086-K1",
+      "C00094-K3",
+      "C08299-K1",
+      "C11496-K2",
+      "C11539-K2",
+      "C12267-K2"
+    ],
+    "connected_device_profiles": [
+      "iOS Device#08b637c722"
+    ],
+    "exposure_usd": 100.07,
+    "evidence": [
+      {
+        "claim": "Card C02923-K1 has 1 transaction(s) within ±48h of 3523199 totaling $100.07.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C02923-K1)",
+        "entity_ids": [
+          "3523199"
+        ]
+      },
+      {
+        "claim": "Device profile shared with other cards in the review window.",
+        "source": "graph",
+        "ref": "query:device_neighbors(txn_id=3523199)",
+        "entity_ids": [
+          "C08299-K1",
+          "C11496-K2",
+          "C11539-K2",
+          "C12267-K2"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-2400",
+          "CC-2717",
+          "CC-2857"
+        ]
+      },
+      {
+        "claim": "Step-up authentication fails, consistent with the account being compromised.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-2400",
+      "CC-2717",
+      "CC-2857"
+    ],
+    "summary": "Verdict: fraud (account takeover), consistent with the heuristic's 0.86 probability. The flagged transaction 3523199 on card C02923-K1 (customer C02923) is a $100.07 online purchase on 2016-12-07 from a device marked New (iOS Device#08b637c722), which is shared with four other cards (C08299-K1, C11496-K2, C11539-K2, C12267-K2) — a device/match-flag anomaly pattern pointing to stolen credentials. This matches three prior confirmed account-takeover cases on the same card (CC-2400, CC-2717, CC-2857), each closed as confirmed fraud with mixed-channel activity inconsistent with the cardholder. Recommended actions: BLOCK_CARD (exposure $100.07 ≤ $2,500, route L1), MONITOR_CONNECTED_CARDS for the shared-device cards, and CREATE_CASE with the evidence attached.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-005"
+  },
+  "evidence_requests": [
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 0,
+      "assumed_response": "Step-up authentication fails, consistent with the account being compromised."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denied the transaction"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: customer denied the transaction"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2: exposure exceeds $1,000 or activity connects to a shared origin"
+      }
+    ],
+    "what_changed": "denied response added ['BLOCK_CARD']"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and activity connects to a shared origin",
+    "narrative": "**Suspicious Activity Report Narrative**\n\nOn 2016-12-07 at 21:38:37, an online transaction of $100.07 (txn 3523199) was attempted on card C02923-K1, held by customer C02923, for a product in category R. The transaction was flagged with a risk score of 0.54 and originated from device profile iOS Device#08b637c722, which the identity record marks as \"New\" (id_15) for this account, indicating the customer has no prior history with this device. The customer's established history comprises 61 transactions with a mean amount of $190.92 across regions 126, 324, and 330, conducted both in person and online, so the amount alone is not anomalous; however, the use of a new device for an online purchase is consistent with card-not-present fraud from a new device and possible account takeover. The device profile iOS Device#08b637c722 is shared with four other cards (C08299-K1, C11496-K2, C11539-K2, C12267-K2), a linkage suggesting coordinated or compromised activity across multiple accounts. The customer has three previously confirmed fraud cases on this same card: CC-2400 (3 transactions totaling $350.99 between 2016-08-18 and 2016-08-19), CC-2717 (6 transactions totaling $896.08 between 2016-08-25 and 2016-08-27, originating from a Windows device on Edge 15.0), and CC-2857 (2 transactions totaling $539.97 on 2016-08-30), all confirmed as account takeover in which both credentials and card data were used, with the card blocked and reissued each time. The recurrence of unauthorized activity on a card that has been reissued three times, now from yet another new device, indicates the customer's account credentials remain compromised and the fraudster is re-obtaining access despite prior remediation. The activity is suspicious because it combines a new-device online authorization with a shared device profile linked to multiple other cards and a documented pattern of repeated account takeover on this account. Total exposure in the current window is $100.07. The evidence supports escalating this activity for investigation of continued account takeover.",
+    "subjects": [
+      "C02923",
+      "C02923-K1"
+    ],
+    "total_amount_usd": 100.07,
+    "activity_dates": [
+      "2016-12-07",
+      "2016-12-07"
+    ]
+  },
+  "stop_reason": "Verification response (denied) settled the question.",
+  "tool_calls": 7,
+  "tokens": 10277,
+  "latency_s": 160.47
+}

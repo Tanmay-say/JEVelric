@@ -1,0 +1,117 @@
+{
+  "case_id": "HHG-006",
+  "case": {
+    "status": "escalated",
+    "verdict": "fraud",
+    "fraud_probability": 0.74,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3473012",
+      "3474057",
+      "3476602",
+      "3476633",
+      "3476665",
+      "3476682",
+      "3477578",
+      "3478191"
+    ],
+    "first_suspicious_txn_id": "3473012",
+    "connected_card_ids": [
+      "C00003-K1",
+      "C00028-K1",
+      "C00038-K1",
+      "C00044-K1",
+      "C00050-K1",
+      "C00059-K2",
+      "C00064-K1",
+      "C00073-K2"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 2508.06,
+    "evidence": [
+      {
+        "claim": "Card C07297-K1 has 8 transaction(s) within ±48h of 3476682 totaling $2508.06.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C07297-K1)",
+        "entity_ids": [
+          "3473012",
+          "3474057",
+          "3476602",
+          "3476633",
+          "3476665",
+          "3476682",
+          "3477578",
+          "3478191"
+        ]
+      },
+      {
+        "claim": "Customer states they did not make these purchases and still has the card.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [],
+    "summary": "Case HHG-006 on card C07297-K1 (customer C07297) was triggered by customer_report: Customer C07297 message: 'I never made this $482.12 purchase. Please check my card.' Refers to 3476682. Flagged transaction 3476682. Graph evidence supports pattern card_not_present_new_device with fraud probability 0.74 and exposure $2508.06. Working verdict is fraud. Recommended actions: BLOCK_CARD, CREATE_CASE, FILE_REPORT, ESCALATE_TO_ANALYST.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-006"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 0,
+      "assumed_response": "Customer states they did not make these purchases and still has the card."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L2",
+        "reason": "R2: customer denied the transaction"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: customer denied the transaction"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2: exposure exceeds $1,000 or activity connects to a shared origin"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      }
+    ],
+    "what_changed": "denied response added ['BLOCK_CARD', 'FILE_REPORT', 'CREATE_CASE']"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000",
+    "narrative": "This SAR concerns customer C07297 and card C07297-K1. Transaction 3476682 was reviewed after the following trigger: Customer C07297 message: 'I never made this $482.12 purchase. Please check my card.' Refers to 3476682. During the review window the card showed transactions ['3473012', '3474057', '3476602', '3476633', '3476665', '3476682', '3477578', '3478191'] with exposure $2508.06. The activity is classified as card_not_present_new_device with fraud probability 0.74. Shared-origin flags: device=False, region=False, email=False. Recommended next actions are BLOCK_CARD, CREATE_CASE, FILE_REPORT, ESCALATE_TO_ANALYST. This narrative is based solely on graph-retrieved records in the investigation dataset.",
+    "subjects": [
+      "C07297",
+      "C07297-K1"
+    ],
+    "total_amount_usd": 2508.06,
+    "activity_dates": [
+      "2016-11-20",
+      "2016-11-22"
+    ]
+  },
+  "stop_reason": "Verification response (denied) settled the question.",
+  "tool_calls": 7,
+  "tokens": 3646,
+  "latency_s": 86.3
+}

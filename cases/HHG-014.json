@@ -1,0 +1,87 @@
+{
+  "case_id": "HHG-014",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.74,
+    "pattern": "account_takeover",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3477218",
+      "3478561",
+      "3478886"
+    ],
+    "first_suspicious_txn_id": "3477218",
+    "connected_card_ids": [
+      "C00003-K1",
+      "C00038-K1",
+      "C00050-K1",
+      "C00051-K1",
+      "C00059-K2",
+      "C00073-K2",
+      "C00235-K2",
+      "C00244-K1",
+      "C00452-K2",
+      "C00577-K1"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 142.0,
+    "evidence": [
+      {
+        "claim": "Card C13487-K1 has 3 transaction(s) within ±48h of 3478561 totaling $142.00.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C13487-K1)",
+        "entity_ids": [
+          "3477218",
+          "3478561",
+          "3478886"
+        ]
+      },
+      {
+        "claim": "Analyst confirms the related activity flagged in the trigger is part of the same episode.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [],
+    "summary": "Case HHG-014 on card C13487-K1 (customer C13487) was triggered by analyst_request: Analyst request: several cards this month show purchases from the same unusual device profile. Review transaction 3478561 on card C13487-K1 and look for related activity. Flagged transaction 3478561. Graph evidence supports pattern account_takeover with fraud probability 0.74 and exposure $142.00. Working verdict is fraud. Recommended actions: BLOCK_CARD, CREATE_CASE.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-014"
+  },
+  "evidence_requests": [
+    {
+      "type": "analyst_info",
+      "asked_after_step": 0,
+      "assumed_response": "Analyst confirms the related activity flagged in the trigger is part of the same episode."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denied the transaction"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: customer denied the transaction"
+      }
+    ],
+    "what_changed": "denied response added ['CREATE_CASE', 'BLOCK_CARD']"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: not filed — either not confirmed/strongly suspected, or no qualifying trigger present",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Verification response (denied) settled the question.",
+  "tool_calls": 7,
+  "tokens": 5540,
+  "latency_s": 25.89
+}
