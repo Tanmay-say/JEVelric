@@ -1,0 +1,119 @@
+{
+  "case_id": "HHG-017",
+  "query": "card_window",
+  "same": true,
+  "csv": {
+    "affected_txn_ids": [
+      "3450436",
+      "3450503",
+      "3450629"
+    ],
+    "activity_dates": [
+      "2016-11-11",
+      "2016-11-11"
+    ],
+    "txns": [
+      {
+        "txn_id": "3450436",
+        "card_id": "C04570-K1",
+        "customer_id": "C04570",
+        "amount": 100.09,
+        "ts": "2016-11-11 22:36:50",
+        "channel": "online",
+        "product": "R",
+        "addr1": "204",
+        "email": "anonymous.com",
+        "risk_score": 0.05,
+        "id_15": "Found",
+        "device_profile": "Windows#6a9d8e4488"
+      },
+      {
+        "txn_id": "3450503",
+        "card_id": "C04570-K1",
+        "customer_id": "C04570",
+        "amount": 99.96,
+        "ts": "2016-11-11 22:58:57",
+        "channel": "online",
+        "product": "R",
+        "addr1": "204",
+        "email": "anonymous.com",
+        "risk_score": 0.1,
+        "id_15": "Found",
+        "device_profile": "Windows#6a9d8e4488"
+      },
+      {
+        "txn_id": "3450629",
+        "card_id": "C04570-K1",
+        "customer_id": "C04570",
+        "amount": 100.09,
+        "ts": "2016-11-11 23:46:24",
+        "channel": "online",
+        "product": "R",
+        "addr1": "204",
+        "email": "anonymous.com",
+        "risk_score": 0.57,
+        "id_15": "Found",
+        "device_profile": "Windows#6a9d8e4488"
+      }
+    ],
+    "exposure_usd": 300.14,
+    "claim_text": "Card C04570-K1 has 3 transaction(s) within ±48h of 3450629 totaling $300.14."
+  },
+  "tigergraph": {
+    "affected_txn_ids": [
+      "3450436",
+      "3450503",
+      "3450629"
+    ],
+    "activity_dates": [
+      "2016-11-11",
+      "2016-11-11"
+    ],
+    "txns": [
+      {
+        "txn_id": "3450436",
+        "card_id": "C04570-K1",
+        "customer_id": "C04570",
+        "amount": 100.09,
+        "ts": "2016-11-11 22:36:50",
+        "channel": "online",
+        "product": "R",
+        "addr1": "204",
+        "email": "anonymous.com",
+        "risk_score": 0.05,
+        "id_15": "Found",
+        "device_profile": "Windows#6a9d8e4488"
+      },
+      {
+        "txn_id": "3450503",
+        "card_id": "C04570-K1",
+        "customer_id": "C04570",
+        "amount": 99.96,
+        "ts": "2016-11-11 22:58:57",
+        "channel": "online",
+        "product": "R",
+        "addr1": "204",
+        "email": "anonymous.com",
+        "risk_score": 0.1,
+        "id_15": "Found",
+        "device_profile": "Windows#6a9d8e4488"
+      },
+      {
+        "txn_id": "3450629",
+        "card_id": "C04570-K1",
+        "customer_id": "C04570",
+        "amount": 100.09,
+        "ts": "2016-11-11 23:46:24",
+        "channel": "online",
+        "product": "R",
+        "addr1": "204",
+        "email": "anonymous.com",
+        "risk_score": 0.57,
+        "id_15": "Found",
+        "device_profile": "Windows#6a9d8e4488"
+      }
+    ],
+    "claim_text": "Card C04570-K1 has 3 transaction(s) within ±48h of 3450629 totaling $300.14.",
+    "exposure_usd": 300.14
+  }
+}

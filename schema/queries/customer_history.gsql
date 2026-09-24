@@ -1,0 +1,12 @@
+USE GRAPH HHGOA
+
+CREATE OR REPLACE QUERY customer_history(VERTEX<Customer> customer_vertex, INT days) FOR GRAPH HHGOA {
+    CustomerSet = {customer_vertex};
+    Cards = SELECT card FROM CustomerSet:customer -(OWNS)- Card:card;
+    Transactions = SELECT t
+                   FROM Cards:card -(MADE)- Transaction:t
+                   ORDER BY t.ts ASC;
+    PRINT Transactions;
+}
+
+INSTALL QUERY customer_history

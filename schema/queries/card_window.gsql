@@ -1,0 +1,14 @@
+USE GRAPH HHGOA
+
+CREATE OR REPLACE QUERY card_window(VERTEX<Card> card_vertex, VERTEX<Transaction> flagged_vertex, INT hours) FOR GRAPH HHGOA {
+    MaxAccum<INT> @@flagged_epoch;
+    CardSet = {card_vertex};
+    Flagged = {flagged_vertex};
+    Flagged = SELECT t FROM Flagged:t ACCUM @@flagged_epoch += datetime_to_epoch(t.ts);
+    Window = SELECT t FROM CardSet:c -(MADE)- Transaction:t
+             WHERE abs(datetime_to_epoch(t.ts) - @@flagged_epoch) <= hours * 3600
+             ORDER BY t.ts ASC;
+    PRINT Window;
+}
+
+INSTALL QUERY card_window

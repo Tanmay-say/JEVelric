@@ -1,0 +1,27 @@
+{
+  "case_id": "HHG-017",
+  "query": "closed_case_similarity",
+  "same": true,
+  "csv": {
+    "matches": [
+      {
+        "case_id": "CC-1383",
+        "score": 9.0,
+        "pattern": "",
+        "outcome": "cleared",
+        "notes": "Case CC-1383: model scored a $99.98 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared."
+      }
+    ]
+  },
+  "tigergraph": {
+    "matches": [
+      {
+        "case_id": "CC-1383",
+        "score": 9.0,
+        "pattern": "",
+        "outcome": "cleared",
+        "notes": "Case CC-1383: model scored a $99.98 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared."
+      }
+    ]
+  }
+}

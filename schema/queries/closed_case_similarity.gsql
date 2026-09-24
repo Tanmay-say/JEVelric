@@ -1,0 +1,14 @@
+USE GRAPH HHGOA
+
+CREATE OR REPLACE QUERY closed_case_similarity(STRING customer_id, VERTEX<Card> card_vertex, INT top_k) FOR GRAPH HHGOA {
+    ClosedCases = {ClosedCase.*};
+    CustomerMatches = SELECT cc
+                      FROM ClosedCases:cc
+                      WHERE cc.customer_id == customer_id
+                      LIMIT top_k * 20;
+    CardSet = {card_vertex};
+    CardMatches = SELECT cc FROM CardSet:c -(ON_CARD|CONNECTED_TO)- ClosedCase:cc;
+    PRINT CustomerMatches, CardMatches;
+}
+
+INSTALL QUERY closed_case_similarity

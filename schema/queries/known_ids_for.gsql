@@ -1,0 +1,23 @@
+USE GRAPH HHGOA
+
+CREATE OR REPLACE QUERY known_ids_for(STRING customer_id, VERTEX<Card> card_vertex, VERTEX<Customer> customer_vertex) FOR GRAPH HHGOA {
+    CustomerSet = {customer_vertex};
+    CardSet = {card_vertex};
+    CustomerTransactions = SELECT t
+                           FROM CustomerSet:c -(OWNS)- Card:card -(MADE)- Transaction:t;
+    CardTransactions = SELECT t FROM CardSet:card -(MADE)- Transaction:t;
+    Transactions = CustomerTransactions UNION CardTransactions;
+    Devices = SELECT d FROM Transactions:t -(FROM_DEVICE)- DeviceProfile:d;
+    ClosedSet = {ClosedCase.*};
+    CustomerCases = SELECT cc
+                    FROM ClosedSet:cc
+                    WHERE cc.customer_id == customer_id;
+    CardCases = SELECT cc FROM CardSet:c -(ON_CARD|CONNECTED_TO)- ClosedCase:cc;
+    InvestigationSet = {InvestigationCase.*};
+    InvestigationCases = SELECT ic
+                         FROM InvestigationSet:ic
+                         WHERE ic.customer_id == customer_id;
+    PRINT CustomerSet, CardSet, Transactions, Devices, CustomerCases, CardCases, InvestigationCases;
+}
+
+INSTALL QUERY known_ids_for

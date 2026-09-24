@@ -1,0 +1,22 @@
+# Orchestration
+langgraph>=0.2
+pydantic>=2.6
+langchain-core>=0.3
+
+# Config
+python-dotenv>=1.0
+
+# Local graph uses the stdlib csv module (pandas DLLs are often blocked on
+# locked-down Windows). pandas remains optional if you prefer it locally.
+# pandas>=2.2
+
+# LLM — OpenRouter (OpenAI-compatible) + Gemini fallback
+openai>=1.58
+google-genai>=1.0
+tigergraph-mcp==1.0.3
+
+# Optional TigerGraph direct connection
+# pyTigerGraph>=1.6
+
+# Testing
+pytest>=8.0

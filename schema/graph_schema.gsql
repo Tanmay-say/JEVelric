@@ -1,0 +1,164 @@
+// graph_schema.gsql
+// Vertices/edges per README "Suggested graph schema", plus the Case vertex
+// this plan adds for case memory (plan.md §GRAPH_WRITE).
+// Local schema change job for the existing HHGOA graph.
+
+// -------------------------------------------------------------------
+// graph
+
+USE GRAPH HHGOA
+
+CREATE SCHEMA_CHANGE JOB hhgoa_schema FOR GRAPH HHGOA {
+
+    // --------------------------------------------------------------- vertices
+
+    ADD VERTEX Customer (
+        PRIMARY_ID customer_id STRING
+    );
+
+    ADD VERTEX Card (
+        PRIMARY_ID card_id STRING,
+        customer_id STRING,
+        network STRING,
+        card_type STRING
+    );
+
+    ADD VERTEX Transaction (
+        PRIMARY_ID txn_id STRING,
+        customer_id STRING,
+        card_id STRING,
+        ts DATETIME,
+        amount DOUBLE,
+        product_code STRING,
+        channel STRING,          // in_person | online
+        risk_score DOUBLE,
+        addr1 STRING,
+        addr2 STRING,
+        email STRING,
+        id_15 STRING,
+        id_23 STRING,
+        device_profile STRING
+        // remaining Vesta columns (C1-C14, D1-D15, M1-M9, V1-V339)
+        // can be loaded later as additional attributes or a JSON blob.
+    );
+
+    ADD VERTEX DeviceProfile (
+        PRIMARY_ID device_profile_id STRING,
+        device_info STRING,
+        os STRING,
+        browser STRING,
+        screen STRING,
+        device_type STRING,      // mobile | desktop
+        is_new_for_account BOOL
+    );
+
+    ADD VERTEX EmailDomain (
+        PRIMARY_ID domain STRING
+    );
+
+    ADD VERTEX BillingRegion (
+        PRIMARY_ID addr1 STRING,
+        addr2 STRING
+    );
+
+    ADD VERTEX ClosedCase (
+        PRIMARY_ID case_id STRING,
+        customer_id STRING,
+        card_id STRING,
+        opened_at DATETIME,
+        closed_at DATETIME,
+        outcome STRING,           // confirmed_fraud | cleared
+        pattern STRING,
+        exposure_usd DOUBLE,
+        n_txns INT,
+        actions_taken STRING,
+        report_filed BOOL,
+        analyst_notes STRING,
+        connected_card_ids STRING
+    );
+
+    // InvestigationCase stores this run's answer as reusable graph memory.
+    ADD VERTEX InvestigationCase (
+        PRIMARY_ID graph_case_id STRING,
+        case_id STRING,          // the HHG-0xx case_pack id this investigation answers
+        customer_id STRING,
+        status STRING,
+        verdict STRING,
+        fraud_probability DOUBLE,
+        pattern STRING,
+        exposure_usd DOUBLE,
+        summary STRING,
+        created_at DATETIME
+    );
+
+    // ---------------------------------------------------------------- edges
+
+    ADD UNDIRECTED EDGE OWNS (
+        FROM Customer,
+        TO Card
+    );
+
+    ADD UNDIRECTED EDGE MADE (
+        FROM Card,
+        TO Transaction
+    );
+
+    ADD UNDIRECTED EDGE FROM_DEVICE (
+        FROM Transaction,
+        TO DeviceProfile
+    );
+
+    ADD UNDIRECTED EDGE PURCHASER_EMAIL (
+        FROM Transaction,
+        TO EmailDomain
+    );
+
+    ADD UNDIRECTED EDGE BILLED_IN (
+        FROM Transaction,
+        TO BillingRegion
+    );
+
+    ADD DIRECTED EDGE NEXT (
+        FROM Transaction,
+        TO Transaction
+    );
+
+    ADD UNDIRECTED EDGE INVOLVES (
+        FROM ClosedCase,
+        TO Transaction
+    );
+
+    ADD UNDIRECTED EDGE ON_CARD (
+        FROM ClosedCase,
+        TO Card
+    );
+
+    ADD UNDIRECTED EDGE CONNECTED_TO (
+        FROM ClosedCase,
+        TO Card
+    );
+
+    // --------------------------------------------------------- case memory
+
+    ADD UNDIRECTED EDGE INVESTIGATES (
+        FROM InvestigationCase,
+        TO Transaction
+    );
+
+    ADD UNDIRECTED EDGE CASE_ON_CARD (
+        FROM InvestigationCase,
+        TO Card
+    );
+
+    ADD UNDIRECTED EDGE CITES (
+        FROM InvestigationCase,
+        TO ClosedCase
+    );
+
+    ADD UNDIRECTED EDGE CASE_FROM_DEVICE (
+        FROM InvestigationCase,
+        TO DeviceProfile
+    );
+}
+
+RUN SCHEMA_CHANGE JOB hhgoa_schema

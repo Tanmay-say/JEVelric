@@ -1,0 +1,13 @@
+.env
+**/.env
+.venv/
+**/__pycache__/
+.pytest_cache/
+**/.pytest_cache/
+data/*.csv
+data/tigergraph_staging/
+cases/*.json
+graphify-out/
+
+
+Main_Plan.md

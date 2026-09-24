@@ -1,0 +1,15 @@
+{
+  "case_id": "HHG-017",
+  "query": "device_neighbors",
+  "same": true,
+  "csv": {
+    "card_ids": [],
+    "device_profiles": [],
+    "txns": []
+  },
+  "tigergraph": {
+    "card_ids": [],
+    "device_profiles": [],
+    "txns": []
+  }
+}

@@ -1,0 +1,20 @@
+USE GRAPH HHGOA
+
+CREATE OR REPLACE QUERY region_cluster(VERTEX<Transaction> txn_vertex, INT window_days) FOR GRAPH HHGOA {
+    MaxAccum<INT> @@flagged_epoch;
+    MaxAccum<STRING> @@flagged_card;
+    Flagged = {txn_vertex};
+    Flagged = SELECT t FROM Flagged:t
+              ACCUM @@flagged_epoch += datetime_to_epoch(t.ts),
+                    @@flagged_card += t.card_id;
+    Region = SELECT r FROM Flagged:t -(BILLED_IN)- BillingRegion:r;
+    Cluster = SELECT t2
+              FROM Region:r -(BILLED_IN)- Transaction:t2
+              WHERE t2.card_id != @@flagged_card
+                AND abs(datetime_to_epoch(t2.ts) - @@flagged_epoch) <= window_days * 86400
+              ORDER BY t2.ts ASC
+              LIMIT 5000;
+    PRINT Region, Cluster;
+}
+
+INSTALL QUERY region_cluster

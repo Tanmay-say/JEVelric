@@ -1,0 +1,66 @@
+// Canonical persistent jobs for the MCP create_loading_job tool.
+// pyTigerGraph runLoadingJobWithFile transports headerless files, so all
+// column references are positional and every job uses HEADER="false".
+// The runtime loader creates each job once, reuses it across files, and drops
+// it only after all files for that job have loaded and passed count checks.
+
+USE GRAPH HHGOA
+
+CREATE LOADING JOB load_hhgoa_transactions FOR GRAPH HHGOA {
+    DEFINE FILENAME f_transactions;
+    LOAD f_transactions
+        TO VERTEX Customer VALUES($1),
+        TO VERTEX Card VALUES($2, $1, $20, $21),
+        TO VERTEX Transaction VALUES($0, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13),
+        TO EDGE OWNS VALUES($1, $2),
+        TO EDGE MADE VALUES($2, $0)
+    USING SEPARATOR=",", HEADER="false", QUOTE="double";
+}
+
+CREATE LOADING JOB load_hhgoa_devices FOR GRAPH HHGOA {
+    DEFINE FILENAME f_devices;
+    LOAD f_devices
+        TO VERTEX DeviceProfile VALUES($1, $2, $3, $4, $5, $6, $7),
+        TO EDGE FROM_DEVICE VALUES($0, $1)
+    USING SEPARATOR=",", HEADER="false", QUOTE="double";
+}
+
+CREATE LOADING JOB load_hhgoa_emails FOR GRAPH HHGOA {
+    DEFINE FILENAME f_emails;
+    LOAD f_emails
+        TO VERTEX EmailDomain VALUES($1),
+        TO EDGE PURCHASER_EMAIL VALUES($0, $1)
+    USING SEPARATOR=",", HEADER="false", QUOTE="double";
+}
+
+CREATE LOADING JOB load_hhgoa_regions FOR GRAPH HHGOA {
+    DEFINE FILENAME f_regions;
+    LOAD f_regions
+        TO VERTEX BillingRegion VALUES($1, $2),
+        TO EDGE BILLED_IN VALUES($0, $1)
+    USING SEPARATOR=",", HEADER="false", QUOTE="double";
+}
+
+CREATE LOADING JOB load_hhgoa_closed_cases FOR GRAPH HHGOA {
+    DEFINE FILENAME f_closed_cases;
+    LOAD f_closed_cases TO VERTEX ClosedCase VALUES($0, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+    USING SEPARATOR=",", HEADER="false", QUOTE="double";
+}
+
+CREATE LOADING JOB load_hhgoa_closed_case_txns FOR GRAPH HHGOA {
+    DEFINE FILENAME f_closed_case_txns;
+    LOAD f_closed_case_txns TO EDGE INVOLVES VALUES($0, $1)
+    USING SEPARATOR=",", HEADER="false", QUOTE="double";
+}
+
+CREATE LOADING JOB load_hhgoa_closed_case_primary_cards FOR GRAPH HHGOA {
+    DEFINE FILENAME f_closed_case_primary_cards;
+    LOAD f_closed_case_primary_cards TO EDGE ON_CARD VALUES($0, $1)
+    USING SEPARATOR=",", HEADER="false", QUOTE="double";
+}
+
+CREATE LOADING JOB load_hhgoa_closed_case_connected_cards FOR GRAPH HHGOA {
+    DEFINE FILENAME f_closed_case_connected_cards;
+    LOAD f_closed_case_connected_cards TO EDGE CONNECTED_TO VALUES($0, $1)
+    USING SEPARATOR=",", HEADER="false", QUOTE="double";
+}
