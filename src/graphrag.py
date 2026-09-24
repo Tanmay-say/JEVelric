@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from .config import ROOT, llm_configured
+from .config import GRAPHRAG_MODE, ROOT, get_grip_client, llm_configured
 from .llm import LLMError, complete_text
 from .state import (
     Action,
@@ -31,7 +31,7 @@ def _read_capped(path: Path, n: int = 4000) -> str:
     return path.read_text(encoding="utf-8")[:n]
 
 
-def assemble_context(graph_evidence: dict, round_: int) -> str:
+def assemble_context(graph_evidence: dict, round_: int, query_text: str = "") -> str:
     sections = [
         f"ROUND: {round_}",
         "KNOWN FRAUD PATTERNS:\n" + _read_capped(_PATTERNS),
@@ -39,12 +39,29 @@ def assemble_context(graph_evidence: dict, round_: int) -> str:
         "GRAPH EVIDENCE (entity IDs must be copied verbatim, never invented):",
     ]
     cw = graph_evidence.get("card_window") or {}
+    txn_ids = cw.get("affected_txn_ids") or []
+    txn_rows = cw.get("txns") or []
+    if GRAPHRAG_MODE == "grip":
+        max_ids = 40
+        shown_ids = list(txn_ids[:max_ids])
+        if len(txn_ids) > max_ids:
+            shown_ids.append(f"... {len(txn_ids) - max_ids} additional transaction IDs omitted")
+        compact_rows = [
+            {key: row.get(key) for key in ("txn_id", "ts", "amount", "merchant", "channel") if row.get(key) is not None}
+            for row in txn_rows[:12]
+            if isinstance(row, dict)
+        ]
+        if len(txn_rows) > 12:
+            compact_rows.append({"omitted_transaction_rows": len(txn_rows) - 12})
+    else:
+        shown_ids = txn_ids
+        compact_rows = txn_rows
     sections.append(
         "CARD WINDOW:\n"
-        f"  txn_ids={cw.get('affected_txn_ids')}\n"
+        f"  txn_ids={shown_ids}\n"
         f"  dates={cw.get('activity_dates')}\n"
         f"  exposure_usd={cw.get('exposure_usd')}\n"
-        f"  txns={cw.get('txns')}"
+        f"  txns={compact_rows}"
     )
     dn = graph_evidence.get("device_neighbors") or {}
     sections.append(f"DEVICE NEIGHBORS: cards={dn.get('card_ids')} profiles={dn.get('device_profiles')}")
@@ -65,13 +82,93 @@ def assemble_context(graph_evidence: dict, round_: int) -> str:
         for m in matches:
             lines.append(
                 f"  {m.get('case_id')} pattern={m.get('pattern')} "
-                f"outcome={m.get('outcome')} notes={m.get('notes')}"
+                f"outcome={m.get('outcome')} notes={str(m.get('notes') or '')[:180 if GRAPHRAG_MODE == 'grip' else 500]}"
             )
         sections.append("SIMILAR CLOSED CASES:\n" + "\n".join(lines))
     hints = graph_evidence.get("_hints") or {}
     if hints:
         sections.append(f"GRAPH HEURISTIC HINTS: {hints}")
-    return "\n\n".join(sections)
+    context = "\n\n".join(sections)
+    if GRAPHRAG_MODE != "grip":
+        return context
+    try:
+        enrichment = _grip_context(graph_evidence, query_text)
+        return context + "\n\nGRIP HYBRID RETRIEVAL (supplementary policy and closed-case text):\n" + enrichment
+    except Exception as exc:  # GRIP is optional; the established context remains usable.
+        import logging
+        logging.getLogger(__name__).warning("GRIP retrieval failed; using static GraphRAG context: %s", exc)
+        return context
+
+
+def _grip_context(graph_evidence: dict, query_text: str) -> str:
+    hints = graph_evidence.get("_hints") or {}
+    pattern = str(hints.get("pattern") or "")
+    parts = [query_text.strip()]
+    if pattern and pattern != "none":
+        parts.append(f"candidate pattern: {pattern.replace('_', ' ')}")
+    if hints.get("shared_device_flag") or hints.get("shared_region_flag") or hints.get("shared_email_flag"):
+        parts.append("shared origin across cards: device, region, or email; investigate connected activity")
+    query = "; ".join(part for part in parts if part)
+    if not query:
+        query = "Fraud investigation policy and similar closed cases relevant to the evidence."
+
+    saved = graph_evidence.get("_grip_context_cache") or {}
+    if saved.get("query") == query and saved.get("formatted"):
+        return str(saved["formatted"])
+
+    client = get_grip_client()
+    hybrid = client.call_tool("graphrag_hybrid_search", {
+        "query": query,
+        "vector_weight": 0.7,
+        "graph_weight": 0.3,
+        "depth": 2,
+        "top_k": 6,
+        "format_text": "none",
+    }, timeout_seconds=180)
+    if not isinstance(hybrid, dict) or hybrid.get("error"):
+        raise RuntimeError(f"hybrid search returned an error: {hybrid}")
+    if (hybrid.get("query") or {}).get("note") != "vector":
+        raise RuntimeError("hybrid search fell back to keyword-only retrieval")
+    entities = (hybrid.get("results") or {}).get("entities") or []
+    if not entities:
+        raise RuntimeError("hybrid search returned no corpus entities")
+
+    _rerank_closed_cases(client, graph_evidence, query)
+    formatted = client.call_tool("graphrag_format", {
+        "context": hybrid,
+        "format_text": "markdown",
+        "max_tokens": 350,
+    }, timeout_seconds=60)
+    if not isinstance(formatted, str) or not formatted.strip():
+        raise RuntimeError("graphrag_format returned empty context")
+    graph_evidence["_grip_context_cache"] = {"query": query, "formatted": formatted}
+    return formatted
+
+
+def _rerank_closed_cases(client, graph_evidence: dict, anchor: str) -> None:
+    """Replace the existing heuristic score order with GRIP text similarity."""
+    closed = graph_evidence.get("closed_case_similarity") or {}
+    matches = closed.get("matches") or []
+    if not matches:
+        return
+    candidates = [
+        "\n".join(str(match.get(key) or "") for key in ("pattern", "outcome", "notes"))
+        for match in matches
+    ]
+    ranked = client.call_tool("graphrag_batch_similarity", {
+        "anchor": anchor,
+        "candidates": candidates,
+    }, timeout_seconds=120)
+    if not isinstance(ranked, list) or len(ranked) != len(matches):
+        raise RuntimeError("graphrag_batch_similarity returned an invalid ranking")
+    if any(item.get("method") != "cosine" for item in ranked):
+        raise RuntimeError("GRIP case similarity did not use cosine embeddings")
+    scores = {str(item.get("candidate")): float(item.get("score") or 0) for item in ranked}
+    for match, candidate in zip(matches, candidates):
+        match["heuristic_score"] = match.get("score")
+        match["score"] = scores[candidate]
+        match["similarity_method"] = "cosine"
+    matches.sort(key=lambda item: float(item.get("score") or 0), reverse=True)
 
 
 def build_case(state: InvestigationState) -> Case:
@@ -221,10 +318,29 @@ def _fallback_summary(state: InvestigationState, verdict: Verdict) -> str:
     )
 
 
+def _no_action_summary(state: InvestigationState, verdict: Verdict) -> str:
+    s = state.signals
+    return (
+        f"Case {state.case_id} on card {state.card_id} for customer {state.customer_id} "
+        f"was triggered by {state.trigger_type.value}. Available evidence supports "
+        f"a {verdict.value} verdict with pattern {s.pattern.value}, fraud probability "
+        f"{s.fraud_probability:.2f}, and exposure ${s.exposure_usd:.2f}. "
+        "No final next-best action is recorded, so this summary makes no action recommendation."
+    )
+
+
 def _llm_summary(state: InvestigationState, verdict: Verdict) -> tuple[str, int]:
+    selected_actions = [a.action.value for a in state.next_best_actions.final]
+    if not selected_actions:
+        # With no policy output, do not ask a language model to invent a next
+        # action. This keeps the prose aligned with the deterministic policy.
+        return _no_action_summary(state, verdict), 0
+
     instruction = (
         "Write a 2-6 sentence analyst-readable summary of this fraud investigation. "
         "State the verdict, the pattern (if any), the key evidence, and the recommended action. "
+        f"The only actions selected by policy are: {', '.join(selected_actions)}. "
+        "Mention only those actions; do not add, imply, or recommend any other action. "
         "Use only IDs and amounts present in CONTEXT. No preamble."
         f" The decided verdict is {verdict.value}; do not contradict it."
     )
@@ -233,7 +349,7 @@ def _llm_summary(state: InvestigationState, verdict: Verdict) -> tuple[str, int]
     try:
         text, tokens = complete_text(
             "You write case documentation from the given evidence only. Never invent IDs, amounts, or dates.",
-            f"{instruction}\n\nCONTEXT:\n{state.graphrag_context}",
+            f"{instruction}\n\nPOLICY_ACTIONS: {', '.join(selected_actions)}\n\nCONTEXT:\n{state.graphrag_context}",
             max_tokens=600,
         )
         return text, tokens

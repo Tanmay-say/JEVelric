@@ -33,6 +33,11 @@ TG_HOST = os.getenv("TG_HOST", "")
 TG_SECRET = os.getenv("TG_SECRET", "")
 TG_GRAPH_NAME = os.getenv("TG_GRAPHNAME") or "HHGOA"
 GRAPH_BACKEND = os.getenv("GRAPH_BACKEND", "csv").strip().lower()
+GRAPHRAG_MODE = os.getenv("GRAPHRAG_MODE", "static").strip().lower()
+if GRAPHRAG_MODE not in {"static", "grip"}:
+    raise ValueError("GRAPHRAG_MODE must be 'static' or 'grip'")
+CF_API_TOKEN = os.getenv("CF_API_TOKEN", "")
+CF_ACCOUNT_ID = os.getenv("CF_ACCOUNT_ID", "")
 
 JEV_API_KEY = os.getenv("JEV_API_KEY", "")
 JEV_BASE_URL = os.getenv("JEV_BASE_URL", "")
@@ -111,6 +116,13 @@ def get_mcp_client():
     from .mcp_client import TigerGraphMCPClient
 
     return TigerGraphMCPClient(TG_HOST, TG_SECRET, TG_GRAPH_NAME)
+
+
+@lru_cache
+def get_grip_client():
+    from .grip_client import GripMCPClient
+
+    return GripMCPClient()
 
 
 @lru_cache

@@ -13,11 +13,27 @@ Two kinds of checks:
 """
 from __future__ import annotations
 
+import re
+
 from .state import Answer, Action
 
 
 class ValidationError(Exception):
     pass
+
+
+_ACTION_LIKE_TEXT = re.compile(
+    r"\b(?:BLOCK(?:_CARD|_ALL_CARDS)?|DECLINE_TRANSACTION|ESCALATE_TO_ANALYST|"
+    r"MONITOR(?:_CARD|_CONNECTED_CARDS)?|VERIFY_WITH_CUSTOMER|STEP_UP_AUTH|"
+    r"WARN_CUSTOMER|CREATE_CASE|FILE_REPORT|ALLOW_TRANSACTION|CLOSE_NO_FRAUD|"
+    r"block(?:s|ed|ing)?|declin(?:e|ed|ing)|escalat(?:e|ed|ion|ing)|"
+    r"monitor(?:s|ed|ing)?|verif(?:y|ies|ied|ication)|step[ -]+up(?: authentication)?|"
+    r"warn(?:s|ed|ing)?|create(?:s|d)?\s+(?:a\s+)?case|"
+    r"file(?:s|d|ing)?\s+(?:a\s+)?(?:sar|report)|"
+    r"allow(?:s|ed|ing)?(?:\s+transaction)?|close[ -]+no[ -]+fraud|"
+    r"close(?:s|d|ing)?\s+(?:the\s+)?case)\b",
+    re.IGNORECASE,
+)
 
 
 def validate_answer(answer: Answer, known_ids: set[str]) -> list[str]:
@@ -32,6 +48,17 @@ def validate_answer(answer: Answer, known_ids: set[str]) -> list[str]:
     unknown = referenced_ids - known_ids
     if unknown:
         problems.append(f"IDs not found in dataset: {sorted(unknown)}")
+
+    # Free-text synthesis may describe actions, but only policy output is
+    # authoritative. An empty structured list must not be paired with prose
+    # that recommends blocking, verification, escalation, or other actions.
+    if not answer.next_best_actions.final:
+        narrative_text = f"{answer.case.summary}\n{answer.sar.narrative}"
+        if _ACTION_LIKE_TEXT.search(narrative_text):
+            problems.append(
+                "case.summary or sar.narrative references action-like language "
+                "but next_best_actions.final is empty"
+            )
 
     # -- SAR consistency -----------------------------------------------
     final_has_file_report = any(a.action == Action.FILE_REPORT for a in answer.next_best_actions.final)

@@ -58,7 +58,11 @@ def node_graph_retrieval(state: InvestigationState) -> InvestigationState:
 
 
 def node_graphrag_context(state: InvestigationState) -> InvestigationState:
-    state.graphrag_context = graphrag.assemble_context(state.graph_evidence, round_=state.round)
+    state.graphrag_context = graphrag.assemble_context(
+        state.graph_evidence,
+        round_=state.round,
+        query_text=f"{state.trigger_type.value}: {state.trigger_text}",
+    )
     return state
 
 
@@ -249,6 +253,9 @@ def node_answer_validate(state: InvestigationState) -> InvestigationState:
     state.graph_evidence["_validation_attempts"] = attempts
     if problems:
         _autofix_answer(state, known_ids)
+        problems = validate.validate_answer(state.to_answer(), known_ids)
+    if any("action-like language" in problem for problem in problems) and state.case is not None:
+        state.case.summary = graphrag._no_action_summary(state, state.case.verdict)
         problems = validate.validate_answer(state.to_answer(), known_ids)
     # Never loop forever: emit after autofix even if residual issues remain.
     state.graph_evidence["_validation_problems"] = problems

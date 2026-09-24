@@ -1,4 +1,4 @@
-"""Run the case pack on TigerGraph with NVIDIA NIM then Cloudflare Workers AI.
+"""Run the case pack on TigerGraph with Groq, NVIDIA NIM, then Cloudflare.
 
 Required .env variables:
   NVIDIA_API_KEY
@@ -89,7 +89,12 @@ def _chat_completion(client: OpenAI, model: str, system: str, user: str, max_tok
     return text, llm._usage_tokens(getattr(response, "usage", None))
 
 
+_original_complete_provider = llm._complete_provider
+
+
 def _complete_provider(provider: str, system: str, user: str, max_tokens: int):
+    if provider == "groq":
+        return _original_complete_provider("groq", system, user, max_tokens)
     if provider == "nvidia_nim":
         return _chat_completion(nim_client, NVIDIA_NIM_MODEL, system, user, max_tokens)
     if provider == "cloudflare_workers_ai":
@@ -104,8 +109,8 @@ def _complete_provider(provider: str, system: str, user: str, max_tokens: int):
 
 
 # src.llm's existing complete_text/complete_json methods implement ordered
-# fallback and JSON parsing. Limit this runner's provider chain to these two.
-llm.llm_provider_order = lambda: ["nvidia_nim", "cloudflare_workers_ai"]
+# fallback and JSON parsing. Keep Groq first, then NIM and Cloudflare here.
+llm.llm_provider_order = lambda: ["groq", "nvidia_nim", "cloudflare_workers_ai"]
 llm._complete_provider = _complete_provider
 
 from src import main as app

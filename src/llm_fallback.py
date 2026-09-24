@@ -72,6 +72,8 @@ def assess(context: str, prior: Signals) -> tuple[Signals, int]:
         shared_email_flag=prior.shared_email_flag,
         dispute_matches_recurring=bool(answers.get("recurring_match", prior.dispute_matches_recurring)),
         undocumented_coordinated=bool(answers.get("pattern_undocumented_signal", False)),
-        single_signal_only=bool(answers.get("single_signal_only", prior.single_signal_only)),
+        # R1's single-signal gate is derived deterministically from graph
+        # evidence; do not let prose assessment override that policy input.
+        single_signal_only=prior.single_signal_only,
     ))
     return signals, tokens

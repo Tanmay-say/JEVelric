@@ -56,6 +56,49 @@ def test_tigergraph_configuration_gate(monkeypatch):
         config.get_mcp_client.cache_clear()
 
 
+def test_lone_new_device_transaction_remains_single_signal_for_r1():
+    evidence = {
+        "flagged": {
+            "id_15": "New",
+            "channel": "online",
+            "addr1": "444",
+            "amount": 59.67,
+        },
+        "card_window": {"txns": [{"channel": "online", "amount": 59.67}], "exposure_usd": 59.67},
+        "customer_history": {"mean_amt": 38.21, "regions": ["444"], "channels": ["online"]},
+        "device_neighbors": {"card_ids": []},
+        "region_cluster": {"card_ids": []},
+        "email_cluster": {"card_ids": []},
+    }
+
+    hints = graph_client._derive_hints(evidence, "TX-1", "C-1")
+
+    assert hints["pattern"] == "card_not_present_new_device"
+    assert hints["fraud_probability"] == 0.68
+    assert hints["single_signal_only"] is True
+
+
+def test_single_out_of_region_transaction_remains_r1_signal():
+    evidence = {
+        "flagged": {
+            "id_15": "Found",
+            "channel": "in_person",
+            "addr1": "999",
+            "amount": 40.0,
+        },
+        "card_window": {"txns": [{"channel": "in_person", "amount": 40.0}], "exposure_usd": 40.0},
+        "customer_history": {"mean_amt": 40.0, "regions": ["444"], "channels": ["in_person"]},
+        "device_neighbors": {"card_ids": []},
+        "region_cluster": {"card_ids": []},
+        "email_cluster": {"card_ids": []},
+    }
+
+    hints = graph_client._derive_hints(evidence, "TX-1", "C-1")
+
+    assert hints["pattern"] == "out_of_region_use"
+    assert hints["single_signal_only"] is True
+
+
 def test_mcp_client_decodes_formatted_success_and_errors():
     from types import SimpleNamespace
 

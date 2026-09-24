@@ -529,7 +529,10 @@ class CsvGraphStore:
 
         if shared_device:
             prob = min(0.95, prob + 0.12)
-        single = not (testing or shared_device or (cnp and new_device) or out_of_region)
+        # A lone new-device/CNP or out-of-region anomaly is still an R1
+        # verification signal; only an observed sequence/shared origin is
+        # independent corroboration here.
+        single = not (testing or shared_device)
 
         closed_same = [
             m for m in (evidence.get("closed_case_similarity") or {}).get("matches") or []
@@ -545,7 +548,7 @@ class CsvGraphStore:
             "shared_email_flag": shared_email,
             "single_signal_only": single,
             "evidence_count": max(1, min(evidence_count, 4)),
-            "evidence_sufficiency": 0.55 if single else 0.72,
+            "evidence_sufficiency": 0.72 if not single else 0.55,
             "undocumented_coordinated": False,
             "dispute_matches_recurring": False,
             "confirmed_cards_count": min(len({m.get("case_id") for m in closed_same}), 3),

@@ -156,9 +156,11 @@ def _derive_hints(evidence: dict, flagged_txn_id: str, card_id: str, flagged_raw
         "shared_device_flag": shared_device,
         "shared_region_flag": shared_region,
         "shared_email_flag": shared_email,
-        "single_signal_only": not (testing or shared_device or (cnp and new_device) or out_of_region),
+        # CNP/new-device and out-of-region findings are each weak standalone
+        # signals under R1; they are not corroboration by themselves.
+        "single_signal_only": not (testing or shared_device),
         "evidence_count": max(1, min(evidence_count, 4)),
-        "evidence_sufficiency": 0.55 if not (testing or shared_device or (cnp and new_device) or out_of_region) else 0.72,
+        "evidence_sufficiency": 0.72 if (testing or shared_device) else 0.55,
         "undocumented_coordinated": False,
         "dispute_matches_recurring": False,
         "confirmed_cards_count": min(len({m.get("case_id") for m in confirmed}), 3),

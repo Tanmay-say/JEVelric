@@ -1,0 +1,46 @@
+// Additive GRIP document/vector schema for the existing HHGOA graph.
+// Original HHGOA vertices and edges are not dropped or altered.
+USE GRAPH HHGOA
+
+CREATE SCHEMA_CHANGE JOB grip_corpus_schema_20260924 FOR GRAPH HHGOA {
+    ADD VERTEX Paper (
+        PRIMARY_ID id STRING,
+        title STRING,
+        abstract STRING,
+        categories STRING,
+        abstract_token_count INT
+    );
+
+    ADD VERTEX Author (
+        PRIMARY_ID name STRING
+    ) WITH primary_id_as_attribute="true";
+
+    ADD VERTEX Concept (
+        PRIMARY_ID name STRING
+    ) WITH primary_id_as_attribute="true";
+
+    ADD VERTEX PaperEmb (
+        PRIMARY_ID id STRING
+    );
+
+    ADD DIRECTED EDGE AUTHORED_BY (
+        FROM Paper,
+        TO Author
+    );
+
+    ADD DIRECTED EDGE MENTIONS (
+        FROM Paper,
+        TO Concept
+    );
+}
+
+RUN SCHEMA_CHANGE JOB grip_corpus_schema_20260924
+
+CREATE SCHEMA_CHANGE JOB grip_corpus_vector_20260924 FOR GRAPH HHGOA {
+    ALTER VERTEX PaperEmb ADD VECTOR ATTRIBUTE abstract_embedding(
+        DIMENSION=768,
+        METRIC="COSINE"
+    );
+}
+
+RUN SCHEMA_CHANGE JOB grip_corpus_vector_20260924

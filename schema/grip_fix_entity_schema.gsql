@@ -1,0 +1,33 @@
+// GRIP's adapter upserts `name` as an ordinary attribute; expose the primary
+// IDs as attributes for its Author/Concept retrieval and mutation contracts.
+USE GRAPH HHGOA
+
+CREATE SCHEMA_CHANGE JOB grip_drop_empty_entities_20260925 FOR GRAPH HHGOA {
+    DROP EDGE AUTHORED_BY, MENTIONS;
+    DROP VERTEX Author, Concept;
+}
+
+RUN SCHEMA_CHANGE JOB grip_drop_empty_entities_20260925
+
+CREATE SCHEMA_CHANGE JOB grip_add_entities_20260925 FOR GRAPH HHGOA {
+
+    ADD VERTEX Author (
+        PRIMARY_ID name STRING
+    ) WITH primary_id_as_attribute="true";
+
+    ADD VERTEX Concept (
+        PRIMARY_ID name STRING
+    ) WITH primary_id_as_attribute="true";
+
+    ADD DIRECTED EDGE AUTHORED_BY (
+        FROM Paper,
+        TO Author
+    );
+
+    ADD DIRECTED EDGE MENTIONS (
+        FROM Paper,
+        TO Concept
+    );
+}
+
+RUN SCHEMA_CHANGE JOB grip_add_entities_20260925
