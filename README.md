@@ -1,4 +1,4 @@
-# HHGOA Fraud Investigation Agent
+# HHGOA Fraud Investigation Agent 🚀
 
 An investigation agent for the 20 HHGOA benchmark cases. It uses TigerGraph for transaction and case evidence, an LLM assessment step, and a deterministic policy engine to produce explainable case decisions, next actions, and (when required) SARs.
 
