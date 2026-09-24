@@ -1,0 +1,1066 @@
+{
+  "graphrag_status": {
+    "backend": {
+      "status": "ok",
+      "backend": "tigergraph",
+      "version": "release_4.2.5_08-26-2026",
+      "graph_id": "HHGOA",
+      "uri": "https://tg-b64c357e-bef9-4e8c-8d7f-733ef56e1798.tg-2635877100.i.tgcloud.io"
+    },
+    "statistics": {
+      "total_vertices": 648353,
+      "total_edges": 1786304,
+      "avg_degree": 5.51,
+      "connected_components": 0
+    },
+    "cache": {
+      "hits": 0,
+      "misses": 0
+    }
+  },
+  "graphrag_schema": {
+    "protocol": "graphrag/1.0",
+    "graph_id": "HHGOA",
+    "vertex_types": [
+      {
+        "type": "Customer",
+        "count": 13553,
+        "primary_key": "customer_id",
+        "attributes": [],
+        "sample": {}
+      },
+      {
+        "type": "Card",
+        "count": 13579,
+        "primary_key": "card_id",
+        "attributes": [
+          {
+            "name": "customer_id",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "network",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "card_type",
+            "type": "STRING",
+            "nullable": false
+          }
+        ],
+        "sample": {
+          "customer_id": "C08043",
+          "network": "visa",
+          "card_type": "debit"
+        }
+      },
+      {
+        "type": "Transaction",
+        "count": 590742,
+        "primary_key": "txn_id",
+        "attributes": [
+          {
+            "name": "customer_id",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "card_id",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "ts",
+            "type": "DATETIME",
+            "nullable": false
+          },
+          {
+            "name": "amount",
+            "type": "DOUBLE",
+            "nullable": false
+          },
+          {
+            "name": "product_code",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "channel",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "risk_score",
+            "type": "DOUBLE",
+            "nullable": false
+          },
+          {
+            "name": "addr1",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "addr2",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "id_15",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "id_23",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "device_profile",
+            "type": "STRING",
+            "nullable": false
+          }
+        ],
+        "sample": {
+          "customer_id": "C12863",
+          "card_id": "C12863-K1",
+          "ts": "2016-07-15 17:24:14",
+          "amount": 107.88,
+          "product_code": "W",
+          "channel": "in_person",
+          "risk_score": 0.2,
+          "addr1": "444",
+          "addr2": "87",
+          "email": "gmail.com",
+          "id_15": "",
+          "id_23": "",
+          "device_profile": ""
+        }
+      },
+      {
+        "type": "DeviceProfile",
+        "count": 9561,
+        "primary_key": "device_profile_id",
+        "attributes": [
+          {
+            "name": "device_info",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "os",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "browser",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "screen",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "device_type",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "is_new_for_account",
+            "type": "BOOL",
+            "nullable": false
+          }
+        ],
+        "sample": {
+          "device_info": "RCT6513W87 Build/MRA58K",
+          "os": "",
+          "browser": "chrome 66.0 for android",
+          "screen": "",
+          "device_type": "mobile",
+          "is_new_for_account": true
+        }
+      },
+      {
+        "type": "EmailDomain",
+        "count": 60,
+        "primary_key": "domain",
+        "attributes": [],
+        "sample": {}
+      },
+      {
+        "type": "BillingRegion",
+        "count": 332,
+        "primary_key": "addr1",
+        "attributes": [
+          {
+            "name": "addr2",
+            "type": "STRING",
+            "nullable": false
+          }
+        ],
+        "sample": {
+          "addr2": "26"
+        }
+      },
+      {
+        "type": "ClosedCase",
+        "count": 5565,
+        "primary_key": "case_id",
+        "attributes": [
+          {
+            "name": "customer_id",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "card_id",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "opened_at",
+            "type": "DATETIME",
+            "nullable": false
+          },
+          {
+            "name": "closed_at",
+            "type": "DATETIME",
+            "nullable": false
+          },
+          {
+            "name": "outcome",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "pattern",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "exposure_usd",
+            "type": "DOUBLE",
+            "nullable": false
+          },
+          {
+            "name": "n_txns",
+            "type": "INT",
+            "nullable": false
+          },
+          {
+            "name": "actions_taken",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "report_filed",
+            "type": "BOOL",
+            "nullable": false
+          },
+          {
+            "name": "analyst_notes",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "connected_card_ids",
+            "type": "STRING",
+            "nullable": false
+          }
+        ],
+        "sample": {
+          "customer_id": "C08226",
+          "card_id": "C08226-K1",
+          "opened_at": "2016-10-31 18:08:00",
+          "closed_at": "2016-11-04 18:08:00",
+          "outcome": "confirmed_fraud",
+          "pattern": "card_not_present_new_device",
+          "exposure_usd": 60.08,
+          "n_txns": 2,
+          "actions_taken": "CREATE_CASE|BLOCK_CARD",
+          "report_filed": false,
+          "analyst_notes": "Case CC-5528: cardholder C08226 reported unrecognized activity on card C08226-K1. 2 transaction(s) between 2016-10-30 and 2016-10-30 totaling $60.08 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 65.0. Card blocked and reissued. Customer reimbursed.",
+          "connected_card_ids": ""
+        }
+      },
+      {
+        "type": "InvestigationCase",
+        "count": 20,
+        "primary_key": "graph_case_id",
+        "attributes": [
+          {
+            "name": "case_id",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "customer_id",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "status",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "verdict",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "fraud_probability",
+            "type": "DOUBLE",
+            "nullable": false
+          },
+          {
+            "name": "pattern",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "exposure_usd",
+            "type": "DOUBLE",
+            "nullable": false
+          },
+          {
+            "name": "summary",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "DATETIME",
+            "nullable": false
+          }
+        ],
+        "sample": {
+          "case_id": "HHG-009",
+          "customer_id": "C08299",
+          "status": "open",
+          "verdict": "uncertain",
+          "fraud_probability": 0.28,
+          "pattern": "none",
+          "exposure_usd": 30.02,
+          "summary": "Case HHG-009 on card C08299-K1 (customer C08299) was triggered by customer_report: Customer C08299 message: 'I never made this $30.02 purchase. Please check my card.' Refers to 3581141. Flagged transaction 3581141. Graph evidence supports pattern none with fraud probability 0.28 and exposure $30.02. Working verdict is uncertain. Recommended actions: DECLINE_TRANSACTION, MONITOR_CARD.",
+          "created_at": "1970-01-01 00:00:00"
+        }
+      },
+      {
+        "type": "Paper",
+        "count": 5570,
+        "primary_key": "id",
+        "attributes": [
+          {
+            "name": "title",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "abstract",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "categories",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "abstract_token_count",
+            "type": "INT",
+            "nullable": false
+          }
+        ],
+        "sample": {
+          "title": "Closed investigation CC-0048",
+          "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C11309\ncard_id: C11309-K1\nopened_at: 2016-07-04 11:15:59\nclosed_at: 2016-07-06 03:15:59\nfirst_fraud_txn_id: 3006432\nn_txns: 1\nexposure_usd: 149.96\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0048: cardholder C11309 reported unrecognized activity on card C11309-K1. 1 transaction(s) between 2016-07-04 and 2016-07-04 totaling $149.96 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a iOS Device on mobile safari 9.0. Card blocked and reissued. Customer reimbursed.",
+          "categories": "closed_case",
+          "abstract_token_count": 0
+        }
+      },
+      {
+        "type": "PaperEmb",
+        "count": 5570,
+        "primary_key": "id",
+        "attributes": [
+          {
+            "name": "abstract_embedding",
+            "type": "EMBEDDING(768)",
+            "metric": "COSINE",
+            "nullable": false
+          }
+        ],
+        "sample": {}
+      },
+      {
+        "type": "Author",
+        "count": 0,
+        "primary_key": "name",
+        "attributes": [],
+        "sample": null
+      },
+      {
+        "type": "Concept",
+        "count": 3801,
+        "primary_key": "name",
+        "attributes": [],
+        "sample": {
+          "name": "c03277"
+        }
+      }
+    ],
+    "edge_types": [
+      {
+        "type": "OWNS",
+        "source": "Customer",
+        "target": "Card",
+        "count": 13553,
+        "attributes": []
+      },
+      {
+        "type": "MADE",
+        "source": "Card",
+        "target": "Transaction",
+        "count": 590742,
+        "attributes": []
+      },
+      {
+        "type": "FROM_DEVICE",
+        "source": "Transaction",
+        "target": "DeviceProfile",
+        "count": 100499,
+        "attributes": []
+      },
+      {
+        "type": "PURCHASER_EMAIL",
+        "source": "Transaction",
+        "target": "EmailDomain",
+        "count": 507348,
+        "attributes": []
+      },
+      {
+        "type": "BILLED_IN",
+        "source": "Transaction",
+        "target": "BillingRegion",
+        "count": 525003,
+        "attributes": []
+      },
+      {
+        "type": "NEXT",
+        "source": "Transaction",
+        "target": "Transaction",
+        "count": 0,
+        "attributes": []
+      },
+      {
+        "type": "INVOLVES",
+        "source": "ClosedCase",
+        "target": "Transaction",
+        "count": 14955,
+        "attributes": []
+      },
+      {
+        "type": "ON_CARD",
+        "source": "ClosedCase",
+        "target": "Card",
+        "count": 5565,
+        "attributes": []
+      },
+      {
+        "type": "CONNECTED_TO",
+        "source": "ClosedCase",
+        "target": "Card",
+        "count": 92,
+        "attributes": []
+      },
+      {
+        "type": "INVESTIGATES",
+        "source": "InvestigationCase",
+        "target": "Transaction",
+        "count": 449,
+        "attributes": []
+      },
+      {
+        "type": "CASE_ON_CARD",
+        "source": "InvestigationCase",
+        "target": "Card",
+        "count": 183,
+        "attributes": []
+      },
+      {
+        "type": "CITES",
+        "source": "InvestigationCase",
+        "target": "ClosedCase",
+        "count": 61,
+        "attributes": []
+      },
+      {
+        "type": "CASE_FROM_DEVICE",
+        "source": "InvestigationCase",
+        "target": "DeviceProfile",
+        "count": 4,
+        "attributes": []
+      },
+      {
+        "type": "AUTHORED_BY",
+        "source": "Paper",
+        "target": "Author",
+        "count": 0,
+        "attributes": []
+      },
+      {
+        "type": "MENTIONS",
+        "source": "Paper",
+        "target": "Concept",
+        "count": 27850,
+        "attributes": []
+      }
+    ],
+    "statistics": {
+      "total_vertices": 648353,
+      "total_edges": 1786304,
+      "avg_degree": 5.51,
+      "connected_components": 0
+    }
+  },
+  "graphrag_entity_types": [
+    {
+      "type": "Customer",
+      "count": 13553,
+      "primary_key": "customer_id",
+      "attributes": [],
+      "sample": {},
+      "name": "Customer"
+    },
+    {
+      "type": "Card",
+      "count": 13579,
+      "primary_key": "card_id",
+      "attributes": [
+        {
+          "name": "customer_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "network",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "card_type",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "sample": {
+        "customer_id": "C08043",
+        "network": "visa",
+        "card_type": "debit"
+      },
+      "name": "Card"
+    },
+    {
+      "type": "Transaction",
+      "count": 590742,
+      "primary_key": "txn_id",
+      "attributes": [
+        {
+          "name": "customer_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "card_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "ts",
+          "type": "DATETIME",
+          "nullable": false
+        },
+        {
+          "name": "amount",
+          "type": "DOUBLE",
+          "nullable": false
+        },
+        {
+          "name": "product_code",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "channel",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "risk_score",
+          "type": "DOUBLE",
+          "nullable": false
+        },
+        {
+          "name": "addr1",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "addr2",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "email",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "id_15",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "id_23",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "device_profile",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "sample": {
+        "customer_id": "C12863",
+        "card_id": "C12863-K1",
+        "ts": "2016-07-15 17:24:14",
+        "amount": 107.88,
+        "product_code": "W",
+        "channel": "in_person",
+        "risk_score": 0.2,
+        "addr1": "444",
+        "addr2": "87",
+        "email": "gmail.com",
+        "id_15": "",
+        "id_23": "",
+        "device_profile": ""
+      },
+      "name": "Transaction"
+    },
+    {
+      "type": "DeviceProfile",
+      "count": 9561,
+      "primary_key": "device_profile_id",
+      "attributes": [
+        {
+          "name": "device_info",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "os",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "browser",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "screen",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "device_type",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "is_new_for_account",
+          "type": "BOOL",
+          "nullable": false
+        }
+      ],
+      "sample": {
+        "device_info": "RCT6513W87 Build/MRA58K",
+        "os": "",
+        "browser": "chrome 66.0 for android",
+        "screen": "",
+        "device_type": "mobile",
+        "is_new_for_account": true
+      },
+      "name": "DeviceProfile"
+    },
+    {
+      "type": "EmailDomain",
+      "count": 60,
+      "primary_key": "domain",
+      "attributes": [],
+      "sample": {},
+      "name": "EmailDomain"
+    },
+    {
+      "type": "BillingRegion",
+      "count": 332,
+      "primary_key": "addr1",
+      "attributes": [
+        {
+          "name": "addr2",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "sample": {
+        "addr2": "26"
+      },
+      "name": "BillingRegion"
+    },
+    {
+      "type": "ClosedCase",
+      "count": 5565,
+      "primary_key": "case_id",
+      "attributes": [
+        {
+          "name": "customer_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "card_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "opened_at",
+          "type": "DATETIME",
+          "nullable": false
+        },
+        {
+          "name": "closed_at",
+          "type": "DATETIME",
+          "nullable": false
+        },
+        {
+          "name": "outcome",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "pattern",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "exposure_usd",
+          "type": "DOUBLE",
+          "nullable": false
+        },
+        {
+          "name": "n_txns",
+          "type": "INT",
+          "nullable": false
+        },
+        {
+          "name": "actions_taken",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "report_filed",
+          "type": "BOOL",
+          "nullable": false
+        },
+        {
+          "name": "analyst_notes",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "connected_card_ids",
+          "type": "STRING",
+          "nullable": false
+        }
+      ],
+      "sample": {
+        "customer_id": "C08226",
+        "card_id": "C08226-K1",
+        "opened_at": "2016-10-31 18:08:00",
+        "closed_at": "2016-11-04 18:08:00",
+        "outcome": "confirmed_fraud",
+        "pattern": "card_not_present_new_device",
+        "exposure_usd": 60.08,
+        "n_txns": 2,
+        "actions_taken": "CREATE_CASE|BLOCK_CARD",
+        "report_filed": false,
+        "analyst_notes": "Case CC-5528: cardholder C08226 reported unrecognized activity on card C08226-K1. 2 transaction(s) between 2016-10-30 and 2016-10-30 totaling $60.08 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 65.0. Card blocked and reissued. Customer reimbursed.",
+        "connected_card_ids": ""
+      },
+      "name": "ClosedCase"
+    },
+    {
+      "type": "InvestigationCase",
+      "count": 20,
+      "primary_key": "graph_case_id",
+      "attributes": [
+        {
+          "name": "case_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "customer_id",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "status",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "verdict",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "fraud_probability",
+          "type": "DOUBLE",
+          "nullable": false
+        },
+        {
+          "name": "pattern",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "exposure_usd",
+          "type": "DOUBLE",
+          "nullable": false
+        },
+        {
+          "name": "summary",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": false
+        }
+      ],
+      "sample": {
+        "case_id": "HHG-009",
+        "customer_id": "C08299",
+        "status": "open",
+        "verdict": "uncertain",
+        "fraud_probability": 0.28,
+        "pattern": "none",
+        "exposure_usd": 30.02,
+        "summary": "Case HHG-009 on card C08299-K1 (customer C08299) was triggered by customer_report: Customer C08299 message: 'I never made this $30.02 purchase. Please check my card.' Refers to 3581141. Flagged transaction 3581141. Graph evidence supports pattern none with fraud probability 0.28 and exposure $30.02. Working verdict is uncertain. Recommended actions: DECLINE_TRANSACTION, MONITOR_CARD.",
+        "created_at": "1970-01-01 00:00:00"
+      },
+      "name": "InvestigationCase"
+    },
+    {
+      "type": "Paper",
+      "count": 5570,
+      "primary_key": "id",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "abstract",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "categories",
+          "type": "STRING",
+          "nullable": false
+        },
+        {
+          "name": "abstract_token_count",
+          "type": "INT",
+          "nullable": false
+        }
+      ],
+      "sample": {
+        "title": "Closed investigation CC-0048",
+        "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C11309\ncard_id: C11309-K1\nopened_at: 2016-07-04 11:15:59\nclosed_at: 2016-07-06 03:15:59\nfirst_fraud_txn_id: 3006432\nn_txns: 1\nexposure_usd: 149.96\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0048: cardholder C11309 reported unrecognized activity on card C11309-K1. 1 transaction(s) between 2016-07-04 and 2016-07-04 totaling $149.96 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a iOS Device on mobile safari 9.0. Card blocked and reissued. Customer reimbursed.",
+        "categories": "closed_case",
+        "abstract_token_count": 0
+      },
+      "name": "Paper"
+    },
+    {
+      "type": "PaperEmb",
+      "count": 5570,
+      "primary_key": "id",
+      "attributes": [
+        {
+          "name": "abstract_embedding",
+          "type": "EMBEDDING(768)",
+          "metric": "COSINE",
+          "nullable": false
+        }
+      ],
+      "sample": {},
+      "name": "PaperEmb"
+    },
+    {
+      "type": "Author",
+      "count": 0,
+      "primary_key": "name",
+      "attributes": [],
+      "sample": null,
+      "name": "Author"
+    },
+    {
+      "type": "Concept",
+      "count": 3801,
+      "primary_key": "name",
+      "attributes": [],
+      "sample": {
+        "name": "c03277"
+      },
+      "name": "Concept"
+    }
+  ],
+  "graphrag_relationship_types": [
+    {
+      "type": "OWNS",
+      "source": "Customer",
+      "target": "Card",
+      "count": 13553,
+      "attributes": [],
+      "name": "OWNS"
+    },
+    {
+      "type": "MADE",
+      "source": "Card",
+      "target": "Transaction",
+      "count": 590742,
+      "attributes": [],
+      "name": "MADE"
+    },
+    {
+      "type": "FROM_DEVICE",
+      "source": "Transaction",
+      "target": "DeviceProfile",
+      "count": 100499,
+      "attributes": [],
+      "name": "FROM_DEVICE"
+    },
+    {
+      "type": "PURCHASER_EMAIL",
+      "source": "Transaction",
+      "target": "EmailDomain",
+      "count": 507348,
+      "attributes": [],
+      "name": "PURCHASER_EMAIL"
+    },
+    {
+      "type": "BILLED_IN",
+      "source": "Transaction",
+      "target": "BillingRegion",
+      "count": 525003,
+      "attributes": [],
+      "name": "BILLED_IN"
+    },
+    {
+      "type": "NEXT",
+      "source": "Transaction",
+      "target": "Transaction",
+      "count": 0,
+      "attributes": [],
+      "name": "NEXT"
+    },
+    {
+      "type": "INVOLVES",
+      "source": "ClosedCase",
+      "target": "Transaction",
+      "count": 14955,
+      "attributes": [],
+      "name": "INVOLVES"
+    },
+    {
+      "type": "ON_CARD",
+      "source": "ClosedCase",
+      "target": "Card",
+      "count": 5565,
+      "attributes": [],
+      "name": "ON_CARD"
+    },
+    {
+      "type": "CONNECTED_TO",
+      "source": "ClosedCase",
+      "target": "Card",
+      "count": 92,
+      "attributes": [],
+      "name": "CONNECTED_TO"
+    },
+    {
+      "type": "INVESTIGATES",
+      "source": "InvestigationCase",
+      "target": "Transaction",
+      "count": 449,
+      "attributes": [],
+      "name": "INVESTIGATES"
+    },
+    {
+      "type": "CASE_ON_CARD",
+      "source": "InvestigationCase",
+      "target": "Card",
+      "count": 183,
+      "attributes": [],
+      "name": "CASE_ON_CARD"
+    },
+    {
+      "type": "CITES",
+      "source": "InvestigationCase",
+      "target": "ClosedCase",
+      "count": 61,
+      "attributes": [],
+      "name": "CITES"
+    },
+    {
+      "type": "CASE_FROM_DEVICE",
+      "source": "InvestigationCase",
+      "target": "DeviceProfile",
+      "count": 4,
+      "attributes": [],
+      "name": "CASE_FROM_DEVICE"
+    },
+    {
+      "type": "AUTHORED_BY",
+      "source": "Paper",
+      "target": "Author",
+      "count": 0,
+      "attributes": [],
+      "name": "AUTHORED_BY"
+    },
+    {
+      "type": "MENTIONS",
+      "source": "Paper",
+      "target": "Concept",
+      "count": 27850,
+      "attributes": [],
+      "name": "MENTIONS"
+    }
+  ]
+}

@@ -1,0 +1,1321 @@
+{
+  "graph": "HHGOA",
+  "weights_tested": [
+    {
+      "vector_weight": 0.5,
+      "graph_weight": 0.5
+    },
+    {
+      "vector_weight": 0.7,
+      "graph_weight": 0.3
+    },
+    {
+      "vector_weight": 0.8,
+      "graph_weight": 0.2
+    }
+  ],
+  "queries": {
+    "card_testing": {
+      "0.5/0.5": {
+        "entities": [
+          {
+            "id": "hhgoa-closed-CC-0004",
+            "type": "Paper",
+            "name": "Closed investigation CC-0004",
+            "properties": {
+              "title": "Closed investigation CC-0004",
+              "abstract": "outcome: confirmed_fraud\npattern: out_of_region_use\ncustomer_id: C13440\ncard_id: C13440-K2\nopened_at: 2016-07-02 20:05:35\nclosed_at: 2016-07-05 17:05:35\nfirst_fraud_txn_id: 3000906\nn_txns: 2\nexposure_usd: 857.92\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0004: cardholder C13440 reported unrecognized activity on card C13440-K2. 2 transaction(s) between 2016-07-02 and 2016-07-02 totaling $857.92 were confirmed fraudulent. Card-present use in a billing region the cardholder had no history in, while the cardholder retained the card. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0078",
+            "type": "Paper",
+            "name": "Closed investigation CC-0078",
+            "properties": {
+              "title": "Closed investigation CC-0078",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C00978\ncard_id: C00978-K1\nopened_at: 2016-07-05 01:42:34\nclosed_at: 2016-07-06 05:42:34\nfirst_fraud_txn_id: 3005866\nn_txns: 2\nexposure_usd: 131.31\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0078: cardholder C00978 reported unrecognized activity on card C00978-K1. 2 transaction(s) between 2016-07-04 and 2016-07-04 totaling $131.31 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0150",
+            "type": "Paper",
+            "name": "Closed investigation CC-0150",
+            "properties": {
+              "title": "Closed investigation CC-0150",
+              "abstract": "outcome: confirmed_fraud\npattern: out_of_region_use\ncustomer_id: C00728\ncard_id: C00728-K2\nopened_at: 2016-07-06 18:23:50\nclosed_at: 2016-07-08 03:23:50\nfirst_fraud_txn_id: 3013327\nn_txns: 1\nexposure_usd: 24.98\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0150: cardholder C00728 reported unrecognized activity on card C00728-K2. 1 transaction(s) between 2016-07-06 and 2016-07-06 totaling $24.98 were confirmed fraudulent. Card-present use in a billing region the cardholder had no history in, while the cardholder retained the card. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0248",
+            "type": "Paper",
+            "name": "Closed investigation CC-0248",
+            "properties": {
+              "title": "Closed investigation CC-0248",
+              "abstract": "outcome: cleared\npattern: none\ncustomer_id: C03405\ncard_id: C03405-K2\nopened_at: 2016-07-08 22:17:44\nclosed_at: 2016-07-11 16:17:44\nn_txns: 1\nexposure_usd: 0.00\nactions_taken: VERIFY_WITH_CUSTOMER|CLOSE_NO_FRAUD\nreport_filed: No\nanalyst_notes: Case CC-0248: model scored a $99.91 transaction at 0.83. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0278",
+            "type": "Paper",
+            "name": "Closed investigation CC-0278",
+            "properties": {
+              "title": "Closed investigation CC-0278",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C13253\ncard_id: C13253-K2\nopened_at: 2016-07-09 10:27:01\nclosed_at: 2016-07-11 21:27:01\nfirst_fraud_txn_id: 3023205\nn_txns: 1\nexposure_usd: 50.07\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0278: cardholder C13253 reported unrecognized activity on card C13253-K2. 1 transaction(s) between 2016-07-08 and 2016-07-08 totaling $50.07 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on firefox 57.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0259",
+            "type": "Paper",
+            "name": "Closed investigation CC-0259",
+            "properties": {
+              "title": "Closed investigation CC-0259",
+              "abstract": "outcome: cleared\npattern: none\ncustomer_id: C11294\ncard_id: C11294-K2\nopened_at: 2016-07-09 01:26:02\nclosed_at: 2016-07-11 22:26:02\nn_txns: 1\nexposure_usd: 0.00\nactions_taken: VERIFY_WITH_CUSTOMER|CLOSE_NO_FRAUD\nreport_filed: No\nanalyst_notes: Case CC-0259: model scored a $149.94 transaction at 0.91. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0319",
+            "type": "Paper",
+            "name": "Closed investigation CC-0319",
+            "properties": {
+              "title": "Closed investigation CC-0319",
+              "abstract": "outcome: confirmed_fraud\npattern: account_takeover\ncustomer_id: C13081\ncard_id: C13081-K1\nopened_at: 2016-07-10 06:08:17\nclosed_at: 2016-07-15 01:08:17\nfirst_fraud_txn_id: 3028034\nn_txns: 1\nexposure_usd: 117.07\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0319: cardholder C13081 reported unrecognized activity on card C13081-K1. 1 transaction(s) between 2016-07-10 and 2016-07-10 totaling $117.07 were confirmed fraudulent. Mixed-channel activity inconsistent with the cardholder; credentials and card data both used. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0315",
+            "type": "Paper",
+            "name": "Closed investigation CC-0315",
+            "properties": {
+              "title": "Closed investigation CC-0315",
+              "abstract": "outcome: cleared\npattern: none\ncustomer_id: C01426\ncard_id: C01426-K1\nopened_at: 2016-07-10 05:19:12\nclosed_at: 2016-07-13 03:19:12\nn_txns: 1\nexposure_usd: 0.00\nactions_taken: VERIFY_WITH_CUSTOMER|CLOSE_NO_FRAUD\nreport_filed: No\nanalyst_notes: Case CC-0315: model scored a $25.04 transaction at 0.87. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0314",
+            "type": "Paper",
+            "name": "Closed investigation CC-0314",
+            "properties": {
+              "title": "Closed investigation CC-0314",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C10402\ncard_id: C10402-K1\nopened_at: 2016-07-10 05:03:36\nclosed_at: 2016-07-15 03:03:36\nfirst_fraud_txn_id: 3028382\nn_txns: 1\nexposure_usd: 225.09\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0314: cardholder C10402 reported unrecognized activity on card C10402-K1. 1 transaction(s) between 2016-07-10 and 2016-07-10 totaling $225.09 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a iOS Device on mobile safari 11.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0303",
+            "type": "Paper",
+            "name": "Closed investigation CC-0303",
+            "properties": {
+              "title": "Closed investigation CC-0303",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C07006\ncard_id: C07006-K1\nopened_at: 2016-07-10 01:40:42\nclosed_at: 2016-07-11 13:40:42\nfirst_fraud_txn_id: 3025127\nn_txns: 1\nexposure_usd: 100.01\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0303: cardholder C07006 reported unrecognized activity on card C07006-K1. 1 transaction(s) between 2016-07-09 and 2016-07-09 totaling $100.01 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on firefox 57.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          }
+        ],
+        "used_vector_search": true,
+        "query_meta": {
+          "query": "three small online authorizations followed by a larger purchase; card testing policy R5",
+          "vector_weight": 0.5,
+          "graph_weight": 0.5,
+          "top_k": 10,
+          "depth": 2,
+          "note": "vector"
+        },
+        "latency_ms": 19656.01
+      },
+      "0.7/0.3": {
+        "entities": [
+          {
+            "id": "hhgoa-patterns-fraud_patterns-part-001",
+            "type": "Paper",
+            "name": "fraud_patterns (part 1)",
+            "properties": {
+              "title": "fraud_patterns (part 1)",
+              "abstract": "# The Five Known Fraud Patterns\n\n> Copied verbatim from the dataset README. Not the only patterns in the\n> data — activity fitting none of these is `undocumented`, and finding it\n> is scored (R9).\n\n1. **Card testing.** A stolen card number is checked before use: three or more tiny online authorizations, often under $5, then a larger purchase. Confirmed by the sequence itself. Policy R5.\n\n2. **Card-not-present fraud.** The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.\n\n3. **Card-not-present fraud from a new device.** Same as above, with the identity record marking the device as `New` for this account, sometimes behind a proxy. Stronger than pattern 2, still not proof: people buy new phones.\n\n4. **Out-of-region use.** Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.\n\n5. **Account takeover.** Mixed-channel activity inconsistent with the cardholder, often with device and match-flag anomalies, pointing to stolen credentials rather than a stolen number.",
+              "categories": "patterns",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.51503249,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-policy-fraud_policy-part-003",
+            "type": "Paper",
+            "name": "fraud_policy (part 3)",
+            "properties": {
+              "title": "fraud_policy (part 3)",
+              "abstract": "o reply within 24 hours → `MONITOR_CARD`, `DECLINE_TRANSACTION` for pending auths. Escalate if exposure > $500.\n- **R5.** Card testing (3+ small online auths in 1h, then a larger purchase) → `DECLINE_TRANSACTION`, `STEP_UP_AUTH`. If a >$100 purchase already cleared, add `BLOCK_CARD`.\n- **R6.** Shared origin (device/region/email across cards) → name the shared element, `CREATE_CASE`, `FILE_REPORT`, `MONITOR_CONNECTED_CARDS` for every sharing card.\n- **R7.** Disputed but matches the customer's own recurring pattern → `CREATE_CASE`, `VERIFY_WITH_CUSTOMER`, `WARN_CUSTOMER`. Never block.\n- **R8.** Uncertain verdict with exposure > $500, or conflicting evidence → `ESCALATE_TO_ANALYST`.\n- **R9.** Undocumented pattern with coordinated/repeated abuse → `CREATE_CASE`, `FILE_REPORT`, `ESCALATE_TO_ANALYST`; describe the pattern in your own words.\n- **R10.** Never `BLOCK_ALL_CARDS` unless 2+ confirmed-fraud cards, or credentials confirmed compromised.\n\n## 3a. A case is not a report\n\nA **case** is internal; open one whenever fraud probability reaches 0.30, whenever evidence is requested, or whenever a customer disputes a charge. A **suspicious activity report** is external/regulatory; file one when fraud is confirmed or strongly suspected AND at least one of: exposure > $1,000; shared device/region/email cluster; coordinated/undocumented pattern (R9). A report always has a case behind it.\n\n## 3b. The next best action can change\n\nRecommend what the evidence supports now, request more",
+              "categories": "policy",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5058874099999999,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0137",
+            "type": "Paper",
+            "name": "Closed investigation CC-0137",
+            "properties": {
+              "title": "Closed investigation CC-0137",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C12982\ncard_id: C12982-K1\nopened_at: 2016-07-06 09:33:41\nclosed_at: 2016-07-11 03:33:41\nfirst_fraud_txn_id: 3000196\nn_txns: 5\nexposure_usd: 402.43\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0137: cardholder C12982 reported unrecognized activity on card C12982-K1. 5 transaction(s) between 2016-07-02 and 2016-07-05 totaling $402.43 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a Windows on chrome 61.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.49581273,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-4940",
+            "type": "Paper",
+            "name": "Closed investigation CC-4940",
+            "properties": {
+              "title": "Closed investigation CC-4940",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C03738\ncard_id: C03738-K2\nopened_at: 2016-10-17 12:43:27\nclosed_at: 2016-10-22 22:43:27\nfirst_fraud_txn_id: 3366168\nn_txns: 3\nexposure_usd: 109.88\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-4940: cardholder C03738 reported unrecognized activity on card C03738-K2. 3 transaction(s) between 2016-10-15 and 2016-10-16 totaling $109.88 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a Windows on chrome 64.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.49458507,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-1235",
+            "type": "Paper",
+            "name": "Closed investigation CC-1235",
+            "properties": {
+              "title": "Closed investigation CC-1235",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C08962\ncard_id: C08962-K2\nopened_at: 2016-07-26 19:03:45\nclosed_at: 2016-07-29 23:03:45\nfirst_fraud_txn_id: 3046235\nn_txns: 21\nexposure_usd: 1030.15\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-1235: cardholder C08962 reported unrecognized activity on card C08962-K2. 21 transaction(s) between 2016-07-14 and 2016-07-25 totaling $1,030.15 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.49424564,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2248",
+            "type": "Paper",
+            "name": "Closed investigation CC-2248",
+            "properties": {
+              "title": "Closed investigation CC-2248",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C07562\ncard_id: C07562-K2\nopened_at: 2016-08-17 14:46:43\nclosed_at: 2016-08-22 01:46:43\nfirst_fraud_txn_id: 3060719\nn_txns: 65\nexposure_usd: 3876.20\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-2248: cardholder C07562 reported unrecognized activity on card C07562-K2. 65 transaction(s) between 2016-07-17 and 2016-08-17 totaling $3,876.20 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.49360094,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2394",
+            "type": "Paper",
+            "name": "Closed investigation CC-2394",
+            "properties": {
+              "title": "Closed investigation CC-2394",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C08962\ncard_id: C08962-K2\nopened_at: 2016-08-20 18:45:23\nclosed_at: 2016-08-24 16:45:23\nfirst_fraud_txn_id: 3128855\nn_txns: 65\nexposure_usd: 2634.94\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-2394: cardholder C08962 reported unrecognized activity on card C08962-K2. 65 transaction(s) between 2016-07-31 and 2016-08-20 totaling $2,634.94 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.49354333,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-5264",
+            "type": "Paper",
+            "name": "Closed investigation CC-5264",
+            "properties": {
+              "title": "Closed investigation CC-5264",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C00094\ncard_id: C00094-K3\nopened_at: 2016-10-25 07:01:49\nclosed_at: 2016-10-28 02:01:49\nfirst_fraud_txn_id: 3392576\nn_txns: 1\nexposure_usd: 50.08\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-5264: cardholder C00094 reported unrecognized activity on card C00094-K3. 1 transaction(s) between 2016-10-24 and 2016-10-24 totaling $50.08 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome generic. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.49294077,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-4058",
+            "type": "Paper",
+            "name": "Closed investigation CC-4058",
+            "properties": {
+              "title": "Closed investigation CC-4058",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C04597\ncard_id: C04597-K2\nopened_at: 2016-09-28 02:12:07\nclosed_at: 2016-09-29 16:12:07\nfirst_fraud_txn_id: 3292064\nn_txns: 13\nexposure_usd: 390.38\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-4058: cardholder C04597 reported unrecognized activity on card C04597-K2. 13 transaction(s) between 2016-09-23 and 2016-09-27 totaling $390.38 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a CHC-U03 Build/HuaweiCHC-U03 on chrome generic. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.49200494,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3653",
+            "type": "Paper",
+            "name": "Closed investigation CC-3653",
+            "properties": {
+              "title": "Closed investigation CC-3653",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C05381\ncard_id: C05381-K2\nopened_at: 2016-09-18 18:07:06\nclosed_at: 2016-09-24 04:07:06\nfirst_fraud_txn_id: 3259393\nn_txns: 11\nexposure_usd: 496.34\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3653: cardholder C05381 reported unrecognized activity on card C05381-K2. 11 transaction(s) between 2016-09-12 and 2016-09-18 totaling $496.34 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a es-us on Lanix/Ilium. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.49190456,
+            "source_chunks": []
+          }
+        ],
+        "used_vector_search": true,
+        "query_meta": {
+          "query": "three small online authorizations followed by a larger purchase; card testing policy R5",
+          "vector_weight": 0.7,
+          "graph_weight": 0.3,
+          "top_k": 10,
+          "depth": 2,
+          "note": "vector"
+        },
+        "latency_ms": 7117.41
+      },
+      "0.8/0.2": {
+        "entities": [
+          {
+            "id": "hhgoa-patterns-fraud_patterns-part-001",
+            "type": "Paper",
+            "name": "fraud_patterns (part 1)",
+            "properties": {
+              "title": "fraud_patterns (part 1)",
+              "abstract": "# The Five Known Fraud Patterns\n\n> Copied verbatim from the dataset README. Not the only patterns in the\n> data — activity fitting none of these is `undocumented`, and finding it\n> is scored (R9).\n\n1. **Card testing.** A stolen card number is checked before use: three or more tiny online authorizations, often under $5, then a larger purchase. Confirmed by the sequence itself. Policy R5.\n\n2. **Card-not-present fraud.** The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.\n\n3. **Card-not-present fraud from a new device.** Same as above, with the identity record marking the device as `New` for this account, sometimes behind a proxy. Stronger than pattern 2, still not proof: people buy new phones.\n\n4. **Out-of-region use.** Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.\n\n5. **Account takeover.** Mixed-channel activity inconsistent with the cardholder, often with device and match-flag anomalies, pointing to stolen credentials rather than a stolen number.",
+              "categories": "patterns",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.58860856,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-policy-fraud_policy-part-003",
+            "type": "Paper",
+            "name": "fraud_policy (part 3)",
+            "properties": {
+              "title": "fraud_policy (part 3)",
+              "abstract": "o reply within 24 hours → `MONITOR_CARD`, `DECLINE_TRANSACTION` for pending auths. Escalate if exposure > $500.\n- **R5.** Card testing (3+ small online auths in 1h, then a larger purchase) → `DECLINE_TRANSACTION`, `STEP_UP_AUTH`. If a >$100 purchase already cleared, add `BLOCK_CARD`.\n- **R6.** Shared origin (device/region/email across cards) → name the shared element, `CREATE_CASE`, `FILE_REPORT`, `MONITOR_CONNECTED_CARDS` for every sharing card.\n- **R7.** Disputed but matches the customer's own recurring pattern → `CREATE_CASE`, `VERIFY_WITH_CUSTOMER`, `WARN_CUSTOMER`. Never block.\n- **R8.** Uncertain verdict with exposure > $500, or conflicting evidence → `ESCALATE_TO_ANALYST`.\n- **R9.** Undocumented pattern with coordinated/repeated abuse → `CREATE_CASE`, `FILE_REPORT`, `ESCALATE_TO_ANALYST`; describe the pattern in your own words.\n- **R10.** Never `BLOCK_ALL_CARDS` unless 2+ confirmed-fraud cards, or credentials confirmed compromised.\n\n## 3a. A case is not a report\n\nA **case** is internal; open one whenever fraud probability reaches 0.30, whenever evidence is requested, or whenever a customer disputes a charge. A **suspicious activity report** is external/regulatory; file one when fraud is confirmed or strongly suspected AND at least one of: exposure > $1,000; shared device/region/email cluster; coordinated/undocumented pattern (R9). A report always has a case behind it.\n\n## 3b. The next best action can change\n\nRecommend what the evidence supports now, request more",
+              "categories": "policy",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.57815704,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0137",
+            "type": "Paper",
+            "name": "Closed investigation CC-0137",
+            "properties": {
+              "title": "Closed investigation CC-0137",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C12982\ncard_id: C12982-K1\nopened_at: 2016-07-06 09:33:41\nclosed_at: 2016-07-11 03:33:41\nfirst_fraud_txn_id: 3000196\nn_txns: 5\nexposure_usd: 402.43\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0137: cardholder C12982 reported unrecognized activity on card C12982-K1. 5 transaction(s) between 2016-07-02 and 2016-07-05 totaling $402.43 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a Windows on chrome 61.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5666431200000001,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-4940",
+            "type": "Paper",
+            "name": "Closed investigation CC-4940",
+            "properties": {
+              "title": "Closed investigation CC-4940",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C03738\ncard_id: C03738-K2\nopened_at: 2016-10-17 12:43:27\nclosed_at: 2016-10-22 22:43:27\nfirst_fraud_txn_id: 3366168\nn_txns: 3\nexposure_usd: 109.88\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-4940: cardholder C03738 reported unrecognized activity on card C03738-K2. 3 transaction(s) between 2016-10-15 and 2016-10-16 totaling $109.88 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a Windows on chrome 64.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.56524008,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-1235",
+            "type": "Paper",
+            "name": "Closed investigation CC-1235",
+            "properties": {
+              "title": "Closed investigation CC-1235",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C08962\ncard_id: C08962-K2\nopened_at: 2016-07-26 19:03:45\nclosed_at: 2016-07-29 23:03:45\nfirst_fraud_txn_id: 3046235\nn_txns: 21\nexposure_usd: 1030.15\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-1235: cardholder C08962 reported unrecognized activity on card C08962-K2. 21 transaction(s) between 2016-07-14 and 2016-07-25 totaling $1,030.15 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.56485216,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2248",
+            "type": "Paper",
+            "name": "Closed investigation CC-2248",
+            "properties": {
+              "title": "Closed investigation CC-2248",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C07562\ncard_id: C07562-K2\nopened_at: 2016-08-17 14:46:43\nclosed_at: 2016-08-22 01:46:43\nfirst_fraud_txn_id: 3060719\nn_txns: 65\nexposure_usd: 3876.20\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-2248: cardholder C07562 reported unrecognized activity on card C07562-K2. 65 transaction(s) between 2016-07-17 and 2016-08-17 totaling $3,876.20 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5641153600000001,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2394",
+            "type": "Paper",
+            "name": "Closed investigation CC-2394",
+            "properties": {
+              "title": "Closed investigation CC-2394",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C08962\ncard_id: C08962-K2\nopened_at: 2016-08-20 18:45:23\nclosed_at: 2016-08-24 16:45:23\nfirst_fraud_txn_id: 3128855\nn_txns: 65\nexposure_usd: 2634.94\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-2394: cardholder C08962 reported unrecognized activity on card C08962-K2. 65 transaction(s) between 2016-07-31 and 2016-08-20 totaling $2,634.94 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5640495200000001,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-5264",
+            "type": "Paper",
+            "name": "Closed investigation CC-5264",
+            "properties": {
+              "title": "Closed investigation CC-5264",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C00094\ncard_id: C00094-K3\nopened_at: 2016-10-25 07:01:49\nclosed_at: 2016-10-28 02:01:49\nfirst_fraud_txn_id: 3392576\nn_txns: 1\nexposure_usd: 50.08\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-5264: cardholder C00094 reported unrecognized activity on card C00094-K3. 1 transaction(s) between 2016-10-24 and 2016-10-24 totaling $50.08 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome generic. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5633608800000001,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-4058",
+            "type": "Paper",
+            "name": "Closed investigation CC-4058",
+            "properties": {
+              "title": "Closed investigation CC-4058",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C04597\ncard_id: C04597-K2\nopened_at: 2016-09-28 02:12:07\nclosed_at: 2016-09-29 16:12:07\nfirst_fraud_txn_id: 3292064\nn_txns: 13\nexposure_usd: 390.38\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-4058: cardholder C04597 reported unrecognized activity on card C04597-K2. 13 transaction(s) between 2016-09-23 and 2016-09-27 totaling $390.38 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a CHC-U03 Build/HuaweiCHC-U03 on chrome generic. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.56229136,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3653",
+            "type": "Paper",
+            "name": "Closed investigation CC-3653",
+            "properties": {
+              "title": "Closed investigation CC-3653",
+              "abstract": "outcome: confirmed_fraud\npattern: card_testing\ncustomer_id: C05381\ncard_id: C05381-K2\nopened_at: 2016-09-18 18:07:06\nclosed_at: 2016-09-24 04:07:06\nfirst_fraud_txn_id: 3259393\nn_txns: 11\nexposure_usd: 496.34\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3653: cardholder C05381 reported unrecognized activity on card C05381-K2. 11 transaction(s) between 2016-09-12 and 2016-09-18 totaling $496.34 were confirmed fraudulent. A run of very small online authorizations followed by a larger purchase, consistent with testing a stolen card number before use. Online transactions came from a es-us on Lanix/Ilium. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.56217664,
+            "source_chunks": []
+          }
+        ],
+        "used_vector_search": true,
+        "query_meta": {
+          "query": "three small online authorizations followed by a larger purchase; card testing policy R5",
+          "vector_weight": 0.8,
+          "graph_weight": 0.2,
+          "top_k": 10,
+          "depth": 2,
+          "note": "vector"
+        },
+        "latency_ms": 6861.32
+      }
+    },
+    "shared_origin": {
+      "0.5/0.5": {
+        "entities": [
+          {
+            "id": "hhgoa-closed-CC-0170",
+            "type": "Paper",
+            "name": "Closed investigation CC-0170",
+            "properties": {
+              "title": "Closed investigation CC-0170",
+              "abstract": "outcome: cleared\npattern: none\ncustomer_id: C11332\ncard_id: C11332-K1\nopened_at: 2016-07-07 00:40:37\nclosed_at: 2016-07-09 17:40:37\nn_txns: 1\nexposure_usd: 0.00\nactions_taken: VERIFY_WITH_CUSTOMER|CLOSE_NO_FRAUD\nreport_filed: No\nanalyst_notes: Case CC-0170: model scored a $125.00 transaction at 0.86. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0245",
+            "type": "Paper",
+            "name": "Closed investigation CC-0245",
+            "properties": {
+              "title": "Closed investigation CC-0245",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C01175\ncard_id: C01175-K1\nopened_at: 2016-07-08 21:24:42\nclosed_at: 2016-07-11 16:24:42\nfirst_fraud_txn_id: 3021843\nn_txns: 1\nexposure_usd: 50.04\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0245: cardholder C01175 reported unrecognized activity on card C01175-K1. 1 transaction(s) between 2016-07-08 and 2016-07-08 totaling $50.04 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a VS995 Build/NRD90M on chrome 62.0 for android. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0201",
+            "type": "Paper",
+            "name": "Closed investigation CC-0201",
+            "properties": {
+              "title": "Closed investigation CC-0201",
+              "abstract": "outcome: confirmed_fraud\npattern: out_of_region_use\ncustomer_id: C08450\ncard_id: C08450-K2\nopened_at: 2016-07-07 20:00:58\nclosed_at: 2016-07-11 10:00:58\nfirst_fraud_txn_id: 3016131\nn_txns: 2\nexposure_usd: 220.01\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0201: cardholder C08450 reported unrecognized activity on card C08450-K2. 2 transaction(s) between 2016-07-06 and 2016-07-07 totaling $220.01 were confirmed fraudulent. Card-present use in a billing region the cardholder had no history in, while the cardholder retained the card. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0265",
+            "type": "Paper",
+            "name": "Closed investigation CC-0265",
+            "properties": {
+              "title": "Closed investigation CC-0265",
+              "abstract": "outcome: cleared\npattern: none\ncustomer_id: C11019\ncard_id: C11019-K2\nopened_at: 2016-07-09 03:47:25\nclosed_at: 2016-07-10 21:47:25\nn_txns: 1\nexposure_usd: 0.00\nactions_taken: VERIFY_WITH_CUSTOMER|CLOSE_NO_FRAUD\nreport_filed: No\nanalyst_notes: Case CC-0265: model scored a $3,162.99 transaction at 0.90. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0410",
+            "type": "Paper",
+            "name": "Closed investigation CC-0410",
+            "properties": {
+              "title": "Closed investigation CC-0410",
+              "abstract": "outcome: confirmed_fraud\npattern: out_of_region_use\ncustomer_id: C12961\ncard_id: C12961-K2\nopened_at: 2016-07-12 10:01:47\nclosed_at: 2016-07-18 01:01:47\nfirst_fraud_txn_id: 3035664\nn_txns: 2\nexposure_usd: 233.93\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0410: cardholder C12961 reported unrecognized activity on card C12961-K2. 2 transaction(s) between 2016-07-12 and 2016-07-12 totaling $233.93 were confirmed fraudulent. Card-present use in a billing region the cardholder had no history in, while the cardholder retained the card. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0573",
+            "type": "Paper",
+            "name": "Closed investigation CC-0573",
+            "properties": {
+              "title": "Closed investigation CC-0573",
+              "abstract": "outcome: cleared\npattern: none\ncustomer_id: C00912\ncard_id: C00912-K1\nopened_at: 2016-07-15 22:36:46\nclosed_at: 2016-07-17 18:36:46\nn_txns: 1\nexposure_usd: 0.00\nactions_taken: VERIFY_WITH_CUSTOMER|CLOSE_NO_FRAUD\nreport_filed: No\nanalyst_notes: Case CC-0573: model scored a $200.01 transaction at 0.85. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0567",
+            "type": "Paper",
+            "name": "Closed investigation CC-0567",
+            "properties": {
+              "title": "Closed investigation CC-0567",
+              "abstract": "outcome: cleared\npattern: none\ncustomer_id: C03517\ncard_id: C03517-K1\nopened_at: 2016-07-15 20:52:56\nclosed_at: 2016-07-18 18:52:56\nn_txns: 1\nexposure_usd: 0.00\nactions_taken: VERIFY_WITH_CUSTOMER|CLOSE_NO_FRAUD\nreport_filed: No\nanalyst_notes: Case CC-0567: model scored a $1,071.86 transaction at 0.93. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0557",
+            "type": "Paper",
+            "name": "Closed investigation CC-0557",
+            "properties": {
+              "title": "Closed investigation CC-0557",
+              "abstract": "outcome: confirmed_fraud\npattern: out_of_region_use\ncustomer_id: C11000\ncard_id: C11000-K2\nopened_at: 2016-07-15 13:56:28\nclosed_at: 2016-07-17 23:56:28\nfirst_fraud_txn_id: 3047737\nn_txns: 2\nexposure_usd: 560.01\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0557: cardholder C11000 reported unrecognized activity on card C11000-K2. 2 transaction(s) between 2016-07-14 and 2016-07-14 totaling $560.01 were confirmed fraudulent. Card-present use in a billing region the cardholder had no history in, while the cardholder retained the card. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0011",
+            "type": "Paper",
+            "name": "Closed investigation CC-0011",
+            "properties": {
+              "title": "Closed investigation CC-0011",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C13259\ncard_id: C13259-K1\nopened_at: 2016-07-03 07:46:35\nclosed_at: 2016-07-06 16:46:35\nfirst_fraud_txn_id: 3000989\nn_txns: 1\nexposure_usd: 149.95\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0011: cardholder C13259 reported unrecognized activity on card C13259-K1. 1 transaction(s) between 2016-07-02 and 2016-07-02 totaling $149.95 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a SM-G550T Build/MMB29K on chrome 59.0 for android. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0099",
+            "type": "Paper",
+            "name": "Closed investigation CC-0099",
+            "properties": {
+              "title": "Closed investigation CC-0099",
+              "abstract": "outcome: cleared\npattern: none\ncustomer_id: C06348\ncard_id: C06348-K1\nopened_at: 2016-07-05 11:24:16\nclosed_at: 2016-07-07 04:24:16\nn_txns: 1\nexposure_usd: 0.00\nactions_taken: VERIFY_WITH_CUSTOMER|CLOSE_NO_FRAUD\nreport_filed: No\nanalyst_notes: Case CC-0099: model scored a $124.95 transaction at 0.81. Cardholder confirmed the purchase from a new phone. Device added to profile. Alert cleared.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          }
+        ],
+        "used_vector_search": true,
+        "query_meta": {
+          "query": "same device, region, or email shared across multiple cards; monitor connected cards",
+          "vector_weight": 0.5,
+          "graph_weight": 0.5,
+          "top_k": 10,
+          "depth": 2,
+          "note": "vector"
+        },
+        "latency_ms": 6131.84
+      },
+      "0.7/0.3": {
+        "entities": [
+          {
+            "id": "hhgoa-policy-fraud_policy-part-003",
+            "type": "Paper",
+            "name": "fraud_policy (part 3)",
+            "properties": {
+              "title": "fraud_policy (part 3)",
+              "abstract": "o reply within 24 hours → `MONITOR_CARD`, `DECLINE_TRANSACTION` for pending auths. Escalate if exposure > $500.\n- **R5.** Card testing (3+ small online auths in 1h, then a larger purchase) → `DECLINE_TRANSACTION`, `STEP_UP_AUTH`. If a >$100 purchase already cleared, add `BLOCK_CARD`.\n- **R6.** Shared origin (device/region/email across cards) → name the shared element, `CREATE_CASE`, `FILE_REPORT`, `MONITOR_CONNECTED_CARDS` for every sharing card.\n- **R7.** Disputed but matches the customer's own recurring pattern → `CREATE_CASE`, `VERIFY_WITH_CUSTOMER`, `WARN_CUSTOMER`. Never block.\n- **R8.** Uncertain verdict with exposure > $500, or conflicting evidence → `ESCALATE_TO_ANALYST`.\n- **R9.** Undocumented pattern with coordinated/repeated abuse → `CREATE_CASE`, `FILE_REPORT`, `ESCALATE_TO_ANALYST`; describe the pattern in your own words.\n- **R10.** Never `BLOCK_ALL_CARDS` unless 2+ confirmed-fraud cards, or credentials confirmed compromised.\n\n## 3a. A case is not a report\n\nA **case** is internal; open one whenever fraud probability reaches 0.30, whenever evidence is requested, or whenever a customer disputes a charge. A **suspicious activity report** is external/regulatory; file one when fraud is confirmed or strongly suspected AND at least one of: exposure > $1,000; shared device/region/email cluster; coordinated/undocumented pattern (R9). A report always has a case behind it.\n\n## 3b. The next best action can change\n\nRecommend what the evidence supports now, request more",
+              "categories": "policy",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.49966763,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-patterns-fraud_patterns-part-001",
+            "type": "Paper",
+            "name": "fraud_patterns (part 1)",
+            "properties": {
+              "title": "fraud_patterns (part 1)",
+              "abstract": "# The Five Known Fraud Patterns\n\n> Copied verbatim from the dataset README. Not the only patterns in the\n> data — activity fitting none of these is `undocumented`, and finding it\n> is scored (R9).\n\n1. **Card testing.** A stolen card number is checked before use: three or more tiny online authorizations, often under $5, then a larger purchase. Confirmed by the sequence itself. Policy R5.\n\n2. **Card-not-present fraud.** The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.\n\n3. **Card-not-present fraud from a new device.** Same as above, with the identity record marking the device as `New` for this account, sometimes behind a proxy. Stronger than pattern 2, still not proof: people buy new phones.\n\n4. **Out-of-region use.** Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.\n\n5. **Account takeover.** Mixed-channel activity inconsistent with the cardholder, often with device and match-flag anomalies, pointing to stolen credentials rather than a stolen number.",
+              "categories": "patterns",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.4672733799999999,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2460",
+            "type": "Paper",
+            "name": "Closed investigation CC-2460",
+            "properties": {
+              "title": "Closed investigation CC-2460",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C06075\ncard_id: C06075-K1\nopened_at: 2016-08-22 12:36:01\nclosed_at: 2016-08-24 07:36:01\nfirst_fraud_txn_id: 3188119\nn_txns: 7\nexposure_usd: 1800.15\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-2460: cardholder C06075 reported unrecognized activity on card C06075-K1. 7 transaction(s) between 2016-08-19 and 2016-08-21 totaling $1,800.15 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.46377799999999997,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2159",
+            "type": "Paper",
+            "name": "Closed investigation CC-2159",
+            "properties": {
+              "title": "Closed investigation CC-2159",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C06511\ncard_id: C06511-K1\nopened_at: 2016-08-15 15:55:26\nclosed_at: 2016-08-16 17:55:26\nfirst_fraud_txn_id: 3173705\nn_txns: 3\nexposure_usd: 149.97\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-2159: cardholder C06511 reported unrecognized activity on card C06511-K1. 3 transaction(s) between 2016-08-14 and 2016-08-14 totaling $149.97 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.46230330999999997,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3420",
+            "type": "Paper",
+            "name": "Closed investigation CC-3420",
+            "properties": {
+              "title": "Closed investigation CC-3420",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C05942\ncard_id: C05942-K1\nopened_at: 2016-09-13 07:56:06\nclosed_at: 2016-09-17 23:56:06\nfirst_fraud_txn_id: 3262126\nn_txns: 1\nexposure_usd: 16.51\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3420: cardholder C05942 reported unrecognized activity on card C05942-K1. 1 transaction(s) between 2016-09-12 and 2016-09-12 totaling $16.51 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Lenovo PB2-670Y Build/MRA58K on chrome 64.0 for android. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.46219564999999996,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-1439",
+            "type": "Paper",
+            "name": "Closed investigation CC-1439",
+            "properties": {
+              "title": "Closed investigation CC-1439",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C01521\ncard_id: C01521-K2\nopened_at: 2016-07-30 02:32:12\nclosed_at: 2016-07-31 19:32:12\nfirst_fraud_txn_id: 3112852\nn_txns: 14\nexposure_usd: 2064.26\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-1439: cardholder C01521 reported unrecognized activity on card C01521-K2. 14 transaction(s) between 2016-07-27 and 2016-07-29 totaling $2,064.26 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.46191361999999997,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3124",
+            "type": "Paper",
+            "name": "Closed investigation CC-3124",
+            "properties": {
+              "title": "Closed investigation CC-3124",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C04588\ncard_id: C04588-K1\nopened_at: 2016-09-06 10:38:40\nclosed_at: 2016-09-09 01:38:40\nfirst_fraud_txn_id: 3241442\nn_txns: 2\nexposure_usd: 38.26\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3124: cardholder C04588 reported unrecognized activity on card C04588-K1. 2 transaction(s) between 2016-09-06 and 2016-09-06 totaling $38.26 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a hi6210sft Build/MRA58K on chrome 64.0 for android. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.46176703999999996,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-5217",
+            "type": "Paper",
+            "name": "Closed investigation CC-5217",
+            "properties": {
+              "title": "Closed investigation CC-5217",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C02180\ncard_id: C02180-K1\nopened_at: 2016-10-24 01:02:15\nclosed_at: 2016-10-27 19:02:15\nfirst_fraud_txn_id: 3389758\nn_txns: 5\nexposure_usd: 450.14\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-5217: cardholder C02180 reported unrecognized activity on card C02180-K1. 5 transaction(s) between 2016-10-23 and 2016-10-23 totaling $450.14 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on edge 16.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.46165524999999996,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3110",
+            "type": "Paper",
+            "name": "Closed investigation CC-3110",
+            "properties": {
+              "title": "Closed investigation CC-3110",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C07981\ncard_id: C07981-K1\nopened_at: 2016-09-06 04:50:36\nclosed_at: 2016-09-07 05:50:36\nfirst_fraud_txn_id: 3230642\nn_txns: 6\nexposure_usd: 401.30\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3110: cardholder C07981 reported unrecognized activity on card C07981-K1. 6 transaction(s) between 2016-09-02 and 2016-09-05 totaling $401.30 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.46157538,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3491",
+            "type": "Paper",
+            "name": "Closed investigation CC-3491",
+            "properties": {
+              "title": "Closed investigation CC-3491",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C07562\ncard_id: C07562-K2\nopened_at: 2016-09-15 01:31:52\nclosed_at: 2016-09-16 23:31:52\nfirst_fraud_txn_id: 3214820\nn_txns: 51\nexposure_usd: 2327.32\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-3491: cardholder C07562 reported unrecognized activity on card C07562-K2. 51 transaction(s) between 2016-08-28 and 2016-09-13 totaling $2,327.32 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.4615245599999999,
+            "source_chunks": []
+          }
+        ],
+        "used_vector_search": true,
+        "query_meta": {
+          "query": "same device, region, or email shared across multiple cards; monitor connected cards",
+          "vector_weight": 0.7,
+          "graph_weight": 0.3,
+          "top_k": 10,
+          "depth": 2,
+          "note": "vector"
+        },
+        "latency_ms": 5795.66
+      },
+      "0.8/0.2": {
+        "entities": [
+          {
+            "id": "hhgoa-policy-fraud_policy-part-003",
+            "type": "Paper",
+            "name": "fraud_policy (part 3)",
+            "properties": {
+              "title": "fraud_policy (part 3)",
+              "abstract": "o reply within 24 hours → `MONITOR_CARD`, `DECLINE_TRANSACTION` for pending auths. Escalate if exposure > $500.\n- **R5.** Card testing (3+ small online auths in 1h, then a larger purchase) → `DECLINE_TRANSACTION`, `STEP_UP_AUTH`. If a >$100 purchase already cleared, add `BLOCK_CARD`.\n- **R6.** Shared origin (device/region/email across cards) → name the shared element, `CREATE_CASE`, `FILE_REPORT`, `MONITOR_CONNECTED_CARDS` for every sharing card.\n- **R7.** Disputed but matches the customer's own recurring pattern → `CREATE_CASE`, `VERIFY_WITH_CUSTOMER`, `WARN_CUSTOMER`. Never block.\n- **R8.** Uncertain verdict with exposure > $500, or conflicting evidence → `ESCALATE_TO_ANALYST`.\n- **R9.** Undocumented pattern with coordinated/repeated abuse → `CREATE_CASE`, `FILE_REPORT`, `ESCALATE_TO_ANALYST`; describe the pattern in your own words.\n- **R10.** Never `BLOCK_ALL_CARDS` unless 2+ confirmed-fraud cards, or credentials confirmed compromised.\n\n## 3a. A case is not a report\n\nA **case** is internal; open one whenever fraud probability reaches 0.30, whenever evidence is requested, or whenever a customer disputes a charge. A **suspicious activity report** is external/regulatory; file one when fraud is confirmed or strongly suspected AND at least one of: exposure > $1,000; shared device/region/email cluster; coordinated/undocumented pattern (R9). A report always has a case behind it.\n\n## 3b. The next best action can change\n\nRecommend what the evidence supports now, request more",
+              "categories": "policy",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5710487200000001,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-patterns-fraud_patterns-part-001",
+            "type": "Paper",
+            "name": "fraud_patterns (part 1)",
+            "properties": {
+              "title": "fraud_patterns (part 1)",
+              "abstract": "# The Five Known Fraud Patterns\n\n> Copied verbatim from the dataset README. Not the only patterns in the\n> data — activity fitting none of these is `undocumented`, and finding it\n> is scored (R9).\n\n1. **Card testing.** A stolen card number is checked before use: three or more tiny online authorizations, often under $5, then a larger purchase. Confirmed by the sequence itself. Policy R5.\n\n2. **Card-not-present fraud.** The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.\n\n3. **Card-not-present fraud from a new device.** Same as above, with the identity record marking the device as `New` for this account, sometimes behind a proxy. Stronger than pattern 2, still not proof: people buy new phones.\n\n4. **Out-of-region use.** Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.\n\n5. **Account takeover.** Mixed-channel activity inconsistent with the cardholder, often with device and match-flag anomalies, pointing to stolen credentials rather than a stolen number.",
+              "categories": "patterns",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.53402672,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2460",
+            "type": "Paper",
+            "name": "Closed investigation CC-2460",
+            "properties": {
+              "title": "Closed investigation CC-2460",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C06075\ncard_id: C06075-K1\nopened_at: 2016-08-22 12:36:01\nclosed_at: 2016-08-24 07:36:01\nfirst_fraud_txn_id: 3188119\nn_txns: 7\nexposure_usd: 1800.15\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-2460: cardholder C06075 reported unrecognized activity on card C06075-K1. 7 transaction(s) between 2016-08-19 and 2016-08-21 totaling $1,800.15 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5300320000000001,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2159",
+            "type": "Paper",
+            "name": "Closed investigation CC-2159",
+            "properties": {
+              "title": "Closed investigation CC-2159",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C06511\ncard_id: C06511-K1\nopened_at: 2016-08-15 15:55:26\nclosed_at: 2016-08-16 17:55:26\nfirst_fraud_txn_id: 3173705\nn_txns: 3\nexposure_usd: 149.97\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-2159: cardholder C06511 reported unrecognized activity on card C06511-K1. 3 transaction(s) between 2016-08-14 and 2016-08-14 totaling $149.97 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.52834664,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3420",
+            "type": "Paper",
+            "name": "Closed investigation CC-3420",
+            "properties": {
+              "title": "Closed investigation CC-3420",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C05942\ncard_id: C05942-K1\nopened_at: 2016-09-13 07:56:06\nclosed_at: 2016-09-17 23:56:06\nfirst_fraud_txn_id: 3262126\nn_txns: 1\nexposure_usd: 16.51\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3420: cardholder C05942 reported unrecognized activity on card C05942-K1. 1 transaction(s) between 2016-09-12 and 2016-09-12 totaling $16.51 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Lenovo PB2-670Y Build/MRA58K on chrome 64.0 for android. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5282236,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-1439",
+            "type": "Paper",
+            "name": "Closed investigation CC-1439",
+            "properties": {
+              "title": "Closed investigation CC-1439",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C01521\ncard_id: C01521-K2\nopened_at: 2016-07-30 02:32:12\nclosed_at: 2016-07-31 19:32:12\nfirst_fraud_txn_id: 3112852\nn_txns: 14\nexposure_usd: 2064.26\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-1439: cardholder C01521 reported unrecognized activity on card C01521-K2. 14 transaction(s) between 2016-07-27 and 2016-07-29 totaling $2,064.26 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.52790128,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3124",
+            "type": "Paper",
+            "name": "Closed investigation CC-3124",
+            "properties": {
+              "title": "Closed investigation CC-3124",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C04588\ncard_id: C04588-K1\nopened_at: 2016-09-06 10:38:40\nclosed_at: 2016-09-09 01:38:40\nfirst_fraud_txn_id: 3241442\nn_txns: 2\nexposure_usd: 38.26\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3124: cardholder C04588 reported unrecognized activity on card C04588-K1. 2 transaction(s) between 2016-09-06 and 2016-09-06 totaling $38.26 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a hi6210sft Build/MRA58K on chrome 64.0 for android. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.52773376,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-5217",
+            "type": "Paper",
+            "name": "Closed investigation CC-5217",
+            "properties": {
+              "title": "Closed investigation CC-5217",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C02180\ncard_id: C02180-K1\nopened_at: 2016-10-24 01:02:15\nclosed_at: 2016-10-27 19:02:15\nfirst_fraud_txn_id: 3389758\nn_txns: 5\nexposure_usd: 450.14\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-5217: cardholder C02180 reported unrecognized activity on card C02180-K1. 5 transaction(s) between 2016-10-23 and 2016-10-23 totaling $450.14 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on edge 16.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.527606,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3110",
+            "type": "Paper",
+            "name": "Closed investigation CC-3110",
+            "properties": {
+              "title": "Closed investigation CC-3110",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C07981\ncard_id: C07981-K1\nopened_at: 2016-09-06 04:50:36\nclosed_at: 2016-09-07 05:50:36\nfirst_fraud_txn_id: 3230642\nn_txns: 6\nexposure_usd: 401.30\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3110: cardholder C07981 reported unrecognized activity on card C07981-K1. 6 transaction(s) between 2016-09-02 and 2016-09-05 totaling $401.30 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.52751472,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3491",
+            "type": "Paper",
+            "name": "Closed investigation CC-3491",
+            "properties": {
+              "title": "Closed investigation CC-3491",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C07562\ncard_id: C07562-K2\nopened_at: 2016-09-15 01:31:52\nclosed_at: 2016-09-16 23:31:52\nfirst_fraud_txn_id: 3214820\nn_txns: 51\nexposure_usd: 2327.32\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-3491: cardholder C07562 reported unrecognized activity on card C07562-K2. 51 transaction(s) between 2016-08-28 and 2016-09-13 totaling $2,327.32 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5274566399999999,
+            "source_chunks": []
+          }
+        ],
+        "used_vector_search": true,
+        "query_meta": {
+          "query": "same device, region, or email shared across multiple cards; monitor connected cards",
+          "vector_weight": 0.8,
+          "graph_weight": 0.2,
+          "top_k": 10,
+          "depth": 2,
+          "note": "vector"
+        },
+        "latency_ms": 5642.88
+      }
+    },
+    "customer_denial": {
+      "0.5/0.5": {
+        "entities": [
+          {
+            "id": "hhgoa-policy-fraud_policy-part-004",
+            "type": "Paper",
+            "name": "fraud_policy (part 4)",
+            "properties": {
+              "title": "fraud_policy (part 4)",
+              "abstract": "undocumented pattern (R9). A report always has a case behind it.\n\n## 3b. The next best action can change\n\nRecommend what the evidence supports now, request more evidence if the policy calls for it, then recommend again. Record both `initial` and `final`, and what changed.\n\n## 4. Exposure\n\nSum of absolute amounts of every transaction identified as part of the fraud episode, including the flagged one.\n\n## 5. Gathering more evidence\n\nThe agent may, without approval, ask the customer to validate a transaction, request step-up authentication, or request analyst information. Responses are simulated; state the assumption in `evidence_requests`.\n\n## 6. Stopping\n\nStop when: fraud probability ≥0.85 or ≤0.15, supported by 2+ independent evidence pieces; OR a verification response settles the question; OR further steps are unlikely to change the decision (say why in `stop_reason`).\n\n## 7. Explaining\n\nEvery recommendation states the evidence used, why more evidence was requested (if it was), and cites the rule number behind the chosen actions.",
+              "categories": "policy",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0089",
+            "type": "Paper",
+            "name": "Closed investigation CC-0089",
+            "properties": {
+              "title": "Closed investigation CC-0089",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C09354\ncard_id: C09354-K1\nopened_at: 2016-07-05 05:21:29\nclosed_at: 2016-07-06 17:21:29\nfirst_fraud_txn_id: 3007653\nn_txns: 3\nexposure_usd: 251.25\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0089: cardholder C09354 reported unrecognized activity on card C09354-K1. 3 transaction(s) between 2016-07-04 and 2016-07-04 totaling $251.25 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on chrome 62.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0170",
+            "type": "Paper",
+            "name": "Closed investigation CC-0170",
+            "properties": {
+              "title": "Closed investigation CC-0170",
+              "abstract": "outcome: cleared\npattern: none\ncustomer_id: C11332\ncard_id: C11332-K1\nopened_at: 2016-07-07 00:40:37\nclosed_at: 2016-07-09 17:40:37\nn_txns: 1\nexposure_usd: 0.00\nactions_taken: VERIFY_WITH_CUSTOMER|CLOSE_NO_FRAUD\nreport_filed: No\nanalyst_notes: Case CC-0170: model scored a $125.00 transaction at 0.86. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0177",
+            "type": "Paper",
+            "name": "Closed investigation CC-0177",
+            "properties": {
+              "title": "Closed investigation CC-0177",
+              "abstract": "outcome: confirmed_fraud\npattern: account_takeover\ncustomer_id: C01155\ncard_id: C01155-K2\nopened_at: 2016-07-07 02:41:50\nclosed_at: 2016-07-09 21:41:50\nfirst_fraud_txn_id: 3015024\nn_txns: 3\nexposure_usd: 263.70\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0177: cardholder C01155 reported unrecognized activity on card C01155-K2. 3 transaction(s) between 2016-07-06 and 2016-07-06 totaling $263.70 were confirmed fraudulent. Mixed-channel activity inconsistent with the cardholder; credentials and card data both used. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0245",
+            "type": "Paper",
+            "name": "Closed investigation CC-0245",
+            "properties": {
+              "title": "Closed investigation CC-0245",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C01175\ncard_id: C01175-K1\nopened_at: 2016-07-08 21:24:42\nclosed_at: 2016-07-11 16:24:42\nfirst_fraud_txn_id: 3021843\nn_txns: 1\nexposure_usd: 50.04\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0245: cardholder C01175 reported unrecognized activity on card C01175-K1. 1 transaction(s) between 2016-07-08 and 2016-07-08 totaling $50.04 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a VS995 Build/NRD90M on chrome 62.0 for android. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0201",
+            "type": "Paper",
+            "name": "Closed investigation CC-0201",
+            "properties": {
+              "title": "Closed investigation CC-0201",
+              "abstract": "outcome: confirmed_fraud\npattern: out_of_region_use\ncustomer_id: C08450\ncard_id: C08450-K2\nopened_at: 2016-07-07 20:00:58\nclosed_at: 2016-07-11 10:00:58\nfirst_fraud_txn_id: 3016131\nn_txns: 2\nexposure_usd: 220.01\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0201: cardholder C08450 reported unrecognized activity on card C08450-K2. 2 transaction(s) between 2016-07-06 and 2016-07-07 totaling $220.01 were confirmed fraudulent. Card-present use in a billing region the cardholder had no history in, while the cardholder retained the card. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0280",
+            "type": "Paper",
+            "name": "Closed investigation CC-0280",
+            "properties": {
+              "title": "Closed investigation CC-0280",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C10955\ncard_id: C10955-K2\nopened_at: 2016-07-09 11:58:57\nclosed_at: 2016-07-10 17:58:57\nfirst_fraud_txn_id: 3022262\nn_txns: 1\nexposure_usd: 449.93\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0280: cardholder C10955 reported unrecognized activity on card C10955-K2. 1 transaction(s) between 2016-07-08 and 2016-07-08 totaling $449.93 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on chrome 60.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0265",
+            "type": "Paper",
+            "name": "Closed investigation CC-0265",
+            "properties": {
+              "title": "Closed investigation CC-0265",
+              "abstract": "outcome: cleared\npattern: none\ncustomer_id: C11019\ncard_id: C11019-K2\nopened_at: 2016-07-09 03:47:25\nclosed_at: 2016-07-10 21:47:25\nn_txns: 1\nexposure_usd: 0.00\nactions_taken: VERIFY_WITH_CUSTOMER|CLOSE_NO_FRAUD\nreport_filed: No\nanalyst_notes: Case CC-0265: model scored a $3,162.99 transaction at 0.90. Cardholder confirmed travel to the billing region in question. Alert cleared.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0328",
+            "type": "Paper",
+            "name": "Closed investigation CC-0328",
+            "properties": {
+              "title": "Closed investigation CC-0328",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C02147\ncard_id: C02147-K2\nopened_at: 2016-07-10 10:47:26\nclosed_at: 2016-07-15 19:47:26\nfirst_fraud_txn_id: 3016942\nn_txns: 5\nexposure_usd: 222.45\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0328: cardholder C02147 reported unrecognized activity on card C02147-K2. 5 transaction(s) between 2016-07-07 and 2016-07-09 totaling $222.45 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a SM-A300H Build/LRX22G on chrome 62.0 for android. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0352",
+            "type": "Paper",
+            "name": "Closed investigation CC-0352",
+            "properties": {
+              "title": "Closed investigation CC-0352",
+              "abstract": "outcome: confirmed_fraud\npattern: account_takeover\ncustomer_id: C12861\ncard_id: C12861-K1\nopened_at: 2016-07-11 00:37:24\nclosed_at: 2016-07-11 20:37:24\nfirst_fraud_txn_id: 3026769\nn_txns: 1\nexposure_usd: 26.21\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0352: cardholder C12861 reported unrecognized activity on card C12861-K1. 1 transaction(s) between 2016-07-09 and 2016-07-09 totaling $26.21 were confirmed fraudulent. Mixed-channel activity inconsistent with the cardholder; credentials and card data both used. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5,
+            "source_chunks": []
+          }
+        ],
+        "used_vector_search": true,
+        "query_meta": {
+          "query": "customer denies a transaction and exposure requires blocking and a suspicious activity report",
+          "vector_weight": 0.5,
+          "graph_weight": 0.5,
+          "top_k": 10,
+          "depth": 2,
+          "note": "vector"
+        },
+        "latency_ms": 6235.37
+      },
+      "0.7/0.3": {
+        "entities": [
+          {
+            "id": "hhgoa-policy-fraud_policy-part-003",
+            "type": "Paper",
+            "name": "fraud_policy (part 3)",
+            "properties": {
+              "title": "fraud_policy (part 3)",
+              "abstract": "o reply within 24 hours → `MONITOR_CARD`, `DECLINE_TRANSACTION` for pending auths. Escalate if exposure > $500.\n- **R5.** Card testing (3+ small online auths in 1h, then a larger purchase) → `DECLINE_TRANSACTION`, `STEP_UP_AUTH`. If a >$100 purchase already cleared, add `BLOCK_CARD`.\n- **R6.** Shared origin (device/region/email across cards) → name the shared element, `CREATE_CASE`, `FILE_REPORT`, `MONITOR_CONNECTED_CARDS` for every sharing card.\n- **R7.** Disputed but matches the customer's own recurring pattern → `CREATE_CASE`, `VERIFY_WITH_CUSTOMER`, `WARN_CUSTOMER`. Never block.\n- **R8.** Uncertain verdict with exposure > $500, or conflicting evidence → `ESCALATE_TO_ANALYST`.\n- **R9.** Undocumented pattern with coordinated/repeated abuse → `CREATE_CASE`, `FILE_REPORT`, `ESCALATE_TO_ANALYST`; describe the pattern in your own words.\n- **R10.** Never `BLOCK_ALL_CARDS` unless 2+ confirmed-fraud cards, or credentials confirmed compromised.\n\n## 3a. A case is not a report\n\nA **case** is internal; open one whenever fraud probability reaches 0.30, whenever evidence is requested, or whenever a customer disputes a charge. A **suspicious activity report** is external/regulatory; file one when fraud is confirmed or strongly suspected AND at least one of: exposure > $1,000; shared device/region/email cluster; coordinated/undocumented pattern (R9). A report always has a case behind it.\n\n## 3b. The next best action can change\n\nRecommend what the evidence supports now, request more",
+              "categories": "policy",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5542187,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2609",
+            "type": "Paper",
+            "name": "Closed investigation CC-2609",
+            "properties": {
+              "title": "Closed investigation CC-2609",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C08256\ncard_id: C08256-K2\nopened_at: 2016-08-26 03:53:09\nclosed_at: 2016-08-30 21:53:09\nfirst_fraud_txn_id: 3203626\nn_txns: 2\nexposure_usd: 149.94\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-2609: cardholder C08256 reported unrecognized activity on card C08256-K2. 2 transaction(s) between 2016-08-24 and 2016-08-24 totaling $149.94 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a MDDRJS on ie 11.0 for desktop. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.54239311,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3098",
+            "type": "Paper",
+            "name": "Closed investigation CC-3098",
+            "properties": {
+              "title": "Closed investigation CC-3098",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C02513\ncard_id: C02513-K1\nopened_at: 2016-09-05 22:02:33\nclosed_at: 2016-09-11 04:02:33\nfirst_fraud_txn_id: 3238397\nn_txns: 1\nexposure_usd: 29.93\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3098: cardholder C02513 reported unrecognized activity on card C02513-K1. 1 transaction(s) between 2016-09-05 and 2016-09-05 totaling $29.93 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a rv:58.0 on firefox 58.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.54221937,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-1608",
+            "type": "Paper",
+            "name": "Closed investigation CC-1608",
+            "properties": {
+              "title": "Closed investigation CC-1608",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C01890\ncard_id: C01890-K1\nopened_at: 2016-08-03 10:17:36\nclosed_at: 2016-08-07 06:17:36\nfirst_fraud_txn_id: 3137179\nn_txns: 2\nexposure_usd: 94.30\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-1608: cardholder C01890 reported unrecognized activity on card C01890-K1. 2 transaction(s) between 2016-08-03 and 2016-08-03 totaling $94.30 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5419435,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0089",
+            "type": "Paper",
+            "name": "Closed investigation CC-0089",
+            "properties": {
+              "title": "Closed investigation CC-0089",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C09354\ncard_id: C09354-K1\nopened_at: 2016-07-05 05:21:29\nclosed_at: 2016-07-06 17:21:29\nfirst_fraud_txn_id: 3007653\nn_txns: 3\nexposure_usd: 251.25\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0089: cardholder C09354 reported unrecognized activity on card C09354-K1. 3 transaction(s) between 2016-07-04 and 2016-07-04 totaling $251.25 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on chrome 62.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5416670699999999,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-1569",
+            "type": "Paper",
+            "name": "Closed investigation CC-1569",
+            "properties": {
+              "title": "Closed investigation CC-1569",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C10837\ncard_id: C10837-K2\nopened_at: 2016-08-02 10:02:04\nclosed_at: 2016-08-07 16:02:04\nfirst_fraud_txn_id: 3130196\nn_txns: 4\nexposure_usd: 487.49\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-1569: cardholder C10837 reported unrecognized activity on card C10837-K2. 4 transaction(s) between 2016-07-31 and 2016-08-01 totaling $487.49 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.5416055399999999,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0151",
+            "type": "Paper",
+            "name": "Closed investigation CC-0151",
+            "properties": {
+              "title": "Closed investigation CC-0151",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C08913\ncard_id: C08913-K2\nopened_at: 2016-07-06 18:28:29\nclosed_at: 2016-07-11 06:28:29\nfirst_fraud_txn_id: 3012259\nn_txns: 6\nexposure_usd: 1300.37\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-0151: cardholder C08913 reported unrecognized activity on card C08913-K2. 6 transaction(s) between 2016-07-05 and 2016-07-06 totaling $1,300.37 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on chrome 62.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.54158818,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0503",
+            "type": "Paper",
+            "name": "Closed investigation CC-0503",
+            "properties": {
+              "title": "Closed investigation CC-0503",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C06906\ncard_id: C06906-K1\nopened_at: 2016-07-14 14:41:06\nclosed_at: 2016-07-18 21:41:06\nfirst_fraud_txn_id: 3040534\nn_txns: 2\nexposure_usd: 46.40\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0503: cardholder C06906 reported unrecognized activity on card C06906-K1. 2 transaction(s) between 2016-07-13 and 2016-07-13 totaling $46.40 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on firefox 57.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.54141661,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2905",
+            "type": "Paper",
+            "name": "Closed investigation CC-2905",
+            "properties": {
+              "title": "Closed investigation CC-2905",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C02181\ncard_id: C02181-K2\nopened_at: 2016-09-01 22:27:28\nclosed_at: 2016-09-02 17:27:28\nfirst_fraud_txn_id: 3222494\nn_txns: 4\nexposure_usd: 161.97\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-2905: cardholder C02181 reported unrecognized activity on card C02181-K2. 4 transaction(s) between 2016-08-31 and 2016-08-31 totaling $161.97 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a SM-N950U Build/NMF26X on chrome 63.0 for android. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.54107543,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3118",
+            "type": "Paper",
+            "name": "Closed investigation CC-3118",
+            "properties": {
+              "title": "Closed investigation CC-3118",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C09902\ncard_id: C09902-K2\nopened_at: 2016-09-06 07:29:22\nclosed_at: 2016-09-09 02:29:22\nfirst_fraud_txn_id: 3238164\nn_txns: 1\nexposure_usd: 149.97\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3118: cardholder C09902 reported unrecognized activity on card C09902-K2. 1 transaction(s) between 2016-09-05 and 2016-09-05 totaling $149.97 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.54104148,
+            "source_chunks": []
+          }
+        ],
+        "used_vector_search": true,
+        "query_meta": {
+          "query": "customer denies a transaction and exposure requires blocking and a suspicious activity report",
+          "vector_weight": 0.7,
+          "graph_weight": 0.3,
+          "top_k": 10,
+          "depth": 2,
+          "note": "vector"
+        },
+        "latency_ms": 13921.88
+      },
+      "0.8/0.2": {
+        "entities": [
+          {
+            "id": "hhgoa-policy-fraud_policy-part-003",
+            "type": "Paper",
+            "name": "fraud_policy (part 3)",
+            "properties": {
+              "title": "fraud_policy (part 3)",
+              "abstract": "o reply within 24 hours → `MONITOR_CARD`, `DECLINE_TRANSACTION` for pending auths. Escalate if exposure > $500.\n- **R5.** Card testing (3+ small online auths in 1h, then a larger purchase) → `DECLINE_TRANSACTION`, `STEP_UP_AUTH`. If a >$100 purchase already cleared, add `BLOCK_CARD`.\n- **R6.** Shared origin (device/region/email across cards) → name the shared element, `CREATE_CASE`, `FILE_REPORT`, `MONITOR_CONNECTED_CARDS` for every sharing card.\n- **R7.** Disputed but matches the customer's own recurring pattern → `CREATE_CASE`, `VERIFY_WITH_CUSTOMER`, `WARN_CUSTOMER`. Never block.\n- **R8.** Uncertain verdict with exposure > $500, or conflicting evidence → `ESCALATE_TO_ANALYST`.\n- **R9.** Undocumented pattern with coordinated/repeated abuse → `CREATE_CASE`, `FILE_REPORT`, `ESCALATE_TO_ANALYST`; describe the pattern in your own words.\n- **R10.** Never `BLOCK_ALL_CARDS` unless 2+ confirmed-fraud cards, or credentials confirmed compromised.\n\n## 3a. A case is not a report\n\nA **case** is internal; open one whenever fraud probability reaches 0.30, whenever evidence is requested, or whenever a customer disputes a charge. A **suspicious activity report** is external/regulatory; file one when fraud is confirmed or strongly suspected AND at least one of: exposure > $1,000; shared device/region/email cluster; coordinated/undocumented pattern (R9). A report always has a case behind it.\n\n## 3b. The next best action can change\n\nRecommend what the evidence supports now, request more",
+              "categories": "policy",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.6333928000000001,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2609",
+            "type": "Paper",
+            "name": "Closed investigation CC-2609",
+            "properties": {
+              "title": "Closed investigation CC-2609",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C08256\ncard_id: C08256-K2\nopened_at: 2016-08-26 03:53:09\nclosed_at: 2016-08-30 21:53:09\nfirst_fraud_txn_id: 3203626\nn_txns: 2\nexposure_usd: 149.94\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-2609: cardholder C08256 reported unrecognized activity on card C08256-K2. 2 transaction(s) between 2016-08-24 and 2016-08-24 totaling $149.94 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a MDDRJS on ie 11.0 for desktop. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.61987784,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3098",
+            "type": "Paper",
+            "name": "Closed investigation CC-3098",
+            "properties": {
+              "title": "Closed investigation CC-3098",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C02513\ncard_id: C02513-K1\nopened_at: 2016-09-05 22:02:33\nclosed_at: 2016-09-11 04:02:33\nfirst_fraud_txn_id: 3238397\nn_txns: 1\nexposure_usd: 29.93\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3098: cardholder C02513 reported unrecognized activity on card C02513-K1. 1 transaction(s) between 2016-09-05 and 2016-09-05 totaling $29.93 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a rv:58.0 on firefox 58.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.61967928,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-1608",
+            "type": "Paper",
+            "name": "Closed investigation CC-1608",
+            "properties": {
+              "title": "Closed investigation CC-1608",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C01890\ncard_id: C01890-K1\nopened_at: 2016-08-03 10:17:36\nclosed_at: 2016-08-07 06:17:36\nfirst_fraud_txn_id: 3137179\nn_txns: 2\nexposure_usd: 94.30\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-1608: cardholder C01890 reported unrecognized activity on card C01890-K1. 2 transaction(s) between 2016-08-03 and 2016-08-03 totaling $94.30 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.619364,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0089",
+            "type": "Paper",
+            "name": "Closed investigation CC-0089",
+            "properties": {
+              "title": "Closed investigation CC-0089",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C09354\ncard_id: C09354-K1\nopened_at: 2016-07-05 05:21:29\nclosed_at: 2016-07-06 17:21:29\nfirst_fraud_txn_id: 3007653\nn_txns: 3\nexposure_usd: 251.25\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0089: cardholder C09354 reported unrecognized activity on card C09354-K1. 3 transaction(s) between 2016-07-04 and 2016-07-04 totaling $251.25 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on chrome 62.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.61904808,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-1569",
+            "type": "Paper",
+            "name": "Closed investigation CC-1569",
+            "properties": {
+              "title": "Closed investigation CC-1569",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_new_device\ncustomer_id: C10837\ncard_id: C10837-K2\nopened_at: 2016-08-02 10:02:04\nclosed_at: 2016-08-07 16:02:04\nfirst_fraud_txn_id: 3130196\nn_txns: 4\nexposure_usd: 487.49\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-1569: cardholder C10837 reported unrecognized activity on card C10837-K2. 4 transaction(s) between 2016-07-31 and 2016-08-01 totaling $487.49 were confirmed fraudulent. Online purchases from a device not previously seen on this account, inconsistent with the cardholder's history. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.61897776,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0151",
+            "type": "Paper",
+            "name": "Closed investigation CC-0151",
+            "properties": {
+              "title": "Closed investigation CC-0151",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C08913\ncard_id: C08913-K2\nopened_at: 2016-07-06 18:28:29\nclosed_at: 2016-07-11 06:28:29\nfirst_fraud_txn_id: 3012259\nn_txns: 6\nexposure_usd: 1300.37\nactions_taken: CREATE_CASE|BLOCK_CARD|FILE_REPORT\nreport_filed: Yes\nanalyst_notes: Case CC-0151: cardholder C08913 reported unrecognized activity on card C08913-K2. 6 transaction(s) between 2016-07-05 and 2016-07-06 totaling $1,300.37 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on chrome 62.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.61895792,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-0503",
+            "type": "Paper",
+            "name": "Closed investigation CC-0503",
+            "properties": {
+              "title": "Closed investigation CC-0503",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C06906\ncard_id: C06906-K1\nopened_at: 2016-07-14 14:41:06\nclosed_at: 2016-07-18 21:41:06\nfirst_fraud_txn_id: 3040534\nn_txns: 2\nexposure_usd: 46.40\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-0503: cardholder C06906 reported unrecognized activity on card C06906-K1. 2 transaction(s) between 2016-07-13 and 2016-07-13 totaling $46.40 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on firefox 57.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.61876184,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-2905",
+            "type": "Paper",
+            "name": "Closed investigation CC-2905",
+            "properties": {
+              "title": "Closed investigation CC-2905",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C02181\ncard_id: C02181-K2\nopened_at: 2016-09-01 22:27:28\nclosed_at: 2016-09-02 17:27:28\nfirst_fraud_txn_id: 3222494\nn_txns: 4\nexposure_usd: 161.97\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-2905: cardholder C02181 reported unrecognized activity on card C02181-K2. 4 transaction(s) between 2016-08-31 and 2016-08-31 totaling $161.97 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a SM-N950U Build/NMF26X on chrome 63.0 for android. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.6183719200000001,
+            "source_chunks": []
+          },
+          {
+            "id": "hhgoa-closed-CC-3118",
+            "type": "Paper",
+            "name": "Closed investigation CC-3118",
+            "properties": {
+              "title": "Closed investigation CC-3118",
+              "abstract": "outcome: confirmed_fraud\npattern: card_not_present_fraud\ncustomer_id: C09902\ncard_id: C09902-K2\nopened_at: 2016-09-06 07:29:22\nclosed_at: 2016-09-09 02:29:22\nfirst_fraud_txn_id: 3238164\nn_txns: 1\nexposure_usd: 149.97\nactions_taken: CREATE_CASE|BLOCK_CARD\nreport_filed: No\nanalyst_notes: Case CC-3118: cardholder C09902 reported unrecognized activity on card C09902-K2. 1 transaction(s) between 2016-09-05 and 2016-09-05 totaling $149.97 were confirmed fraudulent. Online purchases inconsistent with the cardholder's usual merchants and amounts. Online transactions came from a Windows on chrome 63.0. Card blocked and reissued. Customer reimbursed.",
+              "categories": "closed_case",
+              "abstract_token_count": 0
+            },
+            "relevance_score": 0.61833312,
+            "source_chunks": []
+          }
+        ],
+        "used_vector_search": true,
+        "query_meta": {
+          "query": "customer denies a transaction and exposure requires blocking and a suspicious activity report",
+          "vector_weight": 0.8,
+          "graph_weight": 0.2,
+          "top_k": 10,
+          "depth": 2,
+          "note": "vector"
+        },
+        "latency_ms": 6029.96
+      }
+    }
+  }
+}

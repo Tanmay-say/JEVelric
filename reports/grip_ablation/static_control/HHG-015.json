@@ -1,0 +1,130 @@
+{
+  "case_id": "HHG-015",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.86,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3462385",
+      "3462387",
+      "3462404",
+      "3464869",
+      "3468946"
+    ],
+    "first_suspicious_txn_id": "3462385",
+    "connected_card_ids": [
+      "C00051-K1",
+      "C00056-K1",
+      "C00057-K1",
+      "C00090-K1",
+      "C00093-K1",
+      "C00094-K3",
+      "C00235-K2",
+      "C00321-K1",
+      "C00540-K1",
+      "C05704-K2"
+    ],
+    "connected_device_profiles": [
+      "Trident/7.0#347e7400df"
+    ],
+    "exposure_usd": 2452.98,
+    "evidence": [
+      {
+        "claim": "Card C03042-K1 has 5 transaction(s) within ±48h of 3464869 totaling $2452.98.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C03042-K1)",
+        "entity_ids": [
+          "3462385",
+          "3462387",
+          "3462404",
+          "3464869",
+          "3468946"
+        ]
+      },
+      {
+        "claim": "Device profile shared with other cards in the review window.",
+        "source": "graph",
+        "ref": "query:device_neighbors(txn_id=3464869)",
+        "entity_ids": [
+          "C05704-K2"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-3886",
+          "CC-0615",
+          "CC-1313"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-3886",
+      "CC-0615",
+      "CC-1313"
+    ],
+    "summary": "Verdict: Fraud (account takeover). Pattern: Card-not-present fraud from a new device, with mixed-channel activity inconsistent with the cardholder. Key evidence: Online transaction 3464869 for $599.94 on 2016-11-17 from a new device (Trident/7.0#347e7400df) in region 327, alongside in-person transactions 3462385, 3462387, and 3462404 totaling $1,540.99 on 2016-11-16, resulting in a total exposure of $2,452.98. Recommended action: BLOCK_CARD (L1) and CREATE_CASE.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-015"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "final": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000; activity connects to a shared origin",
+    "narrative": "On November 16, 2016, card C03042-K1, belonging to customer C03042, generated three in-person transactions totaling $1,541.00 at address 299, with risk scores ranging from 0.07 to 0.67. The following day, on November 17, 2016, an online transaction for $599.94 occurred at address 327, associated with a device profile identified as \"Trident/7.0#347e7400df\" and flagged as \"New\" for this account. This online activity is suspicious because the device profile is linked to another card, C05704-K2, indicating a shared device anomaly that suggests potential account takeover. The transaction amount of $599.94 significantly exceeds the customer's historical mean transaction amount of $202.91, deviating from their established spending pattern. Although the customer has prior history in region 327, the combination of a new device, shared device linkage, and elevated risk score of 0.77 indicates a high probability of fraud. The graph heuristic analysis assigns a fraud probability of 0.86 and identifies the pattern as account takeover, supported by three distinct pieces of evidence. Similar closed cases, such as CC-3886 and CC-0615, involved confirmed fraud on the same card due to unrecognized online activity from new devices. The total exposure for this activity window is $2,452.98, including a subsequent in-person transaction on November 18, 2016, for $312.04 at address 337. The presence of the \"anonymous.com\" email address in the transaction records further complicates identity verification, as this email is associated with multiple other cards in the system. Given the shared device flag and the deviation from normal behavior, the activity warrants immediate escalation to an analyst for further investigation.",
+    "subjects": [
+      "C03042",
+      "C03042-K1"
+    ],
+    "total_amount_usd": 2452.98,
+    "activity_dates": [
+      "2016-11-16",
+      "2016-11-18"
+    ]
+  },
+  "stop_reason": "Fraud probability at or beyond the 0.85/0.15 threshold, supported by 2+ independent pieces of evidence.",
+  "tool_calls": 7,
+  "tokens": 10146,
+  "latency_s": 62.52
+}

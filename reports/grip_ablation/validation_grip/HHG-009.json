@@ -1,0 +1,89 @@
+{
+  "case_id": "HHG-009",
+  "case": {
+    "status": "open",
+    "verdict": "uncertain",
+    "fraud_probability": 0.28,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3581141"
+    ],
+    "first_suspicious_txn_id": "3581141",
+    "connected_card_ids": [
+      "C00006-K1",
+      "C00008-K2",
+      "C00059-K2",
+      "C00073-K2",
+      "C00090-K1",
+      "C00266-K1",
+      "C00414-K1",
+      "C00452-K2",
+      "C00483-K1",
+      "C00750-K2"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 30.02,
+    "evidence": [
+      {
+        "claim": "Card C08299-K1 has 1 transaction(s) within ±48h of 3581141 totaling $30.02.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C08299-K1)",
+        "entity_ids": [
+          "3581141"
+        ]
+      },
+      {
+        "claim": "Step-up authentication fails, consistent with the account being compromised.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [],
+    "summary": "Verdict: Uncertain (insufficient evidence to confirm fraud). Pattern: None identified; the single online transaction (txn 3581141, $30.02) does not match any of the five known fraud patterns. Key evidence: The transaction is a single signal with a low fraud probability (0.28), no shared device or region flags, and an amount within the customer's historical mean ($52.22). Recommended action: VERIFY_WITH_CUSTOMER to confirm the transaction's legitimacy before closing the alert.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-009"
+  },
+  "evidence_requests": [
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 0,
+      "assumed_response": "Step-up authentication fails, consistent with the account being compromised."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: single weak signal, probability below 0.70"
+      }
+    ],
+    "final": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R4: no reply within 24 hours, pending authorization"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "R4: no reply within 24 hours"
+      }
+    ],
+    "what_changed": "no reply response added ['DECLINE_TRANSACTION', 'MONITOR_CARD'] and removed ['VERIFY_WITH_CUSTOMER']"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: not filed — either not confirmed/strongly suspected, or no qualifying trigger present",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Evidence round cap reached; recommendation reflects best available evidence.",
+  "tool_calls": 7,
+  "tokens": 9501,
+  "latency_s": 64.82
+}

@@ -1,0 +1,171 @@
+{
+  "case_id": "HHG-013",
+  "case": {
+    "status": "escalated",
+    "verdict": "uncertain",
+    "fraud_probability": 0.6,
+    "pattern": "account_takeover",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3521713",
+      "3521799",
+      "3521839",
+      "3521874",
+      "3522133",
+      "3523372",
+      "3523953",
+      "3524194",
+      "3524237",
+      "3524600",
+      "3524626",
+      "3524788",
+      "3525205",
+      "3525559",
+      "3525584",
+      "3525753",
+      "3525762",
+      "3525902",
+      "3526234",
+      "3526249",
+      "3526265",
+      "3526538",
+      "3526677",
+      "3526747",
+      "3526826",
+      "3526999",
+      "3527288",
+      "3527851",
+      "3528696",
+      "3529131",
+      "3529473",
+      "3529623",
+      "3531359",
+      "3532154"
+    ],
+    "first_suspicious_txn_id": "3521713",
+    "connected_card_ids": [
+      "C00011-K1",
+      "C00016-K1",
+      "C00059-K2",
+      "C00086-K1",
+      "C00090-K1"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 3058.09,
+    "evidence": [
+      {
+        "claim": "Card C07671-K2 has 34 transaction(s) within ±48h of 3526826 totaling $3058.09.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C07671-K2)",
+        "entity_ids": [
+          "3521713",
+          "3521799",
+          "3521839",
+          "3521874",
+          "3522133",
+          "3523372",
+          "3523953",
+          "3524194",
+          "3524237",
+          "3524600",
+          "3524626",
+          "3524788",
+          "3525205",
+          "3525559",
+          "3525584",
+          "3525753",
+          "3525762",
+          "3525902",
+          "3526234",
+          "3526249",
+          "3526265",
+          "3526538",
+          "3526677",
+          "3526747",
+          "3526826",
+          "3526999",
+          "3527288",
+          "3527851",
+          "3528696",
+          "3529131",
+          "3529473",
+          "3529623",
+          "3531359",
+          "3532154"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-4294",
+          "CC-3216",
+          "CC-1475",
+          "CC-3761"
+        ]
+      },
+      {
+        "claim": "Step-up authentication fails, consistent with the account being compromised.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-4294",
+      "CC-3216",
+      "CC-1475",
+      "CC-3761"
+    ],
+    "summary": "Verdict: uncertain — the evidence is suggestive but not conclusive. The flagged activity is a single online transaction (txn 3526826, $35.66, product C, risk score 0.76, device marked New) embedded in an otherwise normal in-person spending pattern on card C07671-K2, consistent with possible card-not-present fraud from a new device (pattern 3) or the account-takeover pattern suggested by the heuristic (probability 0.74), but one anomalous online purchase amid heavy habitual in-person activity is ambiguous. Key evidence: the New-device online transaction against 1130 prior transactions across in_person and online channels, plus a history of three confirmed fraud cases on this same card (CC-4294, CC-3216, CC-1475). Recommended action: VERIFY_WITH_CUSTOMER (or STEP_UP_AUTH) per R1 before any block, with MONITOR_CARD on C07671-K2; escalate to an analyst if the customer denies the transaction.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-013"
+  },
+  "evidence_requests": [
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 0,
+      "assumed_response": "Step-up authentication fails, consistent with the account being compromised."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      }
+    ],
+    "final": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R4: no reply within 24 hours, pending authorization"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "R4: no reply within 24 hours"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R4: no reply and exposure exceeds $500"
+      }
+    ],
+    "what_changed": "no reply response added ['DECLINE_TRANSACTION', 'MONITOR_CARD']"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: not filed — either not confirmed/strongly suspected, or no qualifying trigger present",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Evidence round cap reached; recommendation reflects best available evidence.",
+  "tool_calls": 7,
+  "tokens": 18324,
+  "latency_s": 26.24
+}

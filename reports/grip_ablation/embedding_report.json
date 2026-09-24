@@ -1,0 +1,19 @@
+﻿{
+    "graph":  "HHGOA",
+    "provider":  "Cloudflare Workers AI",
+    "model":  "@cf/baai/bge-base-en-v1.5",
+    "dimension":  768,
+    "documents_expected":  5570,
+    "documents_embedded_and_upserted":  5570,
+    "batch_size":  32,
+    "batches_completed":  175,
+    "started_at_epoch":  1790275925.7157674,
+    "last_document_id":  "hhgoa-closed-CC-5565",
+    "paperemb_count_api":  5475,
+    "paperemb_count_initial_check":  5475,
+    "vector_search_verified":  true,
+    "vector_search_verification":  "Direct tg_vector_search returned PaperEmb matches; GRIP hybrid search returned vector-backed entities after enabled-query reinstall.",
+    "count_reconciliation":  "Immediate count endpoint was stale at batch completion; a later live TigerGraph read returned Paper=5570 and PaperEmb=5570.",
+    "completed_at_epoch":  1790278863,
+    "paperemb_count_final":  5570
+}

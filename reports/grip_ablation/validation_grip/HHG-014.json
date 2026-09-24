@@ -1,0 +1,64 @@
+{
+  "case_id": "HHG-014",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.74,
+    "pattern": "account_takeover",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3477218",
+      "3478561",
+      "3478886"
+    ],
+    "first_suspicious_txn_id": "3477218",
+    "connected_card_ids": [
+      "C00003-K1",
+      "C00038-K1",
+      "C00050-K1",
+      "C00051-K1",
+      "C00059-K2",
+      "C00073-K2",
+      "C00235-K2",
+      "C00244-K1",
+      "C00452-K2",
+      "C00577-K1"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 142.0,
+    "evidence": [
+      {
+        "claim": "Card C13487-K1 has 3 transaction(s) within ±48h of 3478561 totaling $142.00.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C13487-K1)",
+        "entity_ids": [
+          "3477218",
+          "3478561",
+          "3478886"
+        ]
+      }
+    ],
+    "similar_prior_cases": [],
+    "summary": "Verdict: Fraud (account takeover). Pattern: Account takeover, indicated by mixed-channel activity inconsistent with the cardholder's history and a new device identity record. Key evidence: Three transactions (3477218, 3478561, 3478886) totaling $142.00 exposure, including an online transaction of $74.96 from a device marked as \"New.\" Recommended action: Create a case and block the card, routing the block decision to L1 approval given the exposure is under $2,500.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-014"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [],
+    "final": [],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: not filed — either not confirmed/strongly suspected, or no qualifying trigger present",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "",
+  "tool_calls": 7,
+  "tokens": 6152,
+  "latency_s": 35.04
+}

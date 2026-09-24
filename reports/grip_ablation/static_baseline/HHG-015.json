@@ -1,0 +1,140 @@
+{
+  "case_id": "HHG-015",
+  "case": {
+    "status": "escalated",
+    "verdict": "fraud",
+    "fraud_probability": 0.82,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3462385",
+      "3462387",
+      "3462404",
+      "3464869",
+      "3468946"
+    ],
+    "first_suspicious_txn_id": "3462385",
+    "connected_card_ids": [
+      "C00051-K1",
+      "C00056-K1",
+      "C00057-K1",
+      "C00090-K1",
+      "C00093-K1",
+      "C00094-K3",
+      "C00235-K2",
+      "C00321-K1",
+      "C00540-K1",
+      "C05704-K2"
+    ],
+    "connected_device_profiles": [
+      "Trident/7.0#347e7400df"
+    ],
+    "exposure_usd": 2452.98,
+    "evidence": [
+      {
+        "claim": "Card C03042-K1 has 5 transaction(s) within ±48h of 3464869 totaling $2452.98.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C03042-K1)",
+        "entity_ids": [
+          "3462385",
+          "3462387",
+          "3462404",
+          "3464869",
+          "3468946"
+        ]
+      },
+      {
+        "claim": "Device profile shared with other cards in the review window.",
+        "source": "graph",
+        "ref": "query:device_neighbors(txn_id=3464869)",
+        "entity_ids": [
+          "C05704-K2"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-3886",
+          "CC-0615",
+          "CC-1313"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-3886",
+      "CC-0615",
+      "CC-1313"
+    ],
+    "summary": "Verdict: fraud (account takeover / card-not-present from a new device). Card C03042-K1 shows a burst of in-person purchases on 2016-11-16 (txns 3462385, 3462387, 3462404, totaling ~$1,541) followed by an online purchase of $599.94 (txn 3464869) on 2016-11-17 from a device marked New (Trident/7.0#347e7400), which is also shared with card C05704-K2 — mixed-channel activity inconsistent with the cardholder's history, with prior confirmed fraud on the same card (cases CC-3886 and CC-0615). Total exposure is $2,452.98. Recommended actions: BLOCK_CARD (route L2, exposure > $2,500 threshold applies to L1 only), plus MONITOR_CONNECTED_CARDS for C05704-K2 and CREATE_CASE with the evidence attached.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-015"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      }
+    ],
+    "final": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000; activity connects to a shared origin",
+    "narrative": "**Suspicious Activity Report Narrative**\n\nBetween 2016-11-16 and 2016-11-18, card C03042-K1, issued to customer C03042, was used for five transactions totaling $2,452.98 in exposure. On 2016-11-16, three in-person purchases of product W occurred at address 299 within approximately twelve minutes: transaction 3462385 for $440.96 at 14:57:45, transaction 3462387 for $550.03 at 14:59:34, and transaction 3462404 for $550.01 at 15:09:17. The rapid succession and near-identical amounts of the latter two purchases are inconsistent with the cardholder's historical average of $202.91 across 32 prior transactions. On 2016-11-17 at 14:03:36, transaction 3464869, an online purchase of product R for $599.94, originated from billing region 327 using a device marked New for this account (device profile Trident/7.0#347e7400df), carrying a risk score of 0.77. This device profile is shared with card C05704-K2, an unrelated card, suggesting coordinated use of the same device across accounts. The activity pattern is consistent with account takeover: mixed-channel usage combining in-person and online transactions, a new device, and amounts and products deviating from the cardholder's established history. The suspicion is strengthened by two prior confirmed fraud cases on this same card, CC-3886 and CC-0615, both involving card-not-present fraud from new devices, in which the cardholder reported the activity as unauthorized and the card was blocked and reissued. The final transaction, 3468946, an in-person purchase of $312.04 on 2016-11-18 at 22:10:43 from address 337, returned to a familiar region and email domain (aol.com), consistent with the legitimate cardholder resuming normal activity while the fraudulent use remained embedded in the earlier burst. The estimated fraud probability is 0.86, with three independent evidence signals and an evidence sufficiency of 0.72. The institution recommends blocking card C03042-K1 and filing this report given the recurrence of confirmed fraud on this account and the shared-device linkage to C05704-K2.",
+    "subjects": [
+      "C03042",
+      "C03042-K1"
+    ],
+    "total_amount_usd": 2452.98,
+    "activity_dates": [
+      "2016-11-16",
+      "2016-11-18"
+    ]
+  },
+  "stop_reason": "",
+  "tool_calls": 7,
+  "tokens": 9098,
+  "latency_s": 31.83
+}

@@ -1,0 +1,127 @@
+{
+  "case_id": "HHG-005",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.86,
+    "pattern": "account_takeover",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3523199"
+    ],
+    "first_suspicious_txn_id": "3523199",
+    "connected_card_ids": [
+      "C00011-K1",
+      "C00016-K1",
+      "C00020-K1",
+      "C00050-K1",
+      "C00059-K2",
+      "C00079-K1",
+      "C00086-K1",
+      "C00094-K3",
+      "C08299-K1",
+      "C11496-K2",
+      "C11539-K2",
+      "C12267-K2"
+    ],
+    "connected_device_profiles": [
+      "iOS Device#08b637c722"
+    ],
+    "exposure_usd": 100.07,
+    "evidence": [
+      {
+        "claim": "Card C02923-K1 has 1 transaction(s) within ±48h of 3523199 totaling $100.07.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C02923-K1)",
+        "entity_ids": [
+          "3523199"
+        ]
+      },
+      {
+        "claim": "Device profile shared with other cards in the review window.",
+        "source": "graph",
+        "ref": "query:device_neighbors(txn_id=3523199)",
+        "entity_ids": [
+          "C08299-K1",
+          "C11496-K2",
+          "C11539-K2",
+          "C12267-K2"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-2400",
+          "CC-2717",
+          "CC-2857"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-2400",
+      "CC-2717",
+      "CC-2857"
+    ],
+    "summary": "Verdict: Fraud (account takeover). Pattern: Account takeover, consistent with prior confirmed cases CC-2400, CC-2717, and CC-2857 for customer C02923. Key evidence: Transaction 3523199 for $100.07 on card C02923-K1 on 2016-12-07 via online channel from a New device profile (iOS Device#08b637c722), with a fraud probability of 0.86. Recommended actions: MONITOR_CONNECTED_CARDS, CREATE_CASE, FILE_REPORT.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-005"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "final": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and activity connects to a shared origin",
+    "narrative": "On December 7, 2016, at 21:38:37, an online transaction in the amount of $100.07 was processed on card C02923-K1 belonging to customer C02923. The transaction, identified as 3523199, occurred in region 330 and was associated with the email domain gmail.com. The activity was flagged because the device profile iOS Device#08b637c722 was marked as New for this account, indicating a potential compromise of credentials. This device profile is linked to four other cards: C08299-K1, C11496-K2, C11539-K2, and C12267-K2, suggesting a shared device cluster that may indicate coordinated fraudulent activity. The customer’s historical data shows a mean transaction amount of $190.92 across 61 transactions, with prior activity in regions 126, 324, and 330, and channels including both in-person and online. However, the current transaction’s risk score of 0.54 and the presence of a new device elevate the suspicion level beyond typical variance. Similar closed cases CC-2400, CC-2717, and CC-2857 involved the same customer and card, with confirmed account takeover fraud resulting in blocked cards and customer reimbursement. The pattern of mixed-channel activity inconsistent with the cardholder’s history, combined with the new device flag, aligns with the account takeover fraud pattern. The exposure for this specific transaction is $100.07, but the broader risk is heightened by the device’s association with multiple other cards. The evidence supports a high probability of fraud, with a heuristic fraud probability of 0.86 and evidence sufficiency of 0.72. Immediate verification with the customer is recommended to confirm whether the transaction was authorized, as per policy R1 for single-signal cases with probability below 0.70, though the multi-signal nature here may warrant escalation.",
+    "subjects": [
+      "C02923",
+      "C02923-K1"
+    ],
+    "total_amount_usd": 100.07,
+    "activity_dates": [
+      "2016-12-07",
+      "2016-12-07"
+    ]
+  },
+  "stop_reason": "Fraud probability at or beyond the 0.85/0.15 threshold, supported by 2+ independent pieces of evidence.",
+  "tool_calls": 7,
+  "tokens": 8526,
+  "latency_s": 66.73
+}

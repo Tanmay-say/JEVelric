@@ -1,0 +1,135 @@
+{
+  "case_id": "HHG-019",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.86,
+    "pattern": "account_takeover",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3499109",
+      "3503878",
+      "3507926",
+      "3508124"
+    ],
+    "first_suspicious_txn_id": "3499109",
+    "connected_card_ids": [
+      "C00029-K1",
+      "C00050-K1",
+      "C00057-K1",
+      "C00059-K2",
+      "C00090-K1",
+      "C00094-K3",
+      "C00147-K1",
+      "C00168-K1",
+      "C01104-K2",
+      "C01983-K1",
+      "C06224-K2",
+      "C11309-K1"
+    ],
+    "connected_device_profiles": [
+      "Windows#d8d6f92018"
+    ],
+    "exposure_usd": 360.74,
+    "evidence": [
+      {
+        "claim": "Card C07987-K2 has 4 transaction(s) within ±48h of 3503878 totaling $360.74.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C07987-K2)",
+        "entity_ids": [
+          "3499109",
+          "3503878",
+          "3507926",
+          "3508124"
+        ]
+      },
+      {
+        "claim": "Device profile shared with other cards in the review window.",
+        "source": "graph",
+        "ref": "query:device_neighbors(txn_id=3503878)",
+        "entity_ids": [
+          "C01104-K2",
+          "C01983-K1",
+          "C06224-K2",
+          "C11309-K1"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-2087",
+          "CC-2011",
+          "CC-5026",
+          "CC-2860"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-2087",
+      "CC-2011",
+      "CC-5026",
+      "CC-2860"
+    ],
+    "summary": "Verdict: Fraud (account takeover). Pattern: Account takeover indicated by mixed-channel activity and a new device profile (Windows#d8d6f92018) shared with cards C01104-K2, C01983-K1, C06224-K2, and C11309-K1. Key evidence includes four transactions totaling $360.74 between 2016-11-30 and 2016-12-02, specifically online transaction 3503878 for $99.92, with a fraud probability of 0.86. Recommended actions are to create a case and escalate to an analyst, as the exposure of $360.74 is below the $2,500 threshold for L1 approval of a card block.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-019"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "final": [
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R6: shared device profile across cards"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile across cards"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and activity connects to a shared origin",
+    "narrative": "On November 30, 2016, through December 2, 2016, card C07987-K2 associated with customer C07987 generated four transactions totaling $360.74. The activity includes an in-person transaction of $116.91 (ID 3499109) on November 30, 2016, and an online transaction of $99.92 (ID 3503878) on December 1, 2016. Two additional in-person transactions occurred on December 2, 2016: $35.87 (ID 3507926) and $108.04 (ID 3508124). The online transaction was executed from a device profiled as \"New\" for this account, a factor that elevates the risk assessment. Graph analysis indicates the device is shared with cards C01104-K2, C01983-K1, C06224-K2, and C11309-K1, suggesting potential coordinated misuse. The heuristic engine assigned a fraud probability of 0.86 and identified the pattern as account takeover. This activity is suspicious because the new device usage combined with mixed-channel transactions deviates from the cardholder's established history. Customer C07987 has a history of 128 transactions with a mean amount of $225.92 across various regions. Previous closed cases CC-2011, CC-2860, and CC-5026 for this customer resulted in confirmed fraud findings. The current exposure of $360.74 exceeds the threshold for automatic closure, necessitating further investigation. The presence of a new device alongside shared device indicators supports the hypothesis of compromised credentials.",
+    "subjects": [
+      "C07987",
+      "C07987-K2"
+    ],
+    "total_amount_usd": 360.74,
+    "activity_dates": [
+      "2016-11-30",
+      "2016-12-02"
+    ]
+  },
+  "stop_reason": "Fraud probability at or beyond the 0.85/0.15 threshold, supported by 2+ independent pieces of evidence.",
+  "tool_calls": 7,
+  "tokens": 11763,
+  "latency_s": 71.63
+}

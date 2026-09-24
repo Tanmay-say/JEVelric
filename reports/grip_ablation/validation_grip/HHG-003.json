@@ -1,0 +1,167 @@
+{
+  "case_id": "HHG-003",
+  "case": {
+    "status": "escalated",
+    "verdict": "uncertain",
+    "fraud_probability": 0.28,
+    "pattern": "out_of_region_use",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3524629",
+      "3524740",
+      "3525595",
+      "3527130",
+      "3527215",
+      "3527397",
+      "3527532",
+      "3528392",
+      "3528902",
+      "3529041",
+      "3529981",
+      "3530056",
+      "3530164",
+      "3531019",
+      "3531833",
+      "3532138",
+      "3532333",
+      "3532926",
+      "3533469",
+      "3533601",
+      "3533775",
+      "3533776",
+      "3533819",
+      "3534946",
+      "3535845",
+      "3535867"
+    ],
+    "first_suspicious_txn_id": "3524629",
+    "connected_card_ids": [
+      "C00020-K1",
+      "C00079-K1",
+      "C00094-K3",
+      "C00107-K1",
+      "C00163-K1",
+      "C00329-K2",
+      "C00436-K1",
+      "C00452-K2",
+      "C00750-K2",
+      "C00854-K2"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 5517.92,
+    "evidence": [
+      {
+        "claim": "Card C08623-K2 has 26 transaction(s) within ±48h of 3530164 totaling $5517.92.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C08623-K2)",
+        "entity_ids": [
+          "3524629",
+          "3524740",
+          "3525595",
+          "3527130",
+          "3527215",
+          "3527397",
+          "3527532",
+          "3528392",
+          "3528902",
+          "3529041",
+          "3529981",
+          "3530056",
+          "3530164",
+          "3531019",
+          "3531833",
+          "3532138",
+          "3532333",
+          "3532926",
+          "3533469",
+          "3533601",
+          "3533775",
+          "3533776",
+          "3533819",
+          "3534946",
+          "3535845",
+          "3535867"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-2817",
+          "CC-2935",
+          "CC-3682",
+          "CC-4957",
+          "CC-3327"
+        ]
+      },
+      {
+        "claim": "Step-up authentication fails, consistent with the account being compromised.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-2817",
+      "CC-2935",
+      "CC-3682",
+      "CC-4957",
+      "CC-3327"
+    ],
+    "summary": "The investigation into card C08623-K2 yields an uncertain verdict, as the heuristic fraud probability is low at 0.28 and no specific fraud pattern was identified. The activity consists of 26 in-person transactions between 2016-12-08 and 2016-12-12 with a total exposure of $5,517.92, which aligns with the cardholder's established history of in-person usage across multiple regions including region 330. Although the customer has a history of confirmed out-of-region fraud cases (e.g., CC-2817, CC-2935), the current evidence lacks shared device or email flags and does not fit the known card testing or account takeover patterns. Given the single-signal nature of the alert and the low probability score, the recommended action is to verify with the customer or step up authentication before considering any blocking measures.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-003"
+  },
+  "evidence_requests": [
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 0,
+      "assumed_response": "Step-up authentication fails, consistent with the account being compromised."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: single weak signal, probability below 0.70"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      }
+    ],
+    "final": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R4: no reply within 24 hours, pending authorization"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "R4: no reply within 24 hours"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R4: no reply and exposure exceeds $500"
+      }
+    ],
+    "what_changed": "no reply response added ['DECLINE_TRANSACTION', 'MONITOR_CARD'] and removed ['VERIFY_WITH_CUSTOMER']"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: not filed — either not confirmed/strongly suspected, or no qualifying trigger present",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Evidence round cap reached; recommendation reflects best available evidence.",
+  "tool_calls": 7,
+  "tokens": 13656,
+  "latency_s": 107.06
+}

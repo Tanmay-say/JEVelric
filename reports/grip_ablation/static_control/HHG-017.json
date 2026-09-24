@@ -1,0 +1,103 @@
+{
+  "case_id": "HHG-017",
+  "case": {
+    "status": "open",
+    "verdict": "uncertain",
+    "fraud_probability": 0.28,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3450436",
+      "3450503",
+      "3450629"
+    ],
+    "first_suspicious_txn_id": "3450436",
+    "connected_card_ids": [
+      "C00051-K1",
+      "C00053-K1",
+      "C00056-K1",
+      "C00057-K1",
+      "C00090-K1",
+      "C00094-K3",
+      "C00132-K1",
+      "C00156-K1",
+      "C00168-K1",
+      "C00232-K1"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 300.14,
+    "evidence": [
+      {
+        "claim": "Card C04570-K1 has 3 transaction(s) within ±48h of 3450629 totaling $300.14.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C04570-K1)",
+        "entity_ids": [
+          "3450436",
+          "3450503",
+          "3450629"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-1383"
+        ]
+      },
+      {
+        "claim": "Step-up authentication fails, consistent with the account being compromised.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": []
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-1383"
+    ],
+    "summary": "Verdict: Uncertain. The activity on card C04570-K1 for customer C04570 does not match a known fraud pattern, with a low fraud probability of 0.28 and no shared device, region, or email flags. Key evidence includes three online transactions (3450436, 3450503, 3450629) totaling $300.14 on 2016-11-11, which align with the customer's historical mean amount of $246.4 and prior usage in region 204. Recommended action is to verify with the customer or step up authentication, as the single-signal case with a probability below 0.70 requires verification before any block per policy R1.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-017"
+  },
+  "evidence_requests": [
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 0,
+      "assumed_response": "Step-up authentication fails, consistent with the account being compromised."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: single weak signal, probability below 0.70"
+      }
+    ],
+    "final": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R4: no reply within 24 hours, pending authorization"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "R4: no reply within 24 hours"
+      }
+    ],
+    "what_changed": "no reply response added ['MONITOR_CARD', 'DECLINE_TRANSACTION'] and removed ['VERIFY_WITH_CUSTOMER']"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: not filed — either not confirmed/strongly suspected, or no qualifying trigger present",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Evidence round cap reached; recommendation reflects best available evidence.",
+  "tool_calls": 7,
+  "tokens": 8367,
+  "latency_s": 36.17
+}

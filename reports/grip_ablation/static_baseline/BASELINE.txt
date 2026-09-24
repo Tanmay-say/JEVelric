@@ -1,0 +1,7 @@
+﻿GRIP experiment Phase 0 baseline
+
+Mode: static (the existing TigerGraph-only context path)
+Cases copied: 20
+Pytest baseline: 16 passed (reported from the immediately preceding verified run; not rerun for this baseline capture)
+
+Case JSON snapshots are preserved in this directory before GRIP changes.

@@ -1,0 +1,113 @@
+{
+  "case_id": "HHG-003",
+  "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.1,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [
+      "C00020-K1",
+      "C00079-K1",
+      "C00094-K3",
+      "C00107-K1",
+      "C00163-K1",
+      "C00329-K2",
+      "C00436-K1",
+      "C00452-K2",
+      "C00750-K2",
+      "C00854-K2"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 0.0,
+    "evidence": [
+      {
+        "claim": "Card C08623-K2 has 26 transaction(s) within ±48h of 3530164 totaling $5517.92.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C08623-K2)",
+        "entity_ids": [
+          "3524629",
+          "3524740",
+          "3525595",
+          "3527130",
+          "3527215",
+          "3527397",
+          "3527532",
+          "3528392",
+          "3528902",
+          "3529041",
+          "3529981",
+          "3530056",
+          "3530164",
+          "3531019",
+          "3531833",
+          "3532138",
+          "3532333",
+          "3532926",
+          "3533469",
+          "3533601",
+          "3533775",
+          "3533776",
+          "3533819",
+          "3534946",
+          "3535845",
+          "3535867"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-2935",
+          "CC-4957",
+          "CC-3327",
+          "CC-3682",
+          "CC-2817"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-2935",
+      "CC-4957",
+      "CC-3327",
+      "CC-3682",
+      "CC-2817"
+    ],
+    "summary": "Verdict: legitimate (CLOSE_NO_FRAUD). The 26 in-person transactions on card C08623-K2 from 2016-12-08 to 2016-12-12 (total exposure $5,517.92) all occurred in billing regions well within the cardholder's 715-transaction history (e.g., 204, 330, 264, 251), with amounts consistent with the historical mean of $134.28 and no device, email, or region-sharing anomalies. No known fraud pattern fits: activity is card-present, in-region, and consistent with the cardholder's profile; the heuristic hint reports fraud probability 0.28, single-signal-only, pattern 'none'. Prior confirmed-fraud cases (CC-2935, CC-4957, CC-3327, CC-3682, CC-2817) involved out-of-region or account-takeover activity not present here. Recommended action: CLOSE_NO_FRAUD, with no card blocking or customer disruption required.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-003"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: single weak signal, probability below 0.70"
+      }
+    ],
+    "final": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: single weak signal, probability below 0.70"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: not filed — verdict is legitimate",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Fraud probability at or beyond the 0.85/0.15 threshold, supported by 2+ independent pieces of evidence.",
+  "tool_calls": 7,
+  "tokens": 11408,
+  "latency_s": 23.44
+}

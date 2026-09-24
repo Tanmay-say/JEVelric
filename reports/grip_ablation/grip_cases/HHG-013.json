@@ -1,0 +1,165 @@
+{
+  "case_id": "HHG-013",
+  "case": {
+    "status": "escalated",
+    "verdict": "fraud",
+    "fraud_probability": 0.74,
+    "pattern": "account_takeover",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3521713",
+      "3521799",
+      "3521839",
+      "3521874",
+      "3522133",
+      "3523372",
+      "3523953",
+      "3524194",
+      "3524237",
+      "3524600",
+      "3524626",
+      "3524788",
+      "3525205",
+      "3525559",
+      "3525584",
+      "3525753",
+      "3525762",
+      "3525902",
+      "3526234",
+      "3526249",
+      "3526265",
+      "3526538",
+      "3526677",
+      "3526747",
+      "3526826",
+      "3526999",
+      "3527288",
+      "3527851",
+      "3528696",
+      "3529131",
+      "3529473",
+      "3529623",
+      "3531359",
+      "3532154"
+    ],
+    "first_suspicious_txn_id": "3521713",
+    "connected_card_ids": [
+      "C00011-K1",
+      "C00016-K1",
+      "C00059-K2",
+      "C00086-K1",
+      "C00090-K1"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 3058.09,
+    "evidence": [
+      {
+        "claim": "Card C07671-K2 has 34 transaction(s) within ±48h of 3526826 totaling $3058.09.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C07671-K2)",
+        "entity_ids": [
+          "3521713",
+          "3521799",
+          "3521839",
+          "3521874",
+          "3522133",
+          "3523372",
+          "3523953",
+          "3524194",
+          "3524237",
+          "3524600",
+          "3524626",
+          "3524788",
+          "3525205",
+          "3525559",
+          "3525584",
+          "3525753",
+          "3525762",
+          "3525902",
+          "3526234",
+          "3526249",
+          "3526265",
+          "3526538",
+          "3526677",
+          "3526747",
+          "3526826",
+          "3526999",
+          "3527288",
+          "3527851",
+          "3528696",
+          "3529131",
+          "3529473",
+          "3529623",
+          "3531359",
+          "3532154"
+        ]
+      },
+      {
+        "claim": "Similar closed investigations were retrieved from case history.",
+        "source": "graph",
+        "ref": "query:closed_case_similarity",
+        "entity_ids": [
+          "CC-3761",
+          "CC-1475",
+          "CC-4294",
+          "CC-3216"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-3761",
+      "CC-1475",
+      "CC-4294",
+      "CC-3216"
+    ],
+    "summary": "Verdict: Fraud (account takeover). Pattern: Account takeover, indicated by mixed-channel activity inconsistent with the cardholder's history and a new device flag. Key evidence: 34 transactions totaling $3,058.09 on card C07671-K2 between 2016-12-07 and 2016-12-11, with a fraud probability of 0.74 and prior confirmed fraud cases (CC-4294, CC-3216, CC-1475) for this customer. Recommended action: Create a case, block the card (L1 approval required as exposure exceeds $2,500), and file a report (L2 approval required).",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-013"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000"
+      }
+    ],
+    "final": [
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000",
+    "narrative": "On December 7, 2016, cardholder C07671 initiated a series of in-person transactions on card C07671-K2, including transaction 3521713 for $72.97 and transaction 3522133 for $663.96. The activity window extended through December 11, 2016, with a total exposure of $3,058.09 across 34 transactions. The graph heuristic identified the activity pattern as account takeover with a fraud probability of 0.74. This assessment is supported by the presence of a new device identifier, id_15, associated with online channel activity. The customer’s historical profile indicates a mean transaction amount of $112.53 across 1,130 prior transactions. Previous closed cases, including CC-4294 and CC-1475, confirmed account takeover fraud for this customer on the same card. The current activity exhibits mixed-channel inconsistencies that align with stolen credentials rather than simple card-not-present fraud. No shared device or region flags were detected, but the new device signal remains a significant anomaly. The evidence sufficiency score of 0.72 indicates a moderate level of confidence in the fraud determination. Given the customer’s history of confirmed fraud and the current device anomaly, the activity is deemed suspicious. The recommended action is to escalate to an analyst for further review. A suspicious activity report should be filed with the regulator to document the potential account takeover.",
+    "subjects": [
+      "C07671",
+      "C07671-K2"
+    ],
+    "total_amount_usd": 3058.09,
+    "activity_dates": [
+      "2016-12-07",
+      "2016-12-11"
+    ]
+  },
+  "stop_reason": "",
+  "tool_calls": 7,
+  "tokens": 12646,
+  "latency_s": 81.67
+}

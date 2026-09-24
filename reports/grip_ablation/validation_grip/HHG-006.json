@@ -1,0 +1,100 @@
+{
+  "case_id": "HHG-006",
+  "case": {
+    "status": "escalated",
+    "verdict": "fraud",
+    "fraud_probability": 0.74,
+    "pattern": "account_takeover",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3473012",
+      "3474057",
+      "3476602",
+      "3476633",
+      "3476665",
+      "3476682",
+      "3477578",
+      "3478191"
+    ],
+    "first_suspicious_txn_id": "3473012",
+    "connected_card_ids": [
+      "C00003-K1",
+      "C00028-K1",
+      "C00038-K1",
+      "C00044-K1",
+      "C00050-K1",
+      "C00059-K2",
+      "C00064-K1",
+      "C00073-K2"
+    ],
+    "connected_device_profiles": [],
+    "exposure_usd": 2508.06,
+    "evidence": [
+      {
+        "claim": "Card C07297-K1 has 8 transaction(s) within ±48h of 3476682 totaling $2508.06.",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C07297-K1)",
+        "entity_ids": [
+          "3473012",
+          "3474057",
+          "3476602",
+          "3476633",
+          "3476665",
+          "3476682",
+          "3477578",
+          "3478191"
+        ]
+      }
+    ],
+    "similar_prior_cases": [],
+    "summary": "Verdict: Fraud (account takeover). Pattern: Account takeover, indicated by mixed-channel activity inconsistent with the cardholder's history and a new device flag. Key evidence: A burst of four online transactions (3476602, 3476633, 3476665, 3476682) totaling $1,906.07 on 2016-11-21, contributing to a total exposure of $2,508.06 across eight transactions. Recommended action: Create a case and block the card, requiring L1 approval due to the exposure amount exceeding $2,500.",
+    "written_to_graph": true,
+    "graph_case_id": "G-HHG-006"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000"
+      }
+    ],
+    "final": [
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: uncertain verdict with exposure over $500"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "3a: fraud confirmed/strongly suspected and exposure exceeds $1,000",
+    "narrative": "On November 20, 2016, card C07297-K1 recorded two in-person transactions, including transaction 3473012 for $262.04 and transaction 3474057 for $226.02. On November 21, 2016, the card was used for four online transactions within a 30-minute window, totaling $1,906.07. These online transactions include 3476602 for $478.95, 3476633 for $456.96, 3476665 for $488.04, and 3476682 for $482.12. The activity occurred from a device identified as New for this account, which is inconsistent with the customer's established history. The customer’s historical average transaction amount is $116.43, making the recent online purchases significantly higher than their typical spending pattern. The total exposure for the period from November 20 to November 22, 2016, is $2,508.06. This mixed-channel activity, combining in-person and online transactions, suggests potential account takeover rather than simple card-not-present fraud. The presence of a new device profile strengthens the suspicion of unauthorized access to the customer's credentials. No shared device, region, or email flags were detected, indicating the fraud may be isolated to this specific account. The pattern aligns with known account takeover indicators, where stolen credentials are used to initiate transactions. Given the fraud probability of 0.74 and the evidence sufficiency of 0.72, the activity warrants further investigation. The customer should be contacted to verify the legitimacy of these transactions before any blocking actions are taken.",
+    "subjects": [
+      "C07297",
+      "C07297-K1"
+    ],
+    "total_amount_usd": 2508.06,
+    "activity_dates": [
+      "2016-11-20",
+      "2016-11-22"
+    ]
+  },
+  "stop_reason": "",
+  "tool_calls": 7,
+  "tokens": 11437,
+  "latency_s": 77.79
+}

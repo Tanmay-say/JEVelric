@@ -1,0 +1,54 @@
+{
+  "graph": "HHGOA",
+  "mcp_tool": "graphrag_ingest",
+  "extraction_strategy": "frequency",
+  "async_mode": false,
+  "batch_size": 50,
+  "collections": {
+    "policy": {
+      "documents_expected": 4,
+      "chunks_expected": 4,
+      "documents_ingested": 4,
+      "triples_extracted": 20,
+      "entities_created_reported": 16,
+      "edges_created": 20,
+      "batches": 1,
+      "last_vertex_counts": {
+        "Paper": 55,
+        "Author": 0,
+        "Concept": 104,
+        "PaperEmb": 0
+      }
+    },
+    "patterns": {
+      "documents_expected": 1,
+      "chunks_expected": 1,
+      "documents_ingested": 1,
+      "triples_extracted": 5,
+      "entities_created_reported": 6,
+      "edges_created": 5,
+      "batches": 1,
+      "last_vertex_counts": {
+        "Paper": 55,
+        "Author": 0,
+        "Concept": 104,
+        "PaperEmb": 0
+      }
+    },
+    "closed_case": {
+      "documents_expected": 5565,
+      "chunks_expected": 5565,
+      "documents_ingested": 5565,
+      "triples_extracted": 27825,
+      "entities_created_reported": 16910,
+      "edges_created": 27825,
+      "batches": 112,
+      "last_vertex_counts": {
+        "Paper": 5570,
+        "Author": 0,
+        "Concept": 3724,
+        "PaperEmb": 0
+      }
+    }
+  }
+}
