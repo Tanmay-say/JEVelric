@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f3ed">
+  <meta name="description" content="Live JEVelric fraud investigation console">
+  <title>JEVelric · Live investigation console</title>
+  <link rel="stylesheet" href="styles/console.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/console/" aria-label="JEVelric console home"><span class="brand-mark">J</span><span>JEVelric <small>FRAUD INTELLIGENCE</small></span></a>
+    <nav><a class="active" href="/console/">Live console</a><a href="/dashboard/">Case archive</a><a href="/site/">Project</a></nav>
+    <div class="top-state"><i id="api-dot"></i><span id="api-label">Connecting to API</span></div>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <div class="intro-copy"><div class="eyebrow">INVESTIGATION WORKSPACE <span>·</span> TIGERGRAPH</div><h1>Run the case.<br><em>Follow the evidence.</em></h1><p>Upload a case pack and watch the agent investigate each alert against the live graph. Evidence, policy decisions, graph writes and the final answer appear as they happen.</p></div>
+      <div class="intro-note"><span class="note-kicker">THE SYSTEM</span><strong>Graph evidence → assessment → policy</strong><p>The model assesses signals. R1–R10 decide actions. Every case is validated before the answer is shown.</p><a href="/site/">Explore the architecture <span>↗</span></a></div>
+    </section>
+
+    <section class="runner-grid" aria-label="Live case runner">
+      <div class="run-config panel">
+        <div class="section-head"><div><div class="eyebrow">01 / INPUT</div><h2>Choose a case pack</h2></div><span class="live-pill"><i></i> LIVE RUNNER</span></div>
+        <p class="muted">CSV must include case_id, trigger_type, trigger_text, flagged_txn_id, card_id, and customer_id. IDs must exist in the connected graph.</p>
+        <label class="dropzone" id="dropzone" for="case-file"><input id="case-file" type="file" accept=".csv,text/csv"><span class="upload-icon">↑</span><strong id="file-name">Drop a CSV here or <u>browse files</u></strong><small>UTF-8 CSV · up to 1 MB · 50 cases</small></label>
+        <div class="config-row"><label for="mode-select">Context retrieval</label><select id="mode-select"><option value="static">Static GraphRAG · recommended</option><option value="grip">GRIP hybrid · vector + graph</option></select></div>
+        <div class="button-row"><button id="run-button" class="primary-button" disabled><span>Run investigations</span><span>→</span></button><button id="sample-button" class="text-button">Get current case pack</button></div>
+        <div class="form-message" id="form-message" role="status"></div>
+        <div class="input-foot"><span>Cases are processed one at a time</span><span>Answers saved outside <code>cases/</code></span></div>
+      </div>
+
+      <div class="architecture panel">
+        <div class="eyebrow">02 / ORCHESTRATION</div><h2>What the agent does</h2>
+        <div class="flow-list">
+          <div class="flow-step"><span class="flow-index">01</span><div><strong>Retrieve</strong><small>Six graph queries · entity history and links</small></div><b>GRAPH</b></div>
+          <div class="flow-step"><span class="flow-index">02</span><div><strong>Assess</strong><small>Risk, pattern and evidence sufficiency</small></div><b>AI</b></div>
+          <div class="flow-step"><span class="flow-index">03</span><div><strong>Decide</strong><small>Deterministic R1–R10 · approval route</small></div><b>POLICY</b></div>
+          <div class="flow-step"><span class="flow-index">04</span><div><strong>Verify & write</strong><small>Validate IDs and actions · store the case</small></div><b>CHECK</b></div>
+        </div>
+        <div class="architecture-foot"><span class="small-dot"></span><span id="graph-label">Graph connection is checked when a run starts.</span></div>
+      </div>
+    </section>
+
+    <section class="run-status panel" id="run-status" aria-live="polite">
+      <div class="section-head"><div><div class="eyebrow">03 / LIVE ACTIVITY</div><h2 id="run-title">Ready when you are</h2></div><div class="run-count" id="run-count">No cases running</div></div>
+      <div class="progress-track"><span id="progress-bar"></span></div>
+      <div class="activity-layout">
+        <div class="activity-column"><div class="subhead"><span>CASE QUEUE</span><span id="queue-label">Waiting for CSV</span></div><div id="case-queue" class="case-queue"><div class="empty-queue">Upload a case pack to begin. Results will appear here one by one.</div></div></div>
+        <div class="activity-column"><div class="subhead"><span>AGENT ACTIVITY</span><span id="activity-label">No active case</span></div><ol id="stage-list" class="stage-list"><li class="idle-stage"><span class="stage-marker"></span><span>Live orchestration steps will stream here.</span></li></ol></div>
+      </div>
+    </section>
+
+    <section class="result-section" id="result-section">
+      <div class="result-heading"><div><div class="eyebrow">04 / INVESTIGATION RECORD</div><h2 id="result-title">Case results</h2></div><div id="result-metrics" class="result-metrics"></div></div>
+      <div id="result-content" class="result-empty">As the agent completes each case, its evidence and decision record will be available here.</div>
+    </section>
+
+    <footer><span>JEVelric · Explainable fraud investigation</span><span>Human review required for L1 / L2 recommendations</span></footer>
+  </main>
+  <script src="js/console.js"></script>
+</body>
+</html>

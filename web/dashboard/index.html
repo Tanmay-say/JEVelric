@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JEVelric — Investigation Dashboard</title>
+  <meta name="description" content="Console dashboard for the 20 HHGOA fraud investigation cases. View evidence, actions, SAR reports, and case progression.">
+  <link rel="stylesheet" href="styles/dashboard.css">
+  <style>
+    /* Inline favicon fallback — a simple purple gem */
+    :root { --fav: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E💎%3C/text%3E%3C/svg%3E"); }
+  </style>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E💎%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="dash-header">
+    <div class="dash-header-inner">
+      <div>
+        <a href="#/" class="dash-logo">JEVelric</a>
+        <span class="dash-subtitle"> · Investigation Dashboard</span>
+      </div>
+      <nav class="dash-nav">
+        <a href="/site/" title="Public Site">Site</a>
+        <a href="/api/health" title="API Health">API</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dash-main" id="dash-content">
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <div class="loading-text">Loading cases…</div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

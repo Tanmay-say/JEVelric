@@ -55,6 +55,8 @@ The GRIP MCP tools used were:
 - `graphrag_batch_similarity` to cosine-rerank candidate closed cases.
 - `graphrag_format` to format selected context with a 350-token formatter budget.
 
+For ordinary graph work, the separate TigerGraph MCP client uses `tigergraph__run_installed_query` for the six parameterized GSQL retrieval queries (`card_window`, `device_neighbors`, `region_cluster`, `email_cluster`, `customer_history`, and `closed_case_similarity`), `tigergraph__add_node` / `tigergraph__add_edges` to write investigation cases, and `tigergraph__install_query` to install the query definitions. The initial bulk-load workflow uses `tigergraph__create_loading_job`, `tigergraph__run_loading_job_with_file`, `tigergraph__get_loading_job_status`, and vertex/edge count tools to load and verify data. In each case, the Python client communicates with the MCP server over stdio, validates the returned tool result, and maps the structured response back into the graph/evidence layer.
+
 These tools improve evidence retrieval and context selection; they do not establish that a fraud verdict is correct. Accuracy and consistency are supported by grounding evidence in live graph records, preserving exact graph IDs, applying deterministic R1–R10 policy after assessment, constraining summaries to selected actions, and validating answer schemas, graph-known IDs, graph writes, and action/prose consistency. All 20 current static answer files passed live validation. All 20 GRIP-mode runs completed, but per-case vector success/fallback was not recorded; predictive accuracy against an answer key is therefore not established.
 
 ## Static versus GRIP vector comparison
@@ -89,6 +91,39 @@ Table values show `status / verdict / pattern / fraud probability`. “Static re
 HHG-004 is a material same-session difference: GRIP changed the result from open/uncertain (0.68) to closed_fraud/fraud (0.82). HHG-019 changed the pattern while status, verdict, and actions agreed. Keep static as default until retrieval success is recorded per case and the differences are reviewed. Full evidence and action comparisons are in [`reports/grip_ablation/comparison_report.md`](reports/grip_ablation/comparison_report.md).
 
 The current static submission results, including final actions and SAR decisions for all 20 cases, are in [`reports/grip_ablation/final_static_cases_report.md`](reports/grip_ablation/final_static_cases_report.md). After the action-consistency fix, all 20 passed live TigerGraph validation, and the current `cases/` directory has no action-like summary text paired with an empty final action list.
+
+### Case validation results
+
+Every current root-level answer file was checked against the live TigerGraph graph and passed. The table below summarizes the submitted static answers; “PASS” means the answer schema, referenced graph IDs, graph-write record, and action/prose consistency checks passed.
+
+| Case | Verdict | Pattern | Live validation |
+|---|---|---|---|
+| HHG-001 | legitimate | none | PASS |
+| HHG-002 | uncertain | card_not_present_fraud | PASS |
+| HHG-003 | legitimate | none | PASS |
+| HHG-004 | uncertain | card_not_present_new_device | PASS |
+| HHG-005 | fraud | card_not_present_new_device | PASS |
+| HHG-006 | fraud | card_not_present_new_device | PASS |
+| HHG-007 | uncertain | none | PASS |
+| HHG-008 | uncertain | card_not_present_fraud | PASS |
+| HHG-009 | uncertain | none | PASS |
+| HHG-010 | fraud | card_not_present_new_device | PASS |
+| HHG-011 | fraud | card_testing | PASS |
+| HHG-012 | legitimate | none | PASS |
+| HHG-013 | uncertain | account_takeover | PASS |
+| HHG-014 | fraud | account_takeover | PASS |
+| HHG-015 | fraud | card_not_present_new_device | PASS |
+| HHG-016 | uncertain | card_not_present_new_device | PASS |
+| HHG-017 | uncertain | none | PASS |
+| HHG-018 | uncertain | none | PASS |
+| HHG-019 | fraud | card_not_present_new_device | PASS |
+| HHG-020 | fraud | account_takeover | PASS |
+
+**Validation total: 20/20 passed.** The following screenshots show the case result table across all 20 cases.
+
+![Validated case results, cases HHG-001 to HHG-018](images/1.png)
+
+![Validated case results, cases HHG-018 to HHG-020](images/2.png)
 
 ### Token use and completion
 
@@ -135,12 +170,85 @@ The TigerGraph path requires a running HHGOA graph and `TG_HOST`, `TG_SECRET`, a
 
 The GRIP corpus contains four policy chunks, one fraud-pattern chunk, and 5,565 closed-case text documents (5,570 total). It uses Cloudflare Workers AI embeddings with 768 dimensions. GRIP's current hybrid weighting is 0.7 vector / 0.3 graph; the adapter combines scaled scores and is not Reciprocal Rank Fusion. See the weight probe and ingestion notes in [`reports/grip_ablation/HANDOFF.md`](reports/grip_ablation/HANDOFF.md).
 
-## Verified status and remaining work
+## Set up Jevelric with another dataset
+
+This repository is a working HHGOA implementation, not a plug-and-play loader for arbitrary CSV schemas. To reuse the agent with another dataset, first convert that data into the canonical input contract below, then update the graph mappings and policy-specific assumptions. Never infer labels from a public copy of a deliberately unlabeled evaluation dataset.
+
+### 1. Create the development environment
+
+```powershell
+git clone https://github.com/Tanmay-say/JEVeleric-HHGOA_TASK4.git
+cd JEVeleric-HHGOA_TASK4
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+Copy-Item .env.example .env
+```
+
+Set the LLM provider keys in `.env` for the runner you intend to use. For TigerGraph, set `TG_HOST`, `TG_SECRET`, and `TG_GRAPHNAME`; set `GRAPH_BACKEND=tigergraph`. Keep secrets out of source control. To develop without a graph, use `GRAPH_BACKEND=csv` and keep the expected local data files under `DATA_DIR`.
+
+### 2. Prepare the new data in the canonical format
+
+The current loader and graph queries expect these files under `DATA_DIR`:
+
+| File | Required purpose and fields |
+|---|---|
+| `transactions.csv` | One row per transaction. The current HHGOA normalizer reads `TransactionID`, `customer_id`, `card1`, `ts`, `TransactionAmt`, `ProductCD`, `risk_score`, and the referenced card, address, email, and identity columns. It derives canonical transaction and card IDs. |
+| `identity.csv` | Identity/device records keyed by `TransactionID`, including fields such as `id_15`, `id_23`, `id_30`, `id_31`, `id_33`, `DeviceType`, and `DeviceInfo`. |
+| `closed_cases_history.csv` | Historical investigation examples with `case_id`, `customer_id`, `card_id`, `outcome`, `pattern`, transaction IDs, exposure, actions, report status, and analyst notes. |
+| `case_pack.csv` | Cases to run: `case_id`, `opened_at`, `trigger_type`, `trigger_text`, `flagged_txn_id`, `card_id`, `customer_id`, and `risk_score` when the trigger is a risk score. |
+
+For a new source, write or adapt a normalizer rather than changing the source files in place. Preserve stable entity IDs across transactions, identity data, historical cases, and the case pack. Update [`data/README.md`](data/README.md) with the new schema and document which fields are signals versus verified outcomes. The detailed HHGOA column meanings and answer contract are the template; your new dataset may require different mappings and policy rules.
+
+### 3. Adapt schema, loading, and query assumptions
+
+Review [`schema/graph_schema.gsql`](schema/graph_schema.gsql), [`schema/loading_jobs.gsql`](schema/loading_jobs.gsql), and all six files in `schema/queries/`. Update vertex IDs, attributes, edge mappings, query logic, and `src/graph_client.py` together when the new data has different semantics. The current preparation and loading scripts contain HHGOA-specific assumptions, including the expected transaction count of 590,742, 50,000-row chunks, and the case-derived card-ID mapping. Update those constraints for the new dataset before loading; the current scripts intentionally fail if the HHGOA row count or files do not match their checks.
+
+For the HHGOA-compatible format, prepare and load data with:
+
+```powershell
+.venv\Scripts\python.exe scripts\prepare_tigergraph_data.py
+.venv\Scripts\python.exe scripts\load_tigergraph.py
+.venv\Scripts\python.exe scripts\deploy_tigergraph.py
+```
+
+The preparation script produces trimmed staging files and transaction chunks. The loader creates headerless transport copies for TigerGraph's file upload, loads chunks sequentially, polls asynchronous job status where available, and checks live counts. For a different dataset, update the loader's row-count and mapping checks and verify every affected vertex and edge count before running investigations. Apply the manual GSQL schema to the intended graph first; do not use the AI-Build wizard for wide CSVs.
+
+### 4. Compare queries, run cases, and validate
+
+Install and compare each graph retrieval query against the CSV implementation on representative cases before processing the complete case pack. The comparison script currently uses HHG-017, so adapt its sample selection for your case IDs:
+
+```powershell
+.venv\Scripts\python.exe scripts\compare_tigergraph_query.py card_window
+.venv\Scripts\python.exe scripts\compare_tigergraph_query.py device_neighbors
+.venv\Scripts\python.exe scripts\compare_tigergraph_query.py region_cluster
+.venv\Scripts\python.exe scripts\compare_tigergraph_query.py email_cluster
+.venv\Scripts\python.exe scripts\compare_tigergraph_query.py customer_history
+.venv\Scripts\python.exe scripts\compare_tigergraph_query.py closed_case_similarity
+```
+
+Update `src/policy_engine.py`, `src/validate.py`, the state models, and the answer validator for the new dataset's fraud definitions and submission contract. Then run one case, inspect its graph evidence and answer, and run the full case pack:
+
+```powershell
+.venv\Scripts\python.exe scripts\run_cases_groq.py --case <CASE-ID>
+.venv\Scripts\python.exe scripts\run_cases_groq.py
+.venv\Scripts\python.exe -m pytest
+.venv\Scripts\python.exe scripts\validate_tigergraph_answers.py
+```
+
+The current answer validator expects the HHGOA 20-case pack and 590,742 transactions; revise those HHGOA-specific checks for another dataset. Keep answer files in the required output directory and validate file names against that dataset's case pack. Enable `GRAPHRAG_MODE=grip` only after static retrieval is verified; the current GRIP corpus builder is also tailored to HHGOA policy, patterns, and closed-case history, so replace those documents with the new domain's authoritative knowledge and history before ingesting.
+
+## Verified status and architecture strengths
 
 - TigerGraph `HHGOA` has 590,742 transactions; the latest status probe identified the real TigerGraph backend and graph. The saved live probe is [`reports/grip_ablation/live_status_after_benchmark.json`](reports/grip_ablation/live_status_after_benchmark.json).
-- The current static submission files passed live validation **20/20**; pytest passed **24 tests**.
-- Static remains the production default. GRIP is functional on the configured graph, but per-case retrieval success/fallback metadata should be persisted before treating the A/B comparison as conclusive.
-- Review material outcome and pattern differences, then complete the remaining semantic review, analyst UI/demo, and blog/post deliverables if required by the submission.
+- The current static submission files passed live validation **20/20**; the unit suite passed **24 tests**.
+- Graph retrieval connects case IDs and evidence to live TigerGraph records, and investigation cases are written back to the graph for traceability.
+- Deterministic R1–R10 policy separates action and approval decisions from LLM prose generation, supporting consistent, explainable outcomes.
+- Evidence requests can trigger up to two simulated response rounds, and the output preserves initial and final recommendations.
+- Optional GRIP retrieval adds vector-grounded policy, pattern, and closed-case context while retaining the static context path.
+- Answer validation checks structure, graph references, graph writes, and consistency between narrative recommendations and structured actions.
+- The pipeline is modular: data preparation, graph queries, policy, assessment providers, orchestration, and validation can be adapted independently for another dataset.
 
 The original task specification is [`TigerGraph Agentic Fraud Investigation HHGOA.md`](TigerGraph%20Agentic%20Fraud%20Investigation%20HHGOA.md).
 

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JEVelric — Agentic Fraud Investigation on TigerGraph</title>
+  <meta name="description" content="JEVelric is an agentic fraud investigation system built on TigerGraph. It gathers graph evidence, assesses uncertainty, applies deterministic policy rules, and explains every decision.">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E💎%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">JEVelric</a>
+      <ul class="nav-links">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#tigergraph">TigerGraph</a></li>
+        <li><a href="#agentic">Agentic</a></li>
+        <li><a href="#learned">Learned</a></li>
+        <li><a href="/dashboard/">Dashboard →</a></li>
+        <li><a href="/console/">Live Console →</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       1. HERO
+       ═══════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>JEVelric</h1>
+      <p class="tagline">Agentic fraud investigation on TigerGraph — evidence-driven, policy-compliant, explainable</p>
+      <div class="hero-ctas">
+        <a href="https://github.com/Tanmay-say/JEVeleric-HHGOA_TASK4" target="_blank" rel="noreferrer" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="/dashboard/" class="btn btn-secondary">View Case Archive →</a>
+        <a href="/console/" class="btn btn-secondary">Open Live Console →</a>
+        <a href="#architecture" class="btn btn-ghost">How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       2. THE PROBLEM
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="problem">
+    <div class="container fade-in">
+      <span class="section-label">The Problem</span>
+      <h2>Fraud investigation is too slow, too manual, and too fragmented</h2>
+      <div class="callout">
+        Fraud teams at financial institutions are under constant pressure. Analysts must manually gather transaction history, trace money movement, identify connected accounts, review policies, assess risk, document findings, and decide what action to take. This process is slow, fragmented, difficult to scale, and often completes only after the money is already gone.
+      </div>
+      <p class="lead">
+        Each investigation touches transaction databases, device profiles, customer history, closed case archives, regulatory policies, and pattern libraries — all in different systems. By the time a human analyst pieces the picture together, the window for effective action has often closed.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       3. WHAT WE BUILT
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="solution">
+    <div class="container fade-in">
+      <span class="section-label">What We Built</span>
+      <h2>An agent that investigates, assesses, acts, and explains</h2>
+      <p class="lead">
+        JEVelric is a fraud investigation agent that handles the full lifecycle: from an initial trigger through evidence gathering, uncertainty assessment, policy-compliant action, and a written case record. It processes all 20 HHGOA benchmark cases end to end.
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <h3><span class="icon">🔍</span> Trigger → Investigate</h3>
+          <p>Accepts risk scores, customer reports, or analyst requests. Retrieves transaction windows, device profiles, region clusters, email links, and closed case history from TigerGraph.</p>
+        </div>
+        <div class="card">
+          <h3><span class="icon">⚖️</span> Assess → Decide</h3>
+          <p>Computes fraud probability, identifies patterns (card testing, CNP, account takeover, out-of-region, undocumented), and applies deterministic policy rules R1–R10 to choose actions and approval routes.</p>
+        </div>
+        <div class="card">
+          <h3><span class="icon">🔄</span> Request → Reassess</h3>
+          <p>When evidence is weak (R1), the agent requests customer validation or step-up auth, simulates the response, then re-evaluates. The recommendation can change — and the agent records exactly what changed and why.</p>
+        </div>
+        <div class="card">
+          <h3><span class="icon">📝</span> Report → Remember</h3>
+          <p>Files SARs when policy requires it, writes investigation cases to TigerGraph as memory, and validates every ID and field against the live graph before emitting the case file.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       4. ARCHITECTURE
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="architecture">
+    <div class="container fade-in">
+      <span class="section-label">Architecture</span>
+      <h2>Orchestration state machine</h2>
+      <p class="lead">
+        TigerGraph supplies connected evidence. The assessment layer estimates risk and identifies a likely pattern; the orchestrator uses those signals to settle the case, while deterministic rules R1–R10 select actions and approval routes. The language model writes the explanation and SAR narrative. It does not choose policy actions or routes.
+      </p>
+      <div class="diagram-container" id="mermaid-target">
+        <div class="mermaid">
+flowchart TD
+    A[Case trigger and intake] --> B[Six TigerGraph evidence queries]
+    B --> C[Assemble graph evidence and local policy context]
+    C --> D{GRAPHRAG_MODE}
+    D -- static --> E[Use static context]
+    D -- grip --> F[GRIP hybrid vector and graph retrieval]
+    E --> G[Assess risk and pattern]
+    F --> G
+    G --> H[Orchestrator settles verdict and case state]
+    H --> I[Apply deterministic policy R1-R10]
+    I --> J{Need more evidence?}
+    J -- "Yes, up to 2 rounds" --> K[Request evidence and simulate response]
+    K --> G
+    J -- No --> L[Finalize actions and approval route]
+    L --> M[Evaluate SAR policy and write narrative]
+    M --> N[Write investigation case to TigerGraph]
+    N --> O[Validate schema, evidence, and graph IDs]
+    O --> P[Emit cases/HHG-xxx.json]
+        </div>
+        <p class="diagram-caption">Current investigation flow. JEV is a future assessment option; it is not in the active runner.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       5. HOW TIGERGRAPH IS USED
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="tigergraph">
+    <div class="container fade-in">
+      <span class="section-label">TigerGraph</span>
+      <h2>Three jobs from one graph</h2>
+      <p class="lead">
+        TigerGraph is the live evidence store and case memory. Six parameterized GSQL queries retrieve connected transaction, customer, device, region, email, and closed-case evidence. An optional GRIP mode adds hybrid vector and graph retrieval for text knowledge; static mode remains the default.
+      </p>
+      <div class="schema-image">
+        <img src="assets/schema.png" alt="Base HHGOA TigerGraph schema with eight vertex types and thirteen edge types; an additive GRIP corpus extends the graph" loading="lazy">
+        <p class="schema-caption">Base HHGOA: 8 vertex types and 13 edge types. Additive GRIP corpus: 4 vertex types and 2 edge types. Live graph: 590,742 transactions.</p>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <h3><span class="icon">🕸️</span> Graph Database</h3>
+          <p>Customer → Card → Transaction → DeviceProfile relationships power six GSQL queries: card_window, device_neighbors, region_cluster, email_cluster, closed_case_similarity, and customer_history. These retrieve structured evidence with entity IDs preserved — no raw dataframes.</p>
+        </div>
+        <div class="card">
+          <h3><span class="icon">📚</span> Context Grounding</h3>
+          <p>Static mode assembles local policy and pattern text with graph-derived evidence. Optional GRIP mode searches an ingested corpus of policy, pattern, and closed-case narratives with hybrid vector and graph retrieval. No regulatory reference corpus is currently loaded.</p>
+        </div>
+        <div class="card">
+          <h3><span class="icon">🧠</span> Case Memory</h3>
+          <p>After each investigation, the agent writes an InvestigationCase vertex with edges to involved cards, transactions, and cited closed cases. Later cases retrieve these as similar_prior_cases — the agent's memory improves with every run.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       6. AGENTIC CAPABILITIES
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="agentic">
+    <div class="container fade-in">
+      <span class="section-label">Agentic Capabilities</span>
+      <h2>What makes this an agent, not just an LLM call</h2>
+      <ol class="feature-list">
+        <li>
+          <strong>Evidence-round loop — the agent changes its mind</strong>
+          <span>When the initial signal is weak (R1: single signal, probability below 0.70), the agent requests customer validation or step-up authentication, simulates the response, then re-evaluates with the new evidence. For example, case HHG-005 started with MONITOR_CONNECTED_CARDS + CREATE_CASE + FILE_REPORT. After step-up auth failed (simulated denied response), the agent added BLOCK_CARD — a materially different recommendation driven by new evidence, not a prompt tweak.</span>
+        </li>
+        <li>
+          <strong>Deterministic policy engine — rules gate every action</strong>
+          <span>The policy engine is pure Python, unit-tested, with zero LLM involvement. Rules R1–R10 map signals (fraud_probability, pattern, shared_device_flag, customer_response, exposure_usd) to exact actions and approval routes. The LLM writes summaries and SAR narratives — it never decides what action to take or which route to assign. This makes every recommendation auditable against the published policy.</span>
+        </li>
+        <li>
+          <strong>Approval routing — auto, L1, L2</strong>
+          <span>Only auto-route actions (MONITOR_CARD, VERIFY_WITH_CUSTOMER, CREATE_CASE, etc.) may be executed by the agent. High-impact actions like BLOCK_CARD require L1 (team lead, exposure ≤ $2,500) or L2 (fraud manager, exposure > $2,500) human approval. BLOCK_ALL_CARDS and FILE_REPORT always require L2. The agent recommends and states the route — it never unilaterally blocks.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       7. WHAT WE LEARNED
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="learned">
+    <div class="container fade-in">
+      <span class="section-label">What We Learned</span>
+      <h2>Real debugging stories from this build</h2>
+      <ol class="feature-list">
+        <li>
+          <strong>Chunked transport and CSV headers</strong>
+          <span>A single large load request was unreliable, so transactions were split into chunks of about 50,000 rows. The upload-capable file-loading path required headerless upload copies and a loading job configured with <code>HEADER=&quot;false&quot;</code>. Loading job status and live graph counts were checked between chunks until the graph reached exactly 590,742 Transaction vertices.</span>
+        </li>
+        <li>
+          <strong>R1 vs. customer-response policy conflict</strong>
+          <span>R1 fires when there's a single weak signal with probability below 0.70 — it recommends VERIFY_WITH_CUSTOMER before any block. But R3 fires when the customer confirms the transaction — CLOSE_NO_FRAUD. If the customer confirmation arrives during the evidence round, R1's VERIFY_WITH_CUSTOMER should be dropped from the final actions, not kept alongside R3's CLOSE_NO_FRAUD. Our unit tests caught this before any case run: the policy engine was union-ing rules without checking for logical conflicts between the "ask" action and the "settlement" action.</span>
+        </li>
+        <li>
+          <strong>Graph-backed ID validation — no made-up IDs</strong>
+          <span>The challenge spec states: "Made-up IDs score zero." Our ANSWER_VALIDATE step queries TigerGraph to confirm that every transaction ID, card ID, customer ID, device profile, and closed case ID referenced anywhere in the answer actually exists in the live graph. This caught several LLM-hallucinated IDs during early development — the LLM would invent plausible-looking transaction IDs based on the numeric pattern of real ones.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       8. WHAT'S NEXT
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="next">
+    <div class="container fade-in">
+      <span class="section-label">Current Build &amp; Next Steps</span>
+      <h2>A live graph workflow, with room to extend</h2>
+      <ul class="scope-list">
+        <li><strong>Live graph investigations.</strong> Six GSQL evidence queries ground each case in TigerGraph; the investigation record is written back to the graph and checked against live IDs.</li>
+        <li><strong>Two retrieval modes.</strong> Static mode is the default. Optional GRIP mode adds vector and graph hybrid retrieval over policy, pattern, and closed-case text. The public site and live console expose the same workflow.</li>
+        <li><strong>Benchmark delivery.</strong> The root <code>cases/</code> directory contains one answer for each of the 20 HHGOA cases. The static set passed structural and graph-backed validation; public dataset fraud labels were not used to infer outcomes.</li>
+        <li><strong>JEV is future scope.</strong> JEV has not been integrated into the active assessment runner. It could later provide an additional typed evidence and uncertainty assessment, evaluated against the current provider path before adoption.</li>
+        <li><strong>Human approval remains a recommendation.</strong> L1 and L2 routes are recorded for analyst review; the application does not execute a human approval workflow or automatically carry out high-impact actions.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       9. FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="site-footer" id="footer">
+    <div class="container">
+      <div class="footer-brand">JEVelric</div>
+      <p>Built for the TigerGraph HHGOA Hackathon</p>
+      <p>Graph-powered fraud investigation · IEEE-CIS data · 20 benchmark cases</p>
+      <div class="footer-links">
+        <a href="https://github.com/Tanmay-say/JEVeleric-HHGOA_TASK4" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/console/">Live Console</a>
+        <a href="https://savanna.tgcloud.io" target="_blank">TigerGraph Savanna</a>
+        <a href="https://discord.gg/7JMkCAy9D3" target="_blank">TigerGraph Discord</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ─────────────────────────────────────────── -->
+
+  <!-- Mermaid.js — lazy loaded -->
+  <script>
+    // Scroll-based fade-in animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-in').forEach(function(el) {
+        observer.observe(el);
+      });
+
+      // Lazy-load Mermaid when architecture section is near viewport
+      const mermaidTarget = document.getElementById('mermaid-target');
+      if (mermaidTarget) {
+        const mermaidObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              mermaidObserver.unobserve(entry.target);
+              const script = document.createElement('script');
+              script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js';
+              script.onload = function() {
+                mermaid.initialize({
+                  startOnLoad: true,
+                  theme: 'base',
+                  themeVariables: {
+                    darkMode: false,
+                    background: '#fffefa',
+                    primaryColor: '#e5eee8',
+                    primaryTextColor: '#172722',
+                    primaryBorderColor: '#1d5445',
+                    lineColor: '#69766f',
+                    secondaryColor: '#f4f3ed',
+                    tertiaryColor: '#d9e881',
+                    fontFamily: 'DM Sans, sans-serif',
+                    fontSize: '14px',
+                  },
+                  flowchart: { curve: 'basis', padding: 16 },
+                });
+                mermaid.run({ nodes: [mermaidTarget.querySelector('.mermaid')] });
+              };
+              document.head.appendChild(script);
+            }
+          });
+        }, { rootMargin: '200px' });
+        mermaidObserver.observe(mermaidTarget);
+      }
+    });
+  </script>
+
+</body>
+</html>
