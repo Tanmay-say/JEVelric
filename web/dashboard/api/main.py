@@ -200,12 +200,23 @@ async def get_case(case_id: str):
 async def get_config():
     """Expose non-secret runtime settings to the console."""
     from src import config, llm
+    providers = _console_provider_names()
     return {
         "graphrag_mode": config.GRAPHRAG_MODE,
-        "llm_providers": llm.llm_provider_order(),
+        "llm_providers": providers or llm.llm_provider_order(),
         "jev_enabled": config.JEV_ENABLED,
         "graph_name": config.TG_GRAPH_NAME,
     }
+
+
+def _console_provider_names() -> list[str]:
+    """Provider order reserved for live console runs, separate from batch runners."""
+    providers = []
+    if os.getenv("NVIDIA_API_KEY", "").strip():
+        providers.append("nvidia_nim")
+    if os.getenv("CF_API_TOKEN", "").strip() and os.getenv("CF_ACCOUNT_ID", "").strip():
+        providers.append("cloudflare_workers_ai")
+    return providers
 
 
 # ---------------------------------------------------------------------------
@@ -332,6 +343,62 @@ def _publish(run_id: str, event: dict[str, Any]) -> None:
             RUNS[run_id]["events"].append(event)
 
 
+def _configure_console_llm(llm_module):
+    """Use NVIDIA NIM first, with Cloudflare Workers AI fallback for console runs.
+
+    The standard Groq/OpenRouter/Gemini configuration and batch runners remain
+    unchanged; this temporarily installs a console-only provider chain.
+    """
+    from openai import OpenAI
+    from src import config
+
+    provider_names = _console_provider_names()
+    if not provider_names:
+        raise RuntimeError("Configure NVIDIA_API_KEY or Cloudflare Workers AI credentials to run the live console")
+
+    nim_key = os.getenv("NVIDIA_API_KEY", "").strip()
+    nim_model = os.getenv("NVIDIA_MODEL", "openai/gpt-oss-20b").strip()
+    cf_token = os.getenv("CF_API_TOKEN", "").strip()
+    cf_account = os.getenv("CF_ACCOUNT_ID", "").strip()
+    cf_model = os.getenv("CF_MODEL") or os.getenv("CLOUDFLARE_WORKERS_AI_MODEL", "@cf/openai/gpt-oss-20b")
+    nim_client = OpenAI(api_key=nim_key, base_url="https://integrate.api.nvidia.com/v1", timeout=90.0) if nim_key else None
+    cf_client = OpenAI(
+        api_key=cf_token,
+        base_url=f"https://api.cloudflare.com/client/v4/accounts/{cf_account}/ai/v1",
+        timeout=90.0,
+    ) if cf_token and cf_account else None
+    original_order = llm_module.llm_provider_order
+    original_complete = llm_module._complete_provider
+
+    def complete_provider(provider: str, system: str, user: str, max_tokens: int):
+        if provider == "nvidia_nim":
+            client, model = nim_client, nim_model
+        elif provider == "cloudflare_workers_ai":
+            client, model = cf_client, cf_model
+        else:
+            return original_complete(provider, system, user, max_tokens)
+        if client is None:
+            raise llm_module.LLMError(f"Credentials for {provider} are not configured")
+        request = {
+            "model": model,
+            "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+            "max_tokens": max_tokens,
+            "temperature": config.LLM_TEMPERATURE,
+        }
+        if provider == "nvidia_nim" and "glm" in model.lower():
+            request["reasoning_effort"] = "low"
+            request["extra_body"] = {"chat_template_kwargs": {"clear_thinking": True}}
+        response = client.chat.completions.create(**request)
+        content = response.choices[0].message.content or ""
+        if not content.strip():
+            raise llm_module.LLMError(f"{model} returned an empty response")
+        return content, llm_module._usage_tokens(getattr(response, "usage", None))
+
+    llm_module.llm_provider_order = lambda: provider_names
+    llm_module._complete_provider = complete_provider
+    return original_order, original_complete, provider_names
+
+
 def _execute_live_run(run_id: str, rows: list[dict[str, str]], mode: str) -> None:
     """Execute uploaded cases serially through the production LangGraph."""
     import time
@@ -340,6 +407,7 @@ def _execute_live_run(run_id: str, rows: list[dict[str, str]], mode: str) -> Non
     from src.state import InvestigationState, TriggerType
 
     previous = (config.GRAPH_BACKEND, config.GRAPHRAG_MODE, config.ANSWERS_DIR)
+    previous_llm = None
     output_dir = RUNS_DIR / run_id
     try:
         with RUNS_LOCK:
@@ -348,6 +416,7 @@ def _execute_live_run(run_id: str, rows: list[dict[str, str]], mode: str) -> Non
         config.GRAPH_BACKEND = "tigergraph"
         config.GRAPHRAG_MODE = mode
         config.ANSWERS_DIR = output_dir
+        previous_llm = _configure_console_llm(llm)
         _publish(run_id, {"type": "graph_connecting", "graph": config.TG_GRAPH_NAME})
         client = config.get_mcp_client()
         count_result = client.call_tool("tigergraph__get_vertex_count", {
@@ -451,6 +520,8 @@ def _execute_live_run(run_id: str, rows: list[dict[str, str]], mode: str) -> Non
                 pass
             config.get_mcp_client.cache_clear()
         config.GRAPH_BACKEND, config.GRAPHRAG_MODE, config.ANSWERS_DIR = previous
+        if previous_llm:
+            llm.llm_provider_order, llm._complete_provider = previous_llm[:2]
         RUN_GATE.release()
 
 
